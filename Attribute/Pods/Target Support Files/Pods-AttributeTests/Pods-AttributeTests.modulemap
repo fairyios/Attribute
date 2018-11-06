@@ -1,0 +1,6 @@
+framework module Pods_AttributeTests {
+  umbrella header "Pods-AttributeTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
