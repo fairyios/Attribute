@@ -10,18 +10,28 @@ import UIKit
 import SnapKit
 
 
+extension HomeController {
+    //--UI--
+    private static let uiUITableView: String = "UITableView"
+    private static let uiUITabBar: String = "UITabBar"
+    //--Kit--
+    private static let kitSnapKit: String = "SnapKit"
+    //--Dialog--
+    private static let dialogDialog1: String = "Dialog1"
+}
+
 /// HomeController
 final class HomeController: UIViewController {
 
     var firstSection: [String] = ["UI", "Dialog", "Kit"]
     var secondSection: [[String]] = [
         [
-            "UITableViewController", "UITableView", "UITabBarController", "UITabBar"
+            uiUITableView, uiUITabBar
         ],
         [
-            "SnapKit"
+            kitSnapKit
         ],
-        ["Dialog1"]
+        [dialogDialog1]
     ]
     
     
@@ -128,7 +138,19 @@ extension HomeController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension HomeController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       
+        let secion = secondSection[indexPath.section][indexPath.row]
+        switch secion {
+        case HomeController.uiUITableView:
+            break
+        case HomeController.uiUITabBar:
+            break
+            
+        default:
+            break
+        }
         
+       
         //取消选中的行
         tableView.deselectRow(at: indexPath, animated: true)
     }
