@@ -24,7 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         let rootNavigation = UINavigationController(rootViewController: HomeController.init())
         rootNavigation.delegate = self as UINavigationControllerDelegate
         
+        window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = rootNavigation
+        window?.makeKeyAndVisible()
         
         debugPrint("window?.rootViewController ?? Any.self")
         debugPrint(window?.rootViewController ?? Any.self)
