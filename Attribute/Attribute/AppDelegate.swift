@@ -9,13 +9,26 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        debugPrint("window?.rootViewController ?? Any.self")
+        debugPrint(window?.rootViewController ?? Any.self)
+        
+        //UINavigationController
+        //let homController = HomeController()
+        let rootNavigation = UINavigationController(rootViewController: HomeController.init())
+        rootNavigation.delegate = self as UINavigationControllerDelegate
+        
+        window?.rootViewController = rootNavigation
+        
+        debugPrint("window?.rootViewController ?? Any.self")
+        debugPrint(window?.rootViewController ?? Any.self)
+        
         return true
     }
 

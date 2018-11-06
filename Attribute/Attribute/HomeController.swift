@@ -9,20 +9,20 @@
 import UIKit
 import SnapKit
 
-private extension HomeController {
-    private static let firstUI = "UI"
-    private static let firstDialog = "Dialog"
-    private static let firstKit = "Kit"
+internal extension HomeController {
+    internal static let firstUI = "UI"
+    internal static let firstDialog = "Dialog"
+    internal static let firstKit = "Kit"
     
     //--UI--
-    private static let secondUIView: String = "UIView"
-    private static let secondUITableView: String = "UITableView"
-    private static let secondUITabBar: String = "UITabBar"
-    private static let secondNavigation: String = "Navigation"
+    internal static let secondUIView: String = "UIView"
+    internal static let secondUITableView: String = "UITableView"
+    internal static let secondUITabBar: String = "UITabBar"
+    internal static let secondNavigation: String = "Navigation"
     //--Kit--
-    private static let secondSnapKit: String = "SnapKit"
+    internal static let secondSnapKit: String = "SnapKit"
     //--Dialog--
-    private static let secondDialogDialog1: String = "Dialog1"
+    internal static let secondDialogDialog1: String = "Dialog1"
 }
 
 /// HomeController
@@ -34,9 +34,9 @@ internal final class HomeController: UIViewController {
             secondUIView, secondUITableView, secondUITabBar, secondNavigation
         ],
         [
-            secondSnapKit
+           secondDialogDialog1
         ],
-        [secondDialogDialog1]
+        [secondSnapKit]
     ]
     
     
@@ -62,11 +62,9 @@ internal final class HomeController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationItem.title = "Attribute"
         
+        
         self.view.addSubview(self.myTable)
-       
-        self.myTable.snp.remakeConstraints { (maker) in
-            maker.edges.equalTo(self.view)
-        }
+        self.myTable.snp.remakeConstraints { maker in maker.edges.equalTo(self.view) }
     }
     
     override func didReceiveMemoryWarning() {
@@ -154,11 +152,14 @@ extension HomeController: UITableViewDelegate {
                     
                     break
                 case HomeController.secondUITableView:
-                    
+                    let homeTable = UIHomeTableController()
+                    self.show(homeTable, sender: nil)
                     break
                 case HomeController.secondUITabBar:
                     break
                 case HomeController.secondNavigation:
+                    let homeNavigation = UIHomeNavigationController()
+                    self.show(homeNavigation, sender: nil)
                     break
                 default:
                     break
