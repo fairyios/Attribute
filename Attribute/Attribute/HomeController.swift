@@ -11,6 +11,7 @@ import SnapKit
 
 internal extension HomeController {
     //--UI--
+    private static let uiUIView: String = "UIView"
     private static let uiUITableView: String = "UITableView"
     private static let uiUITabBar: String = "UITabBar"
     //--Kit--
@@ -25,7 +26,7 @@ internal final class HomeController: UIViewController {
     var firstSection: [String] = ["UI", "Dialog", "Kit"]
     var secondSection: [[String]] = [
         [
-            uiUITableView, uiUITabBar
+            uiUIView, uiUITableView, uiUITabBar
         ],
         [
             kitSnapKit
@@ -140,7 +141,11 @@ extension HomeController: UITableViewDelegate {
        
         let secion = secondSection[indexPath.section][indexPath.row]
         switch secion {
+        case HomeController.uiUIView:
+            
+            break
         case HomeController.uiUITableView:
+            
             break
         case HomeController.uiUITabBar:
             break
