@@ -9,29 +9,34 @@
 import UIKit
 import SnapKit
 
-internal extension HomeController {
+private extension HomeController {
+    private static let firstUI = "UI"
+    private static let firstDialog = "Dialog"
+    private static let firstKit = "Kit"
+    
     //--UI--
-    private static let uiUIView: String = "UIView"
-    private static let uiUITableView: String = "UITableView"
-    private static let uiUITabBar: String = "UITabBar"
+    private static let secondUIView: String = "UIView"
+    private static let secondUITableView: String = "UITableView"
+    private static let secondUITabBar: String = "UITabBar"
+    private static let secondNavigation: String = "Navigation"
     //--Kit--
-    private static let kitSnapKit: String = "SnapKit"
+    private static let secondSnapKit: String = "SnapKit"
     //--Dialog--
-    private static let dialogDialog1: String = "Dialog1"
+    private static let secondDialogDialog1: String = "Dialog1"
 }
 
 /// HomeController
 internal final class HomeController: UIViewController {
 
-    var firstSection: [String] = ["UI", "Dialog", "Kit"]
+    var firstSection: [String] = [firstUI, firstDialog, firstKit]
     var secondSection: [[String]] = [
         [
-            uiUIView, uiUITableView, uiUITabBar
+            secondUIView, secondUITableView, secondUITabBar, secondNavigation
         ],
         [
-            kitSnapKit
+            secondSnapKit
         ],
-        [dialogDialog1]
+        [secondDialogDialog1]
     ]
     
     
@@ -139,17 +144,32 @@ extension HomeController: UITableViewDataSource {
 extension HomeController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        
-        let secion = secondSection[indexPath.section][indexPath.row]
-        switch secion {
-        case HomeController.uiUIView:
+        
+        let first = firstSection[indexPath.section]
+        let second = secondSection[indexPath.section][indexPath.row]
+        switch first {
+        case HomeController.firstUI:
+            switch second {
+                case HomeController.secondUIView:
+                    
+                    break
+                case HomeController.secondUITableView:
+                    
+                    break
+                case HomeController.secondUITabBar:
+                    break
+                case HomeController.secondNavigation:
+                    break
+                default:
+                    break
+            }
+            break
+        case HomeController.firstDialog:
             
             break
-        case HomeController.uiUITableView:
+        case HomeController.firstKit:
             
             break
-        case HomeController.uiUITabBar:
-            break
-            
         default:
             break
         }
