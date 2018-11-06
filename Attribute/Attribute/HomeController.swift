@@ -9,8 +9,7 @@
 import UIKit
 import SnapKit
 
-
-extension HomeController {
+internal extension HomeController {
     //--UI--
     private static let uiUITableView: String = "UITableView"
     private static let uiUITabBar: String = "UITabBar"
@@ -21,7 +20,7 @@ extension HomeController {
 }
 
 /// HomeController
-final class HomeController: UIViewController {
+internal final class HomeController: UIViewController {
 
     var firstSection: [String] = ["UI", "Dialog", "Kit"]
     var secondSection: [[String]] = [
@@ -41,7 +40,7 @@ final class HomeController: UIViewController {
         table.backgroundColor = UIColor.orange
         table.delegate = self
         table.dataSource = self
-        table.rowHeight = 50.0
+        table.rowHeight = 30.0
         table.tableHeaderView = UIView()
         table.tableFooterView = nil
         table.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
