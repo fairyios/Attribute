@@ -23,7 +23,48 @@ final class UINavigationControllerSelf : UINavigationController, UINavigationCon
         
         debugPrint("navigationItem")
         debugPrint(self.navigationItem)
-         
         
+        
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.0) {
+                    //设置导航栏标题的字体颜色
+                    self.navigationBar.titleTextAttributes = [
+                        NSAttributedString.Key.foregroundColor : UIColor.red.cgColor
+                    ]
+                }
+        
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.0) {
+                    //设置导航栏的返回按钮颜色
+                    self.navigationBar.barStyle = .black
+                    self.navigationBar.barTintColor = UIColor.orange
+                }
+        
+    }
+    
+    convenience init() {
+        let root = NavigationSelfController()
+        self.init(rootViewController: root)
+    }
+    
+    /// 重载了此方法，同时需要重载“override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)”
+    /// 才不会异常
+    /// - Parameter rootViewController: 根节点Controller
+    override init(rootViewController: UIViewController) {
+        super.init(rootViewController: rootViewController)
+        
+        
+        //设置导航栏:返回按钮
+        let backBarButton = UIBarButtonItem(title: "根节点", style: .plain, target: nil, action: nil)
+        backBarButton.tintColor = UIColor.white
+        rootViewController.navigationItem.backBarButtonItem = backBarButton
+        
+    }
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        
+    }
+    
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }

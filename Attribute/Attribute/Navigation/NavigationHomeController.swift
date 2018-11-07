@@ -150,8 +150,9 @@
                 self.present(systemNavigation, animated: true, completion: nil)
                 break
             case NavigationHomeController.secondDefine:
-                let define = UIViewController()
-                let defineNavigation = UINavigationControllerSelf(rootViewController: define)
+//                let define = NavigationSelfController()
+//                let defineNavigation = UINavigationControllerSelf(rootViewController: define)
+                let defineNavigation = UINavigationControllerSelf()
                 self.present(defineNavigation, animated: true, completion: nil)
                 break
             default:

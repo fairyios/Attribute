@@ -65,7 +65,7 @@
         
         let leftButton =  UIButton()//(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
         leftButton.translatesAutoresizingMaskIntoConstraints = false
-        leftButton.addTarget(nil, action: #selector(self.leftBarButtonItemTouchUpInside), for: .touchUpInside)
+        leftButton.addTarget(self, action: #selector(self.leftBarButtonItemTouchUpInside), for: .touchUpInside)
         leftButton.clipsToBounds = true
         leftButton.layer.borderWidth = 0.9
         leftButton.layer.borderColor = UIColor.white.cgColor
@@ -76,7 +76,7 @@
         
         let leftBarButtonItem = UIBarButtonItem(customView: leftButton)
         //let leftBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: #selector(self.leftBarButtonItemTouchUpInside))
-          
+        
         return leftBarButtonItem
     }()
     
