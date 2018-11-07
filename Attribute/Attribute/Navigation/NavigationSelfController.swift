@@ -50,7 +50,7 @@ final class NavigationSelfController : UIViewController {
         
         self.view.backgroundColor = UIColor.purple
         
-        self.navigationItem.title = "根节点"
+        self.navigationItem.title = "自定义UINavigationController"
         
         self.view.addSubview(self.nextViewButton)
         self.nextViewButton.snp.makeConstraints { make in

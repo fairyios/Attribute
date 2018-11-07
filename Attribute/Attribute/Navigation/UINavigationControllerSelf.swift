@@ -53,7 +53,8 @@ final class UINavigationControllerSelf : UINavigationController, UINavigationCon
         
         
         //设置导航栏:返回按钮
-        let backBarButton = UIBarButtonItem(title: "根节点", style: .plain, target: nil, action: nil)
+        //let backTitle = rootViewController.navigationItem.title
+        let backBarButton = UIBarButtonItem(title: "自定义UINavigationController", style: .plain, target: nil, action: nil)
         backBarButton.tintColor = UIColor.white
         rootViewController.navigationItem.backBarButtonItem = backBarButton
         
