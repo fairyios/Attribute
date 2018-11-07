@@ -56,6 +56,37 @@
     }()
     
     
+    /// 返回按钮
+    private lazy var leftBarButtonItem: UIBarButtonItem = {
+//        let imageView = UIImageView(image: UIImage(named: "home_back_white_24x24"))
+//        imageView.transform = .identity
+//        imageView.contentMode = .scaleAspectFit
+//        imageView.alpha = 0.9
+        
+        let leftButton =  UIButton()//(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        leftButton.translatesAutoresizingMaskIntoConstraints = false
+        leftButton.addTarget(nil, action: #selector(self.leftBarButtonItemTouchUpInside), for: .touchUpInside)
+        leftButton.clipsToBounds = true
+        leftButton.layer.borderWidth = 0.9
+        leftButton.layer.borderColor = UIColor.white.cgColor
+        leftButton.clipsToBounds = true
+        leftButton.layer.cornerRadius = 15
+        leftButton.backgroundColor = UIColor.clear
+        leftButton.setBackgroundImage(UIImage(named: "home_back_white_24x24"), for: UIControl.State.normal)
+        
+        let leftBarButtonItem = UIBarButtonItem()
+        //let leftBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: #selector(self.leftBarButtonItemTouchUpInside))
+        leftBarButtonItem.customView = leftButton
+        
+        return leftBarButtonItem
+    }()
+    
+    /// 返回按钮的TouchUpInside
+    @objc private func leftBarButtonItemTouchUpInside() {
+        print("@objc func back()")
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = NavigationHomeController.secondSystem
@@ -83,22 +114,29 @@
         self.navigationController?.navigationBar.barStyle = .black//设置导航栏的样式
         //设置导航栏透明
         self.navigationController?.navigationBar.isTranslucent = true
-        //设置导航栏的背景图
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: ""), for: UIBarMetrics.default)
+        
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0) {
-            
+            return
+            //Thread.sleep(forTimeInterval: 2.0)
             self.navigationItem.prompt = "设置导航栏的背景图"
             //设置导航栏的背景图
             //self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: ""), for: UIBarMetrics.default)
             //Thread.sleep(forTimeInterval: 2.0)
             self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "icon-40"), for: UIBarMetrics.default)
+            //self.navigationController?.navigationBar.backIndicatorImage //后退按钮旁边显示的图像。
+            self.navigationController?.navigationBar.backgroundImage(for: UIBarMetrics.default)
             
-            //----------------------------------------------------------------
-            Thread.sleep(forTimeInterval: 5.0)
-            self.navigationItem.prompt = "设置导航栏的背景颜色"
+        }
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.0) {
+            //Thread.sleep(forTimeInterval: 2.0)
+            self.navigationItem.prompt = "设置导航栏的背景颜色 清空"
             self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: ""), for: UIBarMetrics.default)
             
+            
+        }
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3.0) {
+            self.navigationItem.prompt = "设置导航栏的背景色"
             self.navigationController?.navigationBar.backIndicatorImage = nil
             self.navigationController?.navigationBar.shadowImage = nil
             //self.title = "title" // 没有效果
@@ -106,20 +144,19 @@
             //self.navigationController?.navigationBar.backgroundColor = UIColor.orange // 没有效果
             self.navigationController?.navigationBar.barTintColor = UIColor.orange // 设置导航栏的背景色// 有效果,是正确的颜色
             //self.navigationController?.navigationBar.tintColor = UIColor.orange  // 没有效果
-            
-            //----------------------------------------------------------------
-            Thread.sleep(forTimeInterval: 1.0)
-            self.navigationItem.prompt = "设置导航栏标题的字体颜色"
-            self.navigationController?.navigationBar.titleTextAttributes = [
-                NSAttributedString.Key.foregroundColor : UIColor.white.cgColor
-            ]
-            
-            
-            
-            
-            
         }
         
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 4.0) {
+            self.navigationItem.prompt = "设置导航栏标题的字体颜色"
+            self.navigationController?.navigationBar.titleTextAttributes = [
+                NSAttributedString.Key.foregroundColor : UIColor.red.cgColor
+            ]
+        }
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 4.0) {
+            //self.navigationItem.prompt = "设置导航栏的leftBarButtonItem"
+            
+            self.navigationItem.leftBarButtonItem = self.leftBarButtonItem
+        }
         
         
         
