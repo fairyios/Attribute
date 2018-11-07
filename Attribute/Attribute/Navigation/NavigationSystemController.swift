@@ -74,10 +74,9 @@
         leftButton.backgroundColor = UIColor.clear
         leftButton.setBackgroundImage(UIImage(named: "home_back_white_24x24"), for: UIControl.State.normal)
         
-        let leftBarButtonItem = UIBarButtonItem()
+        let leftBarButtonItem = UIBarButtonItem(customView: leftButton)
         //let leftBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: #selector(self.leftBarButtonItemTouchUpInside))
-        leftBarButtonItem.customView = leftButton
-        
+          
         return leftBarButtonItem
     }()
     
