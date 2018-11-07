@@ -10,34 +10,22 @@
  import UIKit
  import SnapKit
  
- internal extension UIHomeNavigationController {
-    internal static let firstUI = "UI"
-    internal static let firstDialog = "Dialog"
-    internal static let firstKit = "Kit"
+ internal extension NavigationHomeController {
+    internal static let firstSystem = "使用系统导航栏"
     
     //--UI--
-    internal static let secondUIView: String = "UIView"
-    internal static let secondUITableView: String = "UITableView"
-    internal static let secondUITabBar: String = "UITabBar"
-    internal static let secondNavigation: String = "Navigation"
-    //--Kit--
-    internal static let secondSnapKit: String = "SnapKit"
-    //--Dialog--
-    internal static let secondDialogDialog1: String = "Dialog1"
+    internal static let secondSystem: String = "使用系统导航栏"
+    internal static let secondDefine: String = "使用自定义导航栏"
  }
  
- /// UIHomeNavigationController
- internal final class UIHomeNavigationController: UIViewController {
+ /// NavigationHomeController
+ internal final class NavigationHomeController: UIViewController, UINavigationControllerDelegate {
     
-    var firstSection: [String] = [firstUI, firstDialog, firstKit]
+    var firstSection: [String] = [firstSystem]
     var secondSection: [[String]] = [
         [
-            secondUIView, secondUITableView, secondUITabBar, secondNavigation
-        ],
-        [
-            secondDialogDialog1
-        ],
-        [secondSnapKit]
+            secondSystem, secondDefine
+        ]
     ]
     
     
@@ -56,12 +44,19 @@
     }()
     
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = HomeController.secondNavigation
         self.view.backgroundColor = UIColor.orange
+        
+        debugPrint("self.navigationController ?? Any.self")
+        debugPrint(self.navigationController ?? Any.self)
+        debugPrint("self.navigationController?.navigationBar ?? Any.self")
+        debugPrint(self.navigationController?.navigationBar ?? Any.self)
+        
+        
+        
+        
         
         
         self.view.addSubview(self.myTable)
@@ -76,7 +71,7 @@
  
  
  // MARK: - UITableViewDataSourcew
- extension UIHomeNavigationController: UITableViewDataSource {
+ extension NavigationHomeController: UITableViewDataSource {
     
     
     /// Asks the data source to return the number of sections in the table view.
@@ -140,37 +135,28 @@
  
  
  // MARK: - UITableViewDelegate
- extension UIHomeNavigationController: UITableViewDelegate {
+ extension NavigationHomeController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         
         let first = firstSection[indexPath.section]
         let second = secondSection[indexPath.section][indexPath.row]
         switch first {
-        case UIHomeNavigationController.firstUI:
+        case NavigationHomeController.firstSystem:
             switch second {
-            case UIHomeNavigationController.secondUIView:
-                
+            case NavigationHomeController.secondSystem:
+                let system = NavigationSystemController()
+                let systemNavigation = UINavigationController(rootViewController: system)
+                self.present(systemNavigation, animated: true, completion: nil)
                 break
-            case UIHomeNavigationController.secondUITableView:
-                let homeTable = UIHomeNavigationController()
-                self.show(homeTable, sender: nil)
-                break
-            case UIHomeNavigationController.secondUITabBar:
-                break
-            case UIHomeNavigationController.secondNavigation:
-                let homeNavigation = UIHomeNavigationController()
-                self.show(homeNavigation, sender: nil)
+            case NavigationHomeController.secondDefine:
+                let define = UIViewController()
+                let defineNavigation = UINavigationControllerSelf(rootViewController: define)
+                self.present(defineNavigation, animated: true, completion: nil)
                 break
             default:
                 break
             }
-            break
-        case UIHomeNavigationController.firstDialog:
-            
-            break
-        case UIHomeNavigationController.firstKit:
-            
             break
         default:
             break

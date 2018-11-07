@@ -23,6 +23,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         //let homController = HomeController()
         let rootNavigation = UINavigationController(rootViewController: HomeController.init())
         rootNavigation.delegate = self as UINavigationControllerDelegate
+        //rootNavigation.title = "title"
+        rootNavigation.navigationBar.largeTitleTextAttributes = [
+            //NSAttributedString.Key.foregroundColor : UIColor.white.cgColor, // un do
+            //NSAttributedString.Key.strikethroughColor : UIColor.gray.cgColor, // un do
+            NSAttributedString.Key.backgroundColor : UIColor.orange.cgColor // un do
+            
+        ]
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = rootNavigation

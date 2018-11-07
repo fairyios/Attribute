@@ -1,3 +1,4 @@
+ 
 //
 //  ViewController.swift
 //  Attribute
@@ -9,11 +10,10 @@
 import UIKit
 import SnapKit
 
-internal extension HomeController {
+internal extension TableHomeController {
     internal static let firstUI = "UI"
     internal static let firstDialog = "Dialog"
     internal static let firstKit = "Kit"
-    internal static let firstSwift = "Swift"
     
     //--UI--
     internal static let secondUIView: String = "UIView"
@@ -24,23 +24,20 @@ internal extension HomeController {
     internal static let secondSnapKit: String = "SnapKit"
     //--Dialog--
     internal static let secondDialogDialog1: String = "Dialog1"
-    //--Swift--
-    internal static let secondSwift: String = "Swift"
 }
 
-/// HomeController
-internal final class HomeController: UIViewController {
-
-    var firstSection: [String] = [firstUI, firstDialog, firstKit, firstSwift]
+/// TableHomeController
+internal final class TableHomeController: UIViewController {
+    
+    var firstSection: [String] = [firstUI, firstDialog, firstKit]
     var secondSection: [[String]] = [
         [
             secondUIView, secondUITableView, secondUITabBar, secondNavigation
         ],
         [
-           secondDialogDialog1
+            secondDialogDialog1
         ],
-        [secondSnapKit],
-        [secondSwift]
+        [secondSnapKit]
     ]
     
     
@@ -63,8 +60,9 @@ internal final class HomeController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        self.navigationItem.title = "Attribute"
+        self.navigationItem.title = HomeController.secondUITableView
+        self.view.backgroundColor = UIColor.orange
+        
         
         self.view.addSubview(self.myTable)
         self.myTable.snp.remakeConstraints { maker in maker.edges.equalTo(self.view) }
@@ -73,12 +71,12 @@ internal final class HomeController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
+    
 }
 
 
 // MARK: - UITableViewDataSourcew
-extension HomeController: UITableViewDataSource {
+extension TableHomeController: UITableViewDataSource {
     
     
     /// Asks the data source to return the number of sections in the table view.
@@ -142,53 +140,43 @@ extension HomeController: UITableViewDataSource {
 
 
 // MARK: - UITableViewDelegate
-extension HomeController: UITableViewDelegate {
+extension TableHomeController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       
+        
         
         let first = firstSection[indexPath.section]
         let second = secondSection[indexPath.section][indexPath.row]
         switch first {
-        case HomeController.firstUI:
+        case TableHomeController.firstUI:
             switch second {
-                case HomeController.secondUIView:
-                    
-                    break
-                case HomeController.secondUITableView:
-                    let homeTable = TableHomeController()
-                    self.show(homeTable, sender: nil)
-                    break
-                case HomeController.secondUITabBar:
-                    break
-                case HomeController.secondNavigation:
-                    let homeNavigation = NavigationHomeController()
-                    self.show(homeNavigation, sender: nil)
-                    break
-                default:
-                    break
-            }
-            break
-        case HomeController.firstDialog:
-            
-            break
-        case HomeController.firstKit:
-            
-            break
-        case HomeController.firstSwift:
-            switch second {
-            case HomeController.secondSwift:
-                let homeTable = SwiftHomeController()
+            case TableHomeController.secondUIView:
+                
+                break
+            case TableHomeController.secondUITableView:
+                let homeTable = TableHomeController()
                 self.show(homeTable, sender: nil)
+                break
+            case TableHomeController.secondUITabBar:
+                break
+            case TableHomeController.secondNavigation:
+                let homeNavigation = TableHomeController()
+                self.show(homeNavigation, sender: nil)
                 break
             default:
                 break
             }
             break
+        case TableHomeController.firstDialog:
+            
+            break
+        case TableHomeController.firstKit:
+            
+            break
         default:
             break
         }
         
-       
+        
         //取消选中的行
         tableView.deselectRow(at: indexPath, animated: true)
     }

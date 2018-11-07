@@ -1,43 +1,31 @@
  
-//
-//  ViewController.swift
-//  Attribute
-//
-//  Created by Fairy on 2018/11/6.
-//  Copyright © 2018 fairyios. All rights reserved.
-//
-
-import UIKit
-import SnapKit
-
-internal extension UIHomeTableController {
-    internal static let firstUI = "UI"
-    internal static let firstDialog = "Dialog"
-    internal static let firstKit = "Kit"
+ //
+ //  ViewController.swift
+ //  Attribute
+ //
+ //  Created by Fairy on 2018/11/6.
+ //  Copyright © 2018 fairyios. All rights reserved.
+ //
+ 
+ import UIKit
+ import SnapKit
+ 
+ internal extension SwiftHomeController {
+    internal static let firstUI = "关键字"
     
     //--UI--
-    internal static let secondUIView: String = "UIView"
-    internal static let secondUITableView: String = "UITableView"
-    internal static let secondUITabBar: String = "UITabBar"
-    internal static let secondNavigation: String = "Navigation"
-    //--Kit--
-    internal static let secondSnapKit: String = "SnapKit"
-    //--Dialog--
-    internal static let secondDialogDialog1: String = "Dialog1"
-}
-
-/// UIHomeTableController
-internal final class UIHomeTableController: UIViewController {
+    internal static let secondUIView: String = "typealias(别名)"
+   
+ }
+ 
+ /// UIHomeSwiftController
+ internal final class SwiftHomeController: UIViewController {
     
-    var firstSection: [String] = [firstUI, firstDialog, firstKit]
+    var firstSection: [String] = [firstUI]
     var secondSection: [[String]] = [
         [
-            secondUIView, secondUITableView, secondUITabBar, secondNavigation
-        ],
-        [
-            secondDialogDialog1
-        ],
-        [secondSnapKit]
+            secondUIView
+        ]
     ]
     
     
@@ -60,7 +48,7 @@ internal final class UIHomeTableController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = HomeController.secondUITableView
+        self.navigationItem.title = HomeController.secondNavigation
         self.view.backgroundColor = UIColor.orange
         
         
@@ -72,11 +60,11 @@ internal final class UIHomeTableController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-}
-
-
-// MARK: - UITableViewDataSourcew
-extension UIHomeTableController: UITableViewDataSource {
+ }
+ 
+ 
+ // MARK: - UITableViewDataSourcew
+ extension SwiftHomeController: UITableViewDataSource {
     
     
     /// Asks the data source to return the number of sections in the table view.
@@ -136,41 +124,25 @@ extension UIHomeTableController: UITableViewDataSource {
     }
     
     
-}
-
-
-// MARK: - UITableViewDelegate
-extension UIHomeTableController: UITableViewDelegate {
+ }
+ 
+ 
+ // MARK: - UITableViewDelegate
+ extension SwiftHomeController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         
         let first = firstSection[indexPath.section]
         let second = secondSection[indexPath.section][indexPath.row]
         switch first {
-        case UIHomeTableController.firstUI:
+        case SwiftHomeController.firstUI:
             switch second {
-            case UIHomeTableController.secondUIView:
-                
-                break
-            case UIHomeTableController.secondUITableView:
-                let homeTable = UIHomeTableController()
-                self.show(homeTable, sender: nil)
-                break
-            case UIHomeTableController.secondUITabBar:
-                break
-            case UIHomeTableController.secondNavigation:
-                let homeNavigation = UIHomeNavigationController()
-                self.show(homeNavigation, sender: nil)
+            case SwiftHomeController.secondUIView:
+                //https://www.jianshu.com/p/5a3fd872257e
                 break
             default:
                 break
             }
-            break
-        case UIHomeTableController.firstDialog:
-            
-            break
-        case UIHomeTableController.firstKit:
-            
             break
         default:
             break
@@ -180,4 +152,4 @@ extension UIHomeTableController: UITableViewDelegate {
         //取消选中的行
         tableView.deselectRow(at: indexPath, animated: true)
     }
-}
+ }

@@ -8,8 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		09908E3EB88765E0920209F2 /* Pods_AttributeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EE7D0526675D5C8DD322A9C /* Pods_AttributeUITests.framework */; };
-		2CB83EED2191BC8300806091 /* UIHomeTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB83EEC2191BC8300806091 /* UIHomeTableController.swift */; };
-		2CB83EEF2191BDF400806091 /* UIHomeNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB83EEE2191BDF400806091 /* UIHomeNavigationController.swift */; };
+		2C004C4821928FC800A28A40 /* SwiftHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C004C4721928FC800A28A40 /* SwiftHomeController.swift */; };
+		2C004C4B2192929B00A28A40 /* UITableViewTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C004C4A2192929B00A28A40 /* UITableViewTypeCell.swift */; };
+		2C004C4D2192C24700A28A40 /* NavigationSystemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C004C4C2192C24700A28A40 /* NavigationSystemController.swift */; };
+		2C004C4F2192C8EF00A28A40 /* UINavigationControllerSelf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C004C4E2192C8EF00A28A40 /* UINavigationControllerSelf.swift */; };
+		2CB83EED2191BC8300806091 /* TableHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB83EEC2191BC8300806091 /* TableHomeController.swift */; };
+		2CB83EEF2191BDF400806091 /* NavigationHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB83EEE2191BDF400806091 /* NavigationHomeController.swift */; };
 		2CD715DC2190A5A300309DEF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD715DB2190A5A300309DEF /* AppDelegate.swift */; };
 		2CD715DE2190A5A300309DEF /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD715DD2190A5A300309DEF /* HomeController.swift */; };
 		2CD715E12190A5A300309DEF /* Main-.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CD715DF2190A5A300309DEF /* Main-.storyboard */; };
@@ -40,8 +44,12 @@
 
 /* Begin PBXFileReference section */
 		1EB0731D35CB096B37BB6AEB /* Pods_Attribute.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Attribute.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2CB83EEC2191BC8300806091 /* UIHomeTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHomeTableController.swift; sourceTree = "<group>"; };
-		2CB83EEE2191BDF400806091 /* UIHomeNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHomeNavigationController.swift; sourceTree = "<group>"; };
+		2C004C4721928FC800A28A40 /* SwiftHomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftHomeController.swift; sourceTree = "<group>"; };
+		2C004C4A2192929B00A28A40 /* UITableViewTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewTypeCell.swift; sourceTree = "<group>"; };
+		2C004C4C2192C24700A28A40 /* NavigationSystemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationSystemController.swift; sourceTree = "<group>"; };
+		2C004C4E2192C8EF00A28A40 /* UINavigationControllerSelf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerSelf.swift; sourceTree = "<group>"; };
+		2CB83EEC2191BC8300806091 /* TableHomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableHomeController.swift; sourceTree = "<group>"; };
+		2CB83EEE2191BDF400806091 /* NavigationHomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHomeController.swift; sourceTree = "<group>"; };
 		2CD715D82190A5A300309DEF /* Attribute.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Attribute.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CD715DB2190A5A300309DEF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CD715DD2190A5A300309DEF /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -93,10 +101,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C004C4621928FA700A28A40 /* Swift */ = {
+			isa = PBXGroup;
+			children = (
+				2C004C4721928FC800A28A40 /* SwiftHomeController.swift */,
+			);
+			path = Swift;
+			sourceTree = "<group>";
+		};
+		2C004C492192927B00A28A40 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				2C004C4A2192929B00A28A40 /* UITableViewTypeCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		2C76C66B21918622007FA4F4 /* UITableView */ = {
 			isa = PBXGroup;
 			children = (
-				2CB83EEC2191BC8300806091 /* UIHomeTableController.swift */,
+				2C004C492192927B00A28A40 /* Cells */,
+				2CB83EEC2191BC8300806091 /* TableHomeController.swift */,
 			);
 			path = UITableView;
 			sourceTree = "<group>";
@@ -104,7 +129,9 @@
 		2CB83EEB2191BC5D00806091 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				2CB83EEE2191BDF400806091 /* UIHomeNavigationController.swift */,
+				2CB83EEE2191BDF400806091 /* NavigationHomeController.swift */,
+				2C004C4C2192C24700A28A40 /* NavigationSystemController.swift */,
+				2C004C4E2192C8EF00A28A40 /* UINavigationControllerSelf.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -134,6 +161,7 @@
 		2CD715DA2190A5A300309DEF /* Attribute */ = {
 			isa = PBXGroup;
 			children = (
+				2C004C4621928FA700A28A40 /* Swift */,
 				2CB83EEB2191BC5D00806091 /* Navigation */,
 				2C76C66B21918622007FA4F4 /* UITableView */,
 				2CD715DB2190A5A300309DEF /* AppDelegate.swift */,
@@ -413,10 +441,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CB83EEF2191BDF400806091 /* UIHomeNavigationController.swift in Sources */,
+				2C004C4821928FC800A28A40 /* SwiftHomeController.swift in Sources */,
+				2CB83EEF2191BDF400806091 /* NavigationHomeController.swift in Sources */,
 				2CD715DE2190A5A300309DEF /* HomeController.swift in Sources */,
+				2C004C4D2192C24700A28A40 /* NavigationSystemController.swift in Sources */,
 				2CD715DC2190A5A300309DEF /* AppDelegate.swift in Sources */,
-				2CB83EED2191BC8300806091 /* UIHomeTableController.swift in Sources */,
+				2CB83EED2191BC8300806091 /* TableHomeController.swift in Sources */,
+				2C004C4F2192C8EF00A28A40 /* UINavigationControllerSelf.swift in Sources */,
+				2C004C4B2192929B00A28A40 /* UITableViewTypeCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
