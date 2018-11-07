@@ -1,50 +1,31 @@
-//
-//  ViewController.swift
-//  Attribute
-//
-//  Created by Fairy on 2018/11/6.
-//  Copyright © 2018 fairyios. All rights reserved.
-//
-
-import UIKit
-import SnapKit
-
-internal extension HomeController {
-    internal static let firstUI = "UI"
-    internal static let firstDialog = "Dialog"
-    internal static let firstKit = "Kit"
-    internal static let firstSwift = "Swift"
-    internal static let firstThread = "Thread"
+ 
+ //
+ //  ViewController.swift
+ //  Attribute
+ //
+ //  Created by Fairy on 2018/11/6.
+ //  Copyright © 2018 fairyios. All rights reserved.
+ //
+ 
+ import UIKit
+ import SnapKit
+ 
+ internal extension ThreadHomeController {
+    internal static let firstUI = "关键字"
     
     //--UI--
-    internal static let secondUIView: String = "UIView"
-    internal static let secondUITableView: String = "UITableView"
-    internal static let secondUITabBar: String = "UITabBar"
-    internal static let secondNavigation: String = "Navigation"
-    //--Kit--
-    internal static let secondSnapKit: String = "SnapKit"
-    //--Dialog--
-    internal static let secondDialogDialog1: String = "Dialog1"
-    //--Swift--
-    internal static let secondSwift: String = "Swift"
-    //--Thread--
-    internal static let secondThread: String = "Thread"
-}
-
-/// HomeController
-internal final class HomeController: UIViewController {
-
-    var firstSection: [String] = [firstUI, firstDialog, firstKit, firstSwift, firstThread]
+    internal static let secondUIView: String = "typealias(别名)"
+    
+ }
+ 
+ /// UIHomeSwiftController
+ internal final class ThreadHomeController: UIViewController {
+    
+    var firstSection: [String] = [firstUI]
     var secondSection: [[String]] = [
         [
-            secondUIView, secondUITableView, secondUITabBar, secondNavigation
-        ],
-        [
-           secondDialogDialog1
-        ],
-        [secondSnapKit],
-        [secondSwift],
-        [secondThread]
+            secondUIView
+        ]
     ]
     
     
@@ -67,22 +48,23 @@ internal final class HomeController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        self.navigationItem.title = "Attribute"
-        
+        self.navigationItem.title = HomeController.secondNavigation
+        self.view.backgroundColor = UIColor.orange
         self.view.addSubview(self.myTable)
         self.myTable.snp.remakeConstraints { maker in maker.edges.equalTo(self.view) }
+        
+        //https://blog.csdn.net/cewei711/article/details/80476602
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
-}
-
-
-// MARK: - UITableViewDataSourcew
-extension HomeController: UITableViewDataSource {
+    
+ }
+ 
+ 
+ // MARK: - UITableViewDataSourcew
+ extension ThreadHomeController: UITableViewDataSource {
     
     
     /// Asks the data source to return the number of sections in the table view.
@@ -142,57 +124,21 @@ extension HomeController: UITableViewDataSource {
     }
     
     
-}
-
-
-// MARK: - UITableViewDelegate
-extension HomeController: UITableViewDelegate {
+ }
+ 
+ 
+ // MARK: - UITableViewDelegate
+ extension ThreadHomeController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       
+        
         
         let first = firstSection[indexPath.section]
         let second = secondSection[indexPath.section][indexPath.row]
         switch first {
-        case HomeController.firstUI:
+        case ThreadHomeController.firstUI:
             switch second {
-                case HomeController.secondUIView:
-                    
-                    break
-                case HomeController.secondUITableView:
-                    let homeTable = TableHomeController()
-                    self.show(homeTable, sender: nil)
-                    break
-                case HomeController.secondUITabBar:
-                    break
-                case HomeController.secondNavigation:
-                    let homeNavigation = NavigationHomeController()
-                    self.show(homeNavigation, sender: nil)
-                    break
-                default:
-                    break
-            }
-            break
-        case HomeController.firstDialog:
-            
-            break
-        case HomeController.firstKit:
-            
-            break
-        case HomeController.firstSwift:
-            switch second {
-            case HomeController.secondSwift:
-                let homeTable = SwiftHomeController()
-                self.show(homeTable, sender: nil)
-                break
-            default:
-                break
-            }
-            break
-        case HomeController.firstThread:
-            switch second {
-            case HomeController.secondThread:
-                let homeTable = ThreadHomeController()
-                self.show(homeTable, sender: nil)
+            case ThreadHomeController.secondUIView:
+                //https://www.jianshu.com/p/5a3fd872257e
                 break
             default:
                 break
@@ -202,8 +148,8 @@ extension HomeController: UITableViewDelegate {
             break
         }
         
-       
+        
         //取消选中的行
         tableView.deselectRow(at: indexPath, animated: true)
     }
-}
+ }
