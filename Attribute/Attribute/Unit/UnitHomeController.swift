@@ -1,30 +1,47 @@
- 
- //
- //  ViewController.swift
- //  Attribute
- //
- //  Created by Fairy on 2018/11/6.
- //  Copyright © 2018 fairyios. All rights reserved.
- //
- 
- import UIKit
- import SnapKit
- 
- internal extension SwiftHomeController {
-    internal static let firstUI = "关键字"
+
+//
+//  ViewController.swift
+//  Attribute
+//
+//  Created by Fairy on 2018/11/6.
+//  Copyright © 2018 fairyios. All rights reserved.
+//
+
+import UIKit
+import SnapKit
+
+internal extension UnitHomeController {
+    internal static let firstUI = "UI"
+    internal static let firstSource = "Source"
     
     //--UI--
-    internal static let secondUIView: String = "typealias(别名)"
-   
- }
- 
- /// UIHomeSwiftController
- internal final class SwiftHomeController: UIViewController {
+    internal static let secondUIUIView: String = "UIView"
+    internal static let secondUIUILabel: String = "UILabel"
+    internal static let secondUIUIButton: String = "UIButton"
+    internal static let secondUIUISlider: String = "UISlider"
+    internal static let secondUIUIImage: String = "UIImage"
+    internal static let secondUIUIImageView: String = "UIImageView"
+    internal static let secondUIUIBarButtonItem: String = "UIBarButtonItem"
     
-    var firstSection: [String] = [firstUI]
+    //--Source--
+    internal static let secondSourceUIFont: String = "UIFont"
+    internal static let secondSourceUIColor: String = "UIColor"
+    internal static let secondSourceUIScreen: String = "UIScreen"
+    internal static let secondSourceUIDevice: String = "UIDevice"
+    //internal static let secondSource: String = ""
+    
+}
+
+/// 小部件：UILabel,UIButton,UIImage...
+internal final class UnitHomeController: UIViewController {
+    
+    var firstSection: [String] = [firstUI, firstSource]
     var secondSection: [[String]] = [
         [
-            secondUIView
+            secondUIUIView, secondUIUILabel, secondUIUIButton, secondUIUISlider, secondUIUIImage,
+            secondUIUIImageView, secondUIUIBarButtonItem
+        ],
+        [secondSourceUIFont, secondSourceUIColor, secondSourceUIScreen, secondSourceUIDevice
         ]
     ]
     
@@ -48,7 +65,7 @@
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = HomeController._swiftSwift1
+        self.navigationItem.title = HomeController._uiUnit
         self.view.backgroundColor = UIColor.orange
         
         
@@ -60,11 +77,11 @@
         super.didReceiveMemoryWarning()
     }
     
- }
- 
- 
- // MARK: - UITableViewDataSourcew
- extension SwiftHomeController: UITableViewDataSource {
+}
+
+
+// MARK: - UITableViewDataSourcew
+extension UnitHomeController: UITableViewDataSource {
     
     
     /// Asks the data source to return the number of sections in the table view.
@@ -124,11 +141,11 @@
     }
     
     
- }
- 
- 
- // MARK: - UITableViewDelegate
- extension SwiftHomeController: UITableViewDelegate {
+}
+
+
+// MARK: - UITableViewDelegate
+extension UnitHomeController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         
@@ -152,4 +169,4 @@
         //取消选中的行
         tableView.deselectRow(at: indexPath, animated: true)
     }
- }
+}

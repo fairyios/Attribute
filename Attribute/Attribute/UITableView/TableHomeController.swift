@@ -17,6 +17,7 @@ internal extension TableHomeController {
     
     //--UI--
     internal static let secondUIView: String = "UIView"
+    internal static let secondUILabel: String = "UILabel"
     internal static let secondUITableView: String = "UITableView"
     internal static let secondUITabBar: String = "UITabBar"
     internal static let secondNavigation: String = "Navigation"
@@ -32,7 +33,7 @@ internal final class TableHomeController: UIViewController {
     var firstSection: [String] = [firstUI, firstDialog, firstKit]
     var secondSection: [[String]] = [
         [
-            secondUIView, secondUITableView, secondUITabBar, secondNavigation
+            secondUIView, secondUILabel, secondUITableView, secondUITabBar, secondNavigation
         ],
         [
             secondDialogDialog1
@@ -60,7 +61,7 @@ internal final class TableHomeController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = HomeController.secondUITableView
+        self.navigationItem.title = HomeController._uiUITableView
         self.view.backgroundColor = UIColor.orange
         
         

@@ -144,13 +144,6 @@
         //主队列异步任务,结果为有序
         let mainQueue = DispatchQueue.main
         mainQueue.asyncAfter(deadline: DispatchTime.now() + 0.0) {
-            //self.title = "title" // 没有效果
-            //self.navigationController?.navigationItem.title = "title"// 没有效果
-            self.navigationItem.prompt = NavigationHomeController.secondSystem
-            self.navigationItem.title = NavigationHomeController.secondSystem
-            
-        }
-        mainQueue.asyncAfter(deadline: DispatchTime.now() + 1.0) {
             self.navigationItem.prompt = "打印默认值"
             
             debugPrint("self.navigationController?.navigationBar.shadowImage ?? Any.self")
@@ -165,6 +158,16 @@
             //获取当前控制器所有的子视图
             debugPrint("self.navigationController?.viewControllers ?? Any.self 获取当前控制器所有的子视图")
             debugPrint(self.navigationController?.viewControllers ?? Any.self)
+            
+            debugPrint("self.navigationItem.titleView ?? Any.self")
+            debugPrint(self.navigationItem.titleView ?? Any.self)
+        }
+        mainQueue.asyncAfter(deadline: DispatchTime.now() + 1.0) {
+            //self.title = "title" // 没有效果
+            //self.navigationController?.navigationItem.title = "title"// 没有效果
+            self.navigationItem.prompt = NavigationHomeController.secondSystem
+            self.navigationItem.title = NavigationHomeController.secondSystem
+            
         }
         mainQueue.asyncAfter(deadline: DispatchTime.now() + 2.0) {
             //将导航栏设置成透明

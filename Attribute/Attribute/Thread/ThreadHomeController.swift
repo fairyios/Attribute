@@ -13,6 +13,7 @@
  internal extension ThreadHomeController {
     internal static let firstDispatchQueueMain = "DispatchQueue.main"
     internal static let firstDispatchQueue = "DispatchQueue()"
+    internal static let firstDispatchThread = "Thread"
     
     //--DispatchQueueMain--
     internal static let secondDispatchQueueMainAsync: String = "DispatchQueue.main.async"
@@ -26,7 +27,9 @@
     var secondSection: [[String]] = [
         [
             secondDispatchQueueMainAsync, secondDispatchQueueMainAsyncAfter
-        ]
+        ],
+        [],
+        []
     ]
     
     
@@ -49,7 +52,7 @@
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = HomeController.secondNavigation
+        self.navigationItem.title = HomeController._threadThread1
         self.view.backgroundColor = UIColor.orange
         self.view.addSubview(self.myTable)
         self.myTable.snp.remakeConstraints { maker in maker.edges.equalTo(self.view) }

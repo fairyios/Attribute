@@ -10,41 +10,62 @@ import UIKit
 import SnapKit
 
 internal extension HomeController {
-    internal static let firstUI = "UI"
-    internal static let firstDialog = "Dialog"
-    internal static let firstKit = "Kit"
-    internal static let firstSwift = "Swift"
-    internal static let firstThread = "Thread"
+    internal static let _ui = "UI"
+    internal static let _dialog = "Dialog"
+    internal static let _animation = "动画"
+    internal static let _kit = "Kit"
+    internal static let _swift = "Swift"
+    internal static let _thread = "线程"
     
     //--UI--
-    internal static let secondUIView: String = "UIView"
-    internal static let secondUITableView: String = "UITableView"
-    internal static let secondUITabBar: String = "UITabBar"
-    internal static let secondNavigation: String = "Navigation"
-    //--Kit--
-    internal static let secondSnapKit: String = "SnapKit"
+    internal static let _uiUnit: String = "小部件"
+    internal static let _uiUITableView: String = "UITableView"
+    internal static let _uiUITabBar: String = "UITabBar"
+    internal static let _uiNavigation: String = "Navigation"
     //--Dialog--
-    internal static let secondDialogDialog1: String = "Dialog1"
+    internal static let _dialogDialog1: String = "Dialog1"
+    //--动画--
+    internal static let _animationAnimation1: String = "Animation1"
+    //--Kit--
+    internal static let _kitSnapKit: String = "SnapKit"
     //--Swift--
-    internal static let secondSwift: String = "Swift"
+    internal static let _swiftSwift1: String = "Swift1"
     //--Thread--
-    internal static let secondThread: String = "Thread"
+    internal static let _threadThread1: String = "Thread1"
+    
+    internal static let dict1: Dictionary<String, Array<String>> = [
+        _ui : [_uiUnit, _uiUITableView, _uiUITabBar, _uiNavigation],
+        _dialog : [_dialogDialog1],
+        _animation : [_animationAnimation1],
+        _kit : [_kitSnapKit],
+        _swift : [_swiftSwift1],
+        _thread : [_threadThread1]
+    ]
 }
 
 /// HomeController
 internal final class HomeController: UIViewController {
 
-    var firstSection: [String] = [firstUI, firstDialog, firstKit, firstSwift, firstThread]
+    var firstSection: [String] = [_ui, _dialog, _kit, _swift, _thread]
     var secondSection: [[String]] = [
         [
-            secondUIView, secondUITableView, secondUITabBar, secondNavigation
+           _uiUnit, _uiUITableView, _uiUITabBar, _uiNavigation
         ],
         [
-           secondDialogDialog1
+           _dialogDialog1
         ],
-        [secondSnapKit],
-        [secondSwift],
-        [secondThread]
+        [
+            _animationAnimation1
+        ],
+        [
+            _kitSnapKit
+        ],
+        [
+            _swiftSwift1
+        ],
+        [
+            _threadThread1
+        ]
     ]
     
     
@@ -153,18 +174,19 @@ extension HomeController: UITableViewDelegate {
         let first = firstSection[indexPath.section]
         let second = secondSection[indexPath.section][indexPath.row]
         switch first {
-        case HomeController.firstUI:
+        case HomeController._ui:
             switch second {
-                case HomeController.secondUIView:
-                    
+                case HomeController._uiUnit:
+                    let unitController = UnitHomeController()
+                    self.show(unitController, sender: nil)
                     break
-                case HomeController.secondUITableView:
+                case HomeController._uiUITableView:
                     let homeTable = TableHomeController()
                     self.show(homeTable, sender: nil)
                     break
-                case HomeController.secondUITabBar:
+                case HomeController._uiUITabBar:
                     break
-                case HomeController.secondNavigation:
+                case HomeController._uiNavigation:
                     let homeNavigation = NavigationHomeController()
                     self.show(homeNavigation, sender: nil)
                     break
@@ -172,15 +194,15 @@ extension HomeController: UITableViewDelegate {
                     break
             }
             break
-        case HomeController.firstDialog:
+        case HomeController._dialog:
             
             break
-        case HomeController.firstKit:
+        case HomeController._kit:
             
             break
-        case HomeController.firstSwift:
+        case HomeController._swift:
             switch second {
-            case HomeController.secondSwift:
+            case HomeController._swiftSwift1:
                 let homeTable = SwiftHomeController()
                 self.show(homeTable, sender: nil)
                 break
@@ -188,9 +210,9 @@ extension HomeController: UITableViewDelegate {
                 break
             }
             break
-        case HomeController.firstThread:
+        case HomeController._thread:
             switch second {
-            case HomeController.secondThread:
+            case HomeController._threadThread1:
                 let homeTable = ThreadHomeController()
                 self.show(homeTable, sender: nil)
                 break
