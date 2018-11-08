@@ -114,7 +114,7 @@
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = NavigationHomeController.secondSystem
+        
         self.view.backgroundColor = UIColor.orange
         
         //self.view.addSubview(self.myTable)
@@ -141,29 +141,41 @@
         //设置导航栏的样式
         self.navigationController?.navigationBar.barStyle = .black
         
-        debugPrint("[mainQueue.asyncAfter][main][1]")
-        
         //主队列异步任务,结果为有序
         let mainQueue = DispatchQueue.main
+        mainQueue.asyncAfter(deadline: DispatchTime.now() + 0.0) {
+            //self.title = "title" // 没有效果
+            //self.navigationController?.navigationItem.title = "title"// 没有效果
+            self.navigationItem.prompt = NavigationHomeController.secondSystem
+            self.navigationItem.title = NavigationHomeController.secondSystem
+            
+        }
         mainQueue.asyncAfter(deadline: DispatchTime.now() + 1.0) {
-            debugPrint("[mainQueue.asyncAfter][-1]")
+            self.navigationItem.prompt = "打印默认值"
             
             debugPrint("self.navigationController?.navigationBar.shadowImage ?? Any.self")
             debugPrint(self.navigationController?.navigationBar.shadowImage ?? Any.self)
+            
+            //获取控制器中最顶端的视图
+            debugPrint("self.navigationController?.topViewController ?? Any.self 获取控制器中最顶端的视图")
+            debugPrint(self.navigationController?.topViewController ?? Any.self)
+            //获取控制器当前显示的视图
+            debugPrint("self.navigationController?.visibleViewController ?? Any.self 获取控制器当前显示的视图")
+            debugPrint(self.navigationController?.visibleViewController ?? Any.self)
+            //获取当前控制器所有的子视图
+            debugPrint("self.navigationController?.viewControllers ?? Any.self 获取当前控制器所有的子视图")
+            debugPrint(self.navigationController?.viewControllers ?? Any.self)
         }
         mainQueue.asyncAfter(deadline: DispatchTime.now() + 2.0) {
-            debugPrint("[mainQueue.asyncAfter][0]")
-
             //将导航栏设置成透明
+            self.navigationItem.prompt = "将导航栏设置成透明"
             self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
             self.navigationController?.navigationBar.shadowImage = UIImage()
             self.navigationController?.navigationBar.isTranslucent = true
         }
         mainQueue.asyncAfter(deadline: DispatchTime.now() + 3.0) {
-            debugPrint("[mainQueue.asyncAfter][1]")
-
-            //self.navigationItem.prompt = "设置导航栏的背景图"
             //设置导航栏的背景图
+            self.navigationItem.prompt = "设置导航栏的背景图"
             let image = UIImage(named: "icon-40")
             self.navigationController?.navigationBar.setBackgroundImage(image, for: UIBarMetrics.default)
             //self.navigationController?.navigationBar.backIndicatorImage //后退按钮旁边显示的图像。
@@ -171,47 +183,35 @@
             self.navigationController?.navigationBar.isTranslucent = false
             self.navigationController?.navigationBar.shadowImage = nil
         }
-        debugPrint("[mainQueue.asyncAfter][main][2]")
-        return
-        return
-        mainQueue.asyncAfter(deadline: DispatchTime.now() + 0.0) {
-            debugPrint("[mainQueue.asyncAfter][2]")
-            Thread.sleep(forTimeInterval: 1.0)
+        mainQueue.asyncAfter(deadline: DispatchTime.now() + 4.0) {
             self.navigationItem.prompt = "设置导航栏的背景颜色 清空"
             self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: ""), for: UIBarMetrics.default)
-            
-            
+            self.navigationController?.navigationBar.isTranslucent = false
+            self.navigationController?.navigationBar.shadowImage = nil
         }
-        mainQueue.asyncAfter(deadline: DispatchTime.now() + 0.0) {
-            debugPrint("[mainQueue.asyncAfter][3]")
-            Thread.sleep(forTimeInterval: 1.0)
+        mainQueue.asyncAfter(deadline: DispatchTime.now() + 5.0) {
             self.navigationItem.prompt = "设置导航栏的背景色"
+            self.navigationController?.navigationBar.isTranslucent = true
+            self.navigationController?.navigationBar.shadowImage = nil
             self.navigationController?.navigationBar.backIndicatorImage = nil
             self.navigationController?.navigationBar.shadowImage = nil
-            //self.title = "title" // 没有效果
-            //self.navigationController?.navigationItem.title = "title"// 没有效果
             //self.navigationController?.navigationBar.backgroundColor = UIColor.orange // 没有效果
             self.navigationController?.navigationBar.barTintColor = UIColor.orange // 设置导航栏的背景色// 有效果,是正确的颜色
             //self.navigationController?.navigationBar.tintColor = UIColor.orange  // 没有效果
         }
-        
-        mainQueue.asyncAfter(deadline: DispatchTime.now() + 0.0) {
-            debugPrint("[mainQueue.asyncAfter][4]")
-            Thread.sleep(forTimeInterval: 1.0)
-            //self.navigationItem.prompt = "设置导航栏标题的字体颜色"
+        mainQueue.asyncAfter(deadline: DispatchTime.now() + 6.0) {
+            self.navigationItem.prompt = "设置导航栏标题的字体颜色"
             self.navigationController?.navigationBar.titleTextAttributes = [
                 NSAttributedString.Key.foregroundColor : UIColor.red.cgColor
             ]
         }
-        mainQueue.asyncAfter(deadline: DispatchTime.now() + 0.0) {
-            debugPrint("[mainQueue.asyncAfter][5]")
-            Thread.sleep(forTimeInterval: 1.0)
-            //self.navigationItem.prompt = "设置导航栏的leftBarButtonItem"
-          
+        mainQueue.asyncAfter(deadline: DispatchTime.now() + 7.0) {
+            self.navigationItem.prompt = "设置导航栏的leftBarButtonItem"
+            
             let customView = UIView()
             customView.snp.makeConstraints { (make) -> Void in
                 make.width.equalTo(40)
-                make.height.equalTo(40)
+                make.height.equalTo(30)
             }
             customView.addSubview(self.dismissButton)
             self.dismissButton.snp.makeConstraints { (make) -> Void in
@@ -230,15 +230,9 @@
         
         
         
-        //获取控制器中最顶端的视图
-        let topViewC = self.navigationController?.topViewController;
-        print(topViewC ?? Any.self)
-        //获取控制器当前显示的视图
-        let currentViewC = self.navigationController?.visibleViewController;
-        print(currentViewC ?? Any.self)
-        //获取当前控制器所有的子视图
-        let viewAarray = self.navigationController?.viewControllers;
-        print(viewAarray ?? Any.self)
+        
+        
+        
         
         //        let thread:Thread = Thread {
         //            //设置prompt属性,主要是用来做一些提醒，比如网络请求，数据加载等等
