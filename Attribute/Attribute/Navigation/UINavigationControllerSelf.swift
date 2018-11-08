@@ -13,6 +13,8 @@ import UIKit
 /// 自定义导航h栏
 final class UINavigationControllerSelf : UINavigationController, UINavigationControllerDelegate {
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,23 +27,37 @@ final class UINavigationControllerSelf : UINavigationController, UINavigationCon
         debugPrint(self.navigationItem)
         
         
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.0) {
-                    //设置导航栏标题的字体颜色
-                    self.navigationBar.titleTextAttributes = [
-                        NSAttributedString.Key.foregroundColor : UIColor.red.cgColor
-                    ]
-                }
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.0) {
+            //设置导航栏标题的字体颜色
+            self.navigationBar.titleTextAttributes = [
+                NSAttributedString.Key.foregroundColor : UIColor.red.cgColor
+            ]
+        }
         
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.0) {
-                    //设置导航栏的返回按钮颜色
-                    self.navigationBar.barStyle = .black
-                    self.navigationBar.barTintColor = UIColor.orange
-                }
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.0) {
+            //设置导航栏的返回按钮颜色
+            self.navigationBar.barStyle = .black
+            self.navigationBar.barTintColor = UIColor.orange
+        }
         
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0) {
+            //将导航栏设置成透明
+            self.navigationBar.setBackgroundImage(UIImage(), for: .default)
+            self.navigationBar.shadowImage = UIImage()
+            self.navigationBar.isTranslucent = true
+        }
     }
     
     convenience init() {
         let root = NavigationSelfController()
+        
+        //设置导航栏:返回按钮
+        //let backTitle = rootViewController.navigationItem.title
+        let backBarButton = UIBarButtonItem()//(title: "自定义UINavigationController", style: .plain, target: nil, action: nil)
+        backBarButton.tintColor = UIColor.white
+        backBarButton.title = "自定义UINavigationController"
+        root.navigationItem.backBarButtonItem = backBarButton
+        
         self.init(rootViewController: root)
     }
     
@@ -52,11 +68,7 @@ final class UINavigationControllerSelf : UINavigationController, UINavigationCon
         super.init(rootViewController: rootViewController)
         
         
-        //设置导航栏:返回按钮
-        //let backTitle = rootViewController.navigationItem.title
-        let backBarButton = UIBarButtonItem(title: "自定义UINavigationController", style: .plain, target: nil, action: nil)
-        backBarButton.tintColor = UIColor.white
-        rootViewController.navigationItem.backBarButtonItem = backBarButton
+       
         
     }
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {

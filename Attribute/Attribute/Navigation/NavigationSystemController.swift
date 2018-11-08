@@ -85,14 +85,40 @@
         print("@objc func back()")
     }
     
+    /// 退场按钮
+    private lazy var dismissButton: UIButton = {
+        let button =  UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(self.dismissButtonTouchUpInside), for: .touchUpInside)
+        button.clipsToBounds = true
+        button.layer.borderWidth = 0.9
+        button.layer.cornerRadius = 0
+        button.layer.borderColor = UIColor.purple.cgColor
+        button.backgroundColor = UIColor.purple
+        button.setTitle("退场", for: UIControl.State.normal)
+        button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0) //使用此属性可以调整按钮内容的有效绘图矩形并重新定位。
+//        button.snp.makeConstraints { (make) -> Void in
+//            make.width.equalTo(40)
+//            make.height.equalTo(40)
+//        }
+        return button
+    }()
+    
+    /// 退场按钮的TouchUpInside
+    @objc private func dismissButtonTouchUpInside() {
+        print("@objc func nextViewButtonTouchUpInside()")
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = NavigationHomeController.secondSystem
         self.view.backgroundColor = UIColor.orange
         
-        self.view.addSubview(self.myTable)
-        self.myTable.snp.remakeConstraints { maker in maker.edges.equalTo(self.view) }
+        //self.view.addSubview(self.myTable)
+        //self.myTable.snp.remakeConstraints { maker in maker.edges.equalTo(self.view) }
         
         self.initNavigation()
         
@@ -108,33 +134,57 @@
     
     /// 设置导航栏
     private func initNavigation() {
-        //UINavigationBar.appearance().tintColor = UIColor.red//设置导航栏的统一的背景色
         
-        self.navigationController?.navigationBar.barStyle = .black//设置导航栏的样式
-        //设置导航栏透明
-        self.navigationController?.navigationBar.isTranslucent = true
+        //设置导航栏的统一的背景色
+        //UINavigationBar.appearance().tintColor = UIColor.red
         
+        //设置导航栏的样式
+        self.navigationController?.navigationBar.barStyle = .black
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0) {
-            return
-            //Thread.sleep(forTimeInterval: 2.0)
-            self.navigationItem.prompt = "设置导航栏的背景图"
-            //设置导航栏的背景图
-            //self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: ""), for: UIBarMetrics.default)
-            //Thread.sleep(forTimeInterval: 2.0)
-            self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "icon-40"), for: UIBarMetrics.default)
-            //self.navigationController?.navigationBar.backIndicatorImage //后退按钮旁边显示的图像。
-            self.navigationController?.navigationBar.backgroundImage(for: UIBarMetrics.default)
+        debugPrint("[mainQueue.asyncAfter][main][1]")
+        
+        //主队列异步任务,结果为有序
+        let mainQueue = DispatchQueue.main
+        mainQueue.asyncAfter(deadline: DispatchTime.now() + 1.0) {
+            debugPrint("[mainQueue.asyncAfter][-1]")
             
+            debugPrint("self.navigationController?.navigationBar.shadowImage ?? Any.self")
+            debugPrint(self.navigationController?.navigationBar.shadowImage ?? Any.self)
         }
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.0) {
-            //Thread.sleep(forTimeInterval: 2.0)
+        mainQueue.asyncAfter(deadline: DispatchTime.now() + 2.0) {
+            debugPrint("[mainQueue.asyncAfter][0]")
+
+            //将导航栏设置成透明
+            self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+            self.navigationController?.navigationBar.shadowImage = UIImage()
+            self.navigationController?.navigationBar.isTranslucent = true
+        }
+        mainQueue.asyncAfter(deadline: DispatchTime.now() + 3.0) {
+            debugPrint("[mainQueue.asyncAfter][1]")
+
+            //self.navigationItem.prompt = "设置导航栏的背景图"
+            //设置导航栏的背景图
+            let image = UIImage(named: "icon-40")
+            self.navigationController?.navigationBar.setBackgroundImage(image, for: UIBarMetrics.default)
+            //self.navigationController?.navigationBar.backIndicatorImage //后退按钮旁边显示的图像。
+            self.navigationController?.navigationBar.contentMode = .scaleAspectFill
+            self.navigationController?.navigationBar.isTranslucent = false
+            self.navigationController?.navigationBar.shadowImage = nil
+        }
+        debugPrint("[mainQueue.asyncAfter][main][2]")
+        return
+        return
+        mainQueue.asyncAfter(deadline: DispatchTime.now() + 0.0) {
+            debugPrint("[mainQueue.asyncAfter][2]")
+            Thread.sleep(forTimeInterval: 1.0)
             self.navigationItem.prompt = "设置导航栏的背景颜色 清空"
             self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: ""), for: UIBarMetrics.default)
             
             
         }
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3.0) {
+        mainQueue.asyncAfter(deadline: DispatchTime.now() + 0.0) {
+            debugPrint("[mainQueue.asyncAfter][3]")
+            Thread.sleep(forTimeInterval: 1.0)
             self.navigationItem.prompt = "设置导航栏的背景色"
             self.navigationController?.navigationBar.backIndicatorImage = nil
             self.navigationController?.navigationBar.shadowImage = nil
@@ -145,16 +195,35 @@
             //self.navigationController?.navigationBar.tintColor = UIColor.orange  // 没有效果
         }
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 4.0) {
-            self.navigationItem.prompt = "设置导航栏标题的字体颜色"
+        mainQueue.asyncAfter(deadline: DispatchTime.now() + 0.0) {
+            debugPrint("[mainQueue.asyncAfter][4]")
+            Thread.sleep(forTimeInterval: 1.0)
+            //self.navigationItem.prompt = "设置导航栏标题的字体颜色"
             self.navigationController?.navigationBar.titleTextAttributes = [
                 NSAttributedString.Key.foregroundColor : UIColor.red.cgColor
             ]
         }
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 4.0) {
+        mainQueue.asyncAfter(deadline: DispatchTime.now() + 0.0) {
+            debugPrint("[mainQueue.asyncAfter][5]")
+            Thread.sleep(forTimeInterval: 1.0)
             //self.navigationItem.prompt = "设置导航栏的leftBarButtonItem"
+          
+            let customView = UIView()
+            customView.snp.makeConstraints { (make) -> Void in
+                make.width.equalTo(40)
+                make.height.equalTo(40)
+            }
+            customView.addSubview(self.dismissButton)
+            self.dismissButton.snp.makeConstraints { (make) -> Void in
+                make.edges.equalTo(customView)
+            }
             
-            self.navigationItem.leftBarButtonItem = self.leftBarButtonItem
+            self.navigationItem.hidesBackButton = true
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem()
+            self.navigationItem.leftBarButtonItem?.customView = customView
+            //如果此属性值为正，则组合图像和标题的宽度是固定的。 如果值为0.0或负数，则项目将组合图像和标题的宽度设置为适合。 如果样式使用无线电模式，则忽略此属性。 默认值为0.0。
+            //self.navigationItem.leftBarButtonItem?.width = -15
+            
         }
         
         
@@ -179,6 +248,9 @@
         //            //self.navigationItem.prompt = nil;
         //        }
         //        thread.start()
+        
+        
+        
     }
  }
  

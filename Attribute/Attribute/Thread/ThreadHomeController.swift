@@ -11,20 +11,21 @@
  import SnapKit
  
  internal extension ThreadHomeController {
-    internal static let firstUI = "关键字"
+    internal static let firstDispatchQueueMain = "DispatchQueue.main"
+    internal static let firstDispatchQueue = "DispatchQueue()"
     
-    //--UI--
-    internal static let secondUIView: String = "typealias(别名)"
-    
+    //--DispatchQueueMain--
+    internal static let secondDispatchQueueMainAsync: String = "DispatchQueue.main.async"
+    internal static let secondDispatchQueueMainAsyncAfter: String = "DispatchQueue.main.asyncAfter"
  }
  
  /// UIHomeSwiftController
  internal final class ThreadHomeController: UIViewController {
     
-    var firstSection: [String] = [firstUI]
+    var firstSection: [String] = [firstDispatchQueueMain]
     var secondSection: [[String]] = [
         [
-            secondUIView
+            secondDispatchQueueMainAsync, secondDispatchQueueMainAsyncAfter
         ]
     ]
     
@@ -56,7 +57,44 @@
         self.initGroupThread()
     }
     
+    /// DispatchQueue.main 异步提交时Sleep -> 结果：会导致ui不能及时更新
+    private func dispatchQueueMainAsyncAfterSleep() {
+        debugPrint("[mainQueue.asyncAfter][main][1]")
+        
+        //主队列异步任务,结果为有序
+        let mainQueue = DispatchQueue.main
+        mainQueue.asyncAfter(deadline: DispatchTime.now() + 0.0) {
+            debugPrint("[mainQueue.asyncAfter][-1]")
+            Thread.sleep(forTimeInterval: 1.0)
+        }
+        mainQueue.asyncAfter(deadline: DispatchTime.now() + 0.0) {
+            debugPrint("[mainQueue.asyncAfter][0]")
+            Thread.sleep(forTimeInterval: 1.0)
+        }
+        mainQueue.asyncAfter(deadline: DispatchTime.now() + 0.0) {
+            debugPrint("[mainQueue.asyncAfter][1]")
+            Thread.sleep(forTimeInterval: 2.0)
+        }
+        debugPrint("[mainQueue.asyncAfter][main][2]")
+    }
     
+    /// DispatchQueue.main 异步提交时Sleep -> 结果：不会导致ui不能及时更新
+    private func dispatchQueueMainAsyncAfterSleep2() {
+        debugPrint("[mainQueue.asyncAfter][main][1]")
+        
+        //主队列异步任务,结果为有序
+        let mainQueue = DispatchQueue.main
+        mainQueue.asyncAfter(deadline: DispatchTime.now() + 1.0) {
+            debugPrint("[mainQueue.asyncAfter][-1]")
+        }
+        mainQueue.asyncAfter(deadline: DispatchTime.now() + 2.0) {
+            debugPrint("[mainQueue.asyncAfter][0]")
+        }
+        mainQueue.asyncAfter(deadline: DispatchTime.now() + 3.0) {
+            debugPrint("[mainQueue.asyncAfter][1]")
+        }
+        debugPrint("[mainQueue.asyncAfter][main][2]")
+    }
     
     /// 三个任务，分别开辟三个线程，都执行完毕后通知主线程（group）
     private func initGroupThread() {
@@ -181,14 +219,20 @@
         let first = firstSection[indexPath.section]
         let second = secondSection[indexPath.section][indexPath.row]
         switch first {
-        case ThreadHomeController.firstUI:
+        case ThreadHomeController.firstDispatchQueueMain:
             switch second {
-            case ThreadHomeController.secondUIView:
-                //https://www.jianshu.com/p/5a3fd872257e
+            case ThreadHomeController.secondDispatchQueueMainAsync:
+                
+                break
+            case ThreadHomeController.secondDispatchQueueMainAsyncAfter:
+                
                 break
             default:
                 break
             }
+            break
+        case ThreadHomeController.firstDispatchQueue:
+            //https://www.jianshu.com/p/5a3fd872257e
             break
         default:
             break
