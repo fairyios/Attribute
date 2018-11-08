@@ -33,43 +33,50 @@ internal extension HomeController {
     //--Thread--
     internal static let _threadThread1: String = "Thread1"
     
-    internal static let dict1: Dictionary<String, Array<String>> = [
-        _ui : [_uiUnit, _uiUITableView, _uiUITabBar, _uiNavigation],
-        _dialog : [_dialogDialog1],
-        _animation : [_animationAnimation1],
-        _kit : [_kitSnapKit],
-        _swift : [_swiftSwift1],
-        _thread : [_threadThread1]
+    
+    /// 数据源
+    internal static let _array: [Dictionary<String, Array<String>>] = [
+        [_ui : [_uiUnit, _uiUITableView, _uiUITabBar, _uiNavigation]],
+        [_dialog : [_dialogDialog1]],
+        [_animation : [_animationAnimation1]],
+        [_kit : [_kitSnapKit]],
+        [_swift : [_swiftSwift1]],
+        [_thread : [_threadThread1]]
     ]
+    
+    /// 节点数
+    internal static func getDictionaryCount() -> Int {
+        let count = _array.count
+        return count
+    }
+    
+    /// 每一行的key
+    internal static func getDictionaryKey(index: Int) -> String {
+        let node =  _array[index] as Dictionary<String, Array<String>>
+        let first = node.first
+        let key = first?.key
+        return key!
+    }
+    
+    /// 每个节点的values
+    internal static func getDictionaryValues(index: Int) -> [String] {
+        let node = _array[index] as Dictionary<String, Array<String>>
+        let first = node.first
+        let values = first?.value
+        return values!
+    }
 }
 
 /// HomeController
 internal final class HomeController: UIViewController {
-
-    var firstSection: [String] = [_ui, _dialog, _kit, _swift, _thread]
-    var secondSection: [[String]] = [
-        [
-           _uiUnit, _uiUITableView, _uiUITabBar, _uiNavigation
-        ],
-        [
-           _dialogDialog1
-        ],
-        [
-            _animationAnimation1
-        ],
-        [
-            _kitSnapKit
-        ],
-        [
-            _swiftSwift1
-        ],
-        [
-            _threadThread1
-        ]
-    ]
+    
+    
+    
+    
     
     
     private lazy var myTable: UITableView! = {
+        
         let table = UITableView()
         table.backgroundView = nil
         table.backgroundColor = UIColor.orange
@@ -111,7 +118,7 @@ extension HomeController: UITableViewDataSource {
     /// - Parameter tableView: tableView description
     /// - Returns: return value description
     func numberOfSections(in tableView: UITableView) -> Int {
-        return firstSection.count
+        return HomeController.getDictionaryCount()
     }
     
     
@@ -122,7 +129,8 @@ extension HomeController: UITableViewDataSource {
     ///   - section: section description
     /// - Returns: return value description
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return secondSection[section].count
+        let values = HomeController.getDictionaryValues(index: section)
+        return values.count
     }
     
     
@@ -133,7 +141,8 @@ extension HomeController: UITableViewDataSource {
     ///   - section: section description
     /// - Returns: return value description
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return firstSection[section]
+        let nodeKey = HomeController.getDictionaryKey(index: section)
+        return nodeKey
     }
     
     
@@ -155,10 +164,11 @@ extension HomeController: UITableViewDataSource {
     ///   - indexPath: indexPath description
     /// - Returns: return value description
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let second = secondSection[indexPath.section]
+        let values = HomeController.getDictionaryValues(index: indexPath.section)
+      
         let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
         cell.accessoryType = .disclosureIndicator // disclosureIndicator:显示">"图标
-        cell.textLabel?.text = second[indexPath.row]
+        cell.textLabel?.text = values[indexPath.row]
         return cell
     }
     
@@ -171,11 +181,12 @@ extension HomeController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        
         
-        let first = firstSection[indexPath.section]
-        let second = secondSection[indexPath.section][indexPath.row]
-        switch first {
+        let title = HomeController.getDictionaryKey(index: indexPath.section)
+        let values = HomeController.getDictionaryValues(index: indexPath.section)
+        let selectedRow = values[indexPath.row]
+        switch title {
         case HomeController._ui:
-            switch second {
+            switch selectedRow {
                 case HomeController._uiUnit:
                     let unitController = UnitHomeController()
                     self.show(unitController, sender: nil)
@@ -201,7 +212,7 @@ extension HomeController: UITableViewDelegate {
             
             break
         case HomeController._swift:
-            switch second {
+            switch selectedRow {
             case HomeController._swiftSwift1:
                 let homeTable = SwiftHomeController()
                 self.show(homeTable, sender: nil)
@@ -211,7 +222,7 @@ extension HomeController: UITableViewDelegate {
             }
             break
         case HomeController._thread:
-            switch second {
+            switch selectedRow {
             case HomeController._threadThread1:
                 let homeTable = ThreadHomeController()
                 self.show(homeTable, sender: nil)

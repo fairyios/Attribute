@@ -151,19 +151,7 @@ extension UnitHomeController: UITableViewDelegate {
         
         let first = firstSection[indexPath.section]
         let second = secondSection[indexPath.section][indexPath.row]
-        switch first {
-        case SwiftHomeController.firstUI:
-            switch second {
-            case SwiftHomeController.secondUIView:
-                //https://www.jianshu.com/p/5a3fd872257e
-                break
-            default:
-                break
-            }
-            break
-        default:
-            break
-        }
+        
         
         
         //取消选中的行

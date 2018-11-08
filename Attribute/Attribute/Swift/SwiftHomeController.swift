@@ -11,20 +11,24 @@
  import SnapKit
  
  internal extension SwiftHomeController {
-    internal static let firstUI = "关键字"
+    internal static let _keyword = "关键字"
+    internal static let _dictionary = "字典"
     
     //--UI--
-    internal static let secondUIView: String = "typealias(别名)"
-   
+    internal static let _keywordTypealias: String = "typealias(别名)"
+   internal static let _dictionaryForArray: String = "[Dictionary<String, Array<String>>]"
  }
  
  /// UIHomeSwiftController
  internal final class SwiftHomeController: UIViewController {
     
-    var firstSection: [String] = [firstUI]
+    var firstSection: [String] = [_keyword, _dictionary]
     var secondSection: [[String]] = [
         [
-            secondUIView
+            _keywordTypealias
+        ],
+        [
+            _dictionaryForArray
         ]
     ]
     
@@ -135,13 +139,21 @@
         let first = firstSection[indexPath.section]
         let second = secondSection[indexPath.section][indexPath.row]
         switch first {
-        case SwiftHomeController.firstUI:
+        case SwiftHomeController._keyword:
             switch second {
-            case SwiftHomeController.secondUIView:
-                //https://www.jianshu.com/p/5a3fd872257e
-                break
-            default:
-                break
+                case SwiftHomeController._keywordTypealias:
+                    //https://www.jianshu.com/p/5a3fd872257e
+                    break
+                default:
+                    break
+            }
+            break
+        case SwiftHomeController._dictionary:
+            switch second {
+                case SwiftHomeController._dictionaryForArray:
+                    break
+                default:
+                    break
             }
             break
         default:
