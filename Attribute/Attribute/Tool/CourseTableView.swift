@@ -121,12 +121,9 @@ extension CourseTableView: UITableViewDelegate {
         let row = self.rows[indexPath.section][indexPath.row]
         let action = self.actions[row]
         
-        if action != nil {
-            let a = action!
-            if a != nil {
-                let b = a!
-                b(indexPath)
-            }
+        if action != nil && (action!) != nil {
+            let a = action!!
+            a(indexPath)
         }
         
         //取消选中的行
