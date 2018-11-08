@@ -9,32 +9,32 @@
 import UIKit
 import SnapKit
 
-protocol CourseTableViewDelegate {
-    var _array: [Dictionary<String, Array<String>>] { get set }
+protocol ICourseTableView {
+    var source: [Dictionary<String, Array<String>>] { get set }
+    
+    var titleSections: [String] { get set }
+    var cellRows:Dictionary<String, String> { get set }
 }
 
-internal extension CourseTableController {
-    
-    /// 数据源
-    internal static let _array: [Dictionary<String, Array<String>>] = [ ]
+extension CourseTableView {
     
     /// 节点数
-    private static func getDictionaryCount() -> Int {
-        let count = _array.count
+    private func getDictionaryCount() -> Int {
+        let count = self.source.count
         return count
     }
     
     /// 每一行的key
-    private static func getDictionaryKey(index: Int) -> String {
-        let node =  _array[index] as Dictionary<String, Array<String>>
+    private func getDictionaryKey(index: Int) -> String {
+        let node =  self.source[index] as Dictionary<String, Array<String>>
         let first = node.first
         let key = first?.key
         return key!
     }
     
     /// 每个节点的values
-    private static func getDictionaryValues(index: Int) -> [String] {
-        let node = _array[index] as Dictionary<String, Array<String>>
+    private func getDictionaryValues(index: Int) -> [String] {
+        let node = self.source[index] as Dictionary<String, Array<String>>
         let first = node.first
         let values = first?.value
         return values!
@@ -42,49 +42,32 @@ internal extension CourseTableController {
 }
 
 /// CourseTableController
-internal final class CourseTableController: UIViewController {
+internal final class CourseTableView: UITableView, ICourseTableView {
     
     
+    var titleSections: [String] = []
+    var cellRows: Dictionary<String, String> = [:]
     
+    public var source: [Dictionary<String, Array<String>>] = []
     
-    
-    
-    private lazy var myTable: UITableView! = {
+    convenience init(data: [Dictionary<String, Array<String>>]) {
+        self.init()
         
-        let table = UITableView()
-        table.backgroundView = nil
-        table.backgroundColor = UIColor.orange
-        table.delegate = self
-        table.dataSource = self
-        table.rowHeight = 30.0
-        table.tableHeaderView = UIView()
-        table.tableFooterView = nil
-        table.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
-        
-        return table
-    }()
-    
-    
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        self.navigationItem.title = "Attribute"
-        
-        self.view.addSubview(self.myTable)
-        self.myTable.snp.remakeConstraints { maker in maker.edges.equalTo(self.view) }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+        self.backgroundView = nil
+        self.backgroundColor = UIColor.orange
+        self.delegate = self
+        self.dataSource = self
+        self.rowHeight = 30.0
+        self.tableHeaderView = UIView()
+        self.tableFooterView = nil
+        self.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
     }
     
 }
 
 
 // MARK: - UITableViewDataSourcew
-extension CourseTableController: UITableViewDataSource {
+extension CourseTableView: UITableViewDataSource {
     
     
     /// Asks the data source to return the number of sections in the table view.
@@ -92,7 +75,7 @@ extension CourseTableController: UITableViewDataSource {
     /// - Parameter tableView: tableView description
     /// - Returns: return value description
     func numberOfSections(in tableView: UITableView) -> Int {
-        return CourseTableController.getDictionaryCount()
+        return self.getDictionaryCount()
     }
     
     
@@ -103,7 +86,7 @@ extension CourseTableController: UITableViewDataSource {
     ///   - section: section description
     /// - Returns: return value description
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let values = CourseTableController.getDictionaryValues(index: section)
+        let values = self.getDictionaryValues(index: section)
         return values.count
     }
     
@@ -115,7 +98,7 @@ extension CourseTableController: UITableViewDataSource {
     ///   - section: section description
     /// - Returns: return value description
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let nodeKey = CourseTableController.getDictionaryKey(index: section)
+        let nodeKey = self.getDictionaryKey(index: section)
         return nodeKey
     }
     
@@ -138,7 +121,7 @@ extension CourseTableController: UITableViewDataSource {
     ///   - indexPath: indexPath description
     /// - Returns: return value description
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let values = CourseTableController.getDictionaryValues(index: indexPath.section)
+        let values = self.getDictionaryValues(index: indexPath.section)
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
         cell.accessoryType = .disclosureIndicator // disclosureIndicator:显示">"图标
@@ -151,7 +134,7 @@ extension CourseTableController: UITableViewDataSource {
 
 
 // MARK: - UITableViewDelegate
-extension CourseTableController: UITableViewDelegate {
+extension CourseTableView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         
