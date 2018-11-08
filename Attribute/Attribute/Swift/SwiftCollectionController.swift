@@ -1,34 +1,31 @@
- 
- //
- //  ViewController.swift
- //  Attribute
- //
- //  Created by Fairy on 2018/11/6.
- //  Copyright © 2018 fairyios. All rights reserved.
- //
- 
- import UIKit
- import SnapKit
- 
- internal extension SwiftHomeController {
-    internal static let _keyword = "关键字"
-    internal static let _collection = "集合"
+
+//
+//  ViewController.swift
+//  Attribute
+//
+//  Created by Fairy on 2018/11/6.
+//  Copyright © 2018 fairyios. All rights reserved.
+//
+
+import UIKit
+import SnapKit
+
+internal extension SwiftCollectionController {
+    
+    internal static let _dictionary = "Dictionary"
     
     //--UI--
-    internal static let _keywordTypealias: String = "typealias(别名)"
-    internal static let _collection1: String = "Dictionary,Set,Array"
- }
- 
- /// UIHomeSwiftController
- internal final class SwiftHomeController: UIViewController {
+    internal static let _dictionaryForArray: String = "[Dictionary<String, Array<String>>]"
+}
+
+/// SwiftCollectionController
+internal final class SwiftCollectionController: UIViewController {
     
-    var firstSection: [String] = [_keyword, _collection]
+    var firstSection: [String] = [_dictionary]
     var secondSection: [[String]] = [
+        
         [
-            _keywordTypealias
-        ],
-        [
-            _collection1
+            _dictionaryForArray
         ]
     ]
     
@@ -52,7 +49,7 @@
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = HomeController._swiftSwift1
+        self.navigationItem.title = SwiftHomeController._collection1
         self.view.backgroundColor = UIColor.orange
         
         
@@ -64,11 +61,11 @@
         super.didReceiveMemoryWarning()
     }
     
- }
- 
- 
- // MARK: - UITableViewDataSourcew
- extension SwiftHomeController: UITableViewDataSource {
+}
+
+
+// MARK: - UITableViewDataSourcew
+extension SwiftCollectionController: UITableViewDataSource {
     
     
     /// Asks the data source to return the number of sections in the table view.
@@ -128,11 +125,11 @@
     }
     
     
- }
- 
- 
- // MARK: - UITableViewDelegate
- extension SwiftHomeController: UITableViewDelegate {
+}
+
+
+// MARK: - UITableViewDelegate
+extension SwiftCollectionController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         
@@ -141,21 +138,20 @@
         switch first {
         case SwiftHomeController._keyword:
             switch second {
-                case SwiftHomeController._keywordTypealias:
-                    //https://www.jianshu.com/p/5a3fd872257e
-                    break
-                default:
-                    break
+            case SwiftHomeController._keywordTypealias:
+                //https://www.jianshu.com/p/5a3fd872257e
+                break
+            default:
+                break
             }
             break
         case SwiftHomeController._collection:
             switch second {
-                case SwiftHomeController._collection1:
-                    let collectionC = SwiftCollectionController()
-                    self.show(collectionC, sender: nil)
-                    break
-                default:
-                    break
+            case SwiftHomeController._collection1:
+                self.dictionaryForArrayFunction()
+                break
+            default:
+                break
             }
             break
         default:
@@ -166,4 +162,49 @@
         //取消选中的行
         tableView.deselectRow(at: indexPath, animated: true)
     }
- }
+}
+
+
+extension SwiftCollectionController {
+    
+    
+    /// [Dictionary<String, Array<String>>]
+    private func dictionaryForArrayFunction() {
+        
+        /// 数据源
+        let _array: [Dictionary<String, Array<String>>] = [
+            ["1" : ["1-1", "1-2", "1-3", "1-4"]],
+            ["2" : ["2-"]],
+            ["3" : ["3-"]],
+            ["4" : ["4-"]],
+            ["5" : ["5-"]],
+            ["6" : ["6-"]]
+        ]
+        
+        /// 节点数
+        let getDictionaryCount = {() -> Int  in
+            let count = _array.count
+            return count
+        }
+        
+        /// 每一行的key
+        let getDictionaryKey = {(index: Int) -> String in
+            let node =  _array[index] as Dictionary<String, Array<String>>
+            let first = node.first
+            let key = first?.key
+            return key!
+        }
+        
+        /// 每个节点的values
+        let getDictionaryValues = {(index: Int) -> [String] in
+            let node = _array[index] as Dictionary<String, Array<String>>
+            let first = node.first
+            let values = first?.value
+            return values!
+        }
+        debugPrint(getDictionaryCount)
+        debugPrint(getDictionaryKey)
+        debugPrint(getDictionaryValues)
+    }
+    
+}

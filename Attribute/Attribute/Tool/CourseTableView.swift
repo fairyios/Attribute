@@ -1,39 +1,56 @@
- 
- //
- //  ViewController.swift
- //  Attribute
- //
- //  Created by Fairy on 2018/11/6.
- //  Copyright © 2018 fairyios. All rights reserved.
- //
- 
- import UIKit
- import SnapKit
- 
- internal extension SwiftHomeController {
-    internal static let _keyword = "关键字"
-    internal static let _collection = "集合"
+//
+//  ViewController.swift
+//  Attribute
+//
+//  Created by Fairy on 2018/11/6.
+//  Copyright © 2018 fairyios. All rights reserved.
+//
+
+import UIKit
+import SnapKit
+
+protocol CourseTableViewDelegate {
+    var _array: [Dictionary<String, Array<String>>] { get set }
+}
+
+internal extension CourseTableController {
     
-    //--UI--
-    internal static let _keywordTypealias: String = "typealias(别名)"
-    internal static let _collection1: String = "Dictionary,Set,Array"
- }
- 
- /// UIHomeSwiftController
- internal final class SwiftHomeController: UIViewController {
+    /// 数据源
+    internal static let _array: [Dictionary<String, Array<String>>] = [ ]
     
-    var firstSection: [String] = [_keyword, _collection]
-    var secondSection: [[String]] = [
-        [
-            _keywordTypealias
-        ],
-        [
-            _collection1
-        ]
-    ]
+    /// 节点数
+    private static func getDictionaryCount() -> Int {
+        let count = _array.count
+        return count
+    }
+    
+    /// 每一行的key
+    private static func getDictionaryKey(index: Int) -> String {
+        let node =  _array[index] as Dictionary<String, Array<String>>
+        let first = node.first
+        let key = first?.key
+        return key!
+    }
+    
+    /// 每个节点的values
+    private static func getDictionaryValues(index: Int) -> [String] {
+        let node = _array[index] as Dictionary<String, Array<String>>
+        let first = node.first
+        let values = first?.value
+        return values!
+    }
+}
+
+/// CourseTableController
+internal final class CourseTableController: UIViewController {
+    
+    
+    
+    
     
     
     private lazy var myTable: UITableView! = {
+        
         let table = UITableView()
         table.backgroundView = nil
         table.backgroundColor = UIColor.orange
@@ -52,9 +69,8 @@
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = HomeController._swiftSwift1
-        self.view.backgroundColor = UIColor.orange
-        
+        // Do any additional setup after loading the view, typically from a nib.
+        self.navigationItem.title = "Attribute"
         
         self.view.addSubview(self.myTable)
         self.myTable.snp.remakeConstraints { maker in maker.edges.equalTo(self.view) }
@@ -64,11 +80,11 @@
         super.didReceiveMemoryWarning()
     }
     
- }
- 
- 
- // MARK: - UITableViewDataSourcew
- extension SwiftHomeController: UITableViewDataSource {
+}
+
+
+// MARK: - UITableViewDataSourcew
+extension CourseTableController: UITableViewDataSource {
     
     
     /// Asks the data source to return the number of sections in the table view.
@@ -76,7 +92,7 @@
     /// - Parameter tableView: tableView description
     /// - Returns: return value description
     func numberOfSections(in tableView: UITableView) -> Int {
-        return firstSection.count
+        return CourseTableController.getDictionaryCount()
     }
     
     
@@ -87,7 +103,8 @@
     ///   - section: section description
     /// - Returns: return value description
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return secondSection[section].count
+        let values = CourseTableController.getDictionaryValues(index: section)
+        return values.count
     }
     
     
@@ -98,7 +115,8 @@
     ///   - section: section description
     /// - Returns: return value description
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return firstSection[section]
+        let nodeKey = CourseTableController.getDictionaryKey(index: section)
+        return nodeKey
     }
     
     
@@ -120,50 +138,29 @@
     ///   - indexPath: indexPath description
     /// - Returns: return value description
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let second = secondSection[indexPath.section]
+        let values = CourseTableController.getDictionaryValues(index: indexPath.section)
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
         cell.accessoryType = .disclosureIndicator // disclosureIndicator:显示">"图标
-        cell.textLabel?.text = second[indexPath.row]
+        cell.textLabel?.text = values[indexPath.row]
         return cell
     }
     
     
- }
- 
- 
- // MARK: - UITableViewDelegate
- extension SwiftHomeController: UITableViewDelegate {
+}
+
+
+// MARK: - UITableViewDelegate
+extension CourseTableController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         
-        let first = firstSection[indexPath.section]
-        let second = secondSection[indexPath.section][indexPath.row]
-        switch first {
-        case SwiftHomeController._keyword:
-            switch second {
-                case SwiftHomeController._keywordTypealias:
-                    //https://www.jianshu.com/p/5a3fd872257e
-                    break
-                default:
-                    break
-            }
-            break
-        case SwiftHomeController._collection:
-            switch second {
-                case SwiftHomeController._collection1:
-                    let collectionC = SwiftCollectionController()
-                    self.show(collectionC, sender: nil)
-                    break
-                default:
-                    break
-            }
-            break
-        default:
-            break
-        }
+        //let title = CourseTableController.getDictionaryKey(index: indexPath.section)
+        //let values = CourseTableController.getDictionaryValues(index: indexPath.section)
+        //let selectedRow = values[indexPath.row]
         
         
         //取消选中的行
         tableView.deselectRow(at: indexPath, animated: true)
     }
- }
+}
