@@ -10,45 +10,25 @@ import UIKit
 import SnapKit
 
 protocol ICourseTableView {
-    var source: [Dictionary<String, Array<String>>] { get set }
     
-    var titleSections: [String] { get set }
-    var cellRows:Dictionary<String, String> { get set }
+    /// 节点
+    var sections: [String] { get set }
+    /// 所有行的集合
+    var rows: [[String]] { get set }
+    /// 每一行对应的闭包action
+    var actions: Dictionary<String, ((IndexPath) -> Void)?> { get set }
 }
-
-extension CourseTableView {
-    
-    /// 节点数
-    private func getDictionaryCount() -> Int {
-        let count = self.source.count
-        return count
-    }
-    
-    /// 每一行的key
-    private func getDictionaryKey(index: Int) -> String {
-        let node =  self.source[index] as Dictionary<String, Array<String>>
-        let first = node.first
-        let key = first?.key
-        return key!
-    }
-    
-    /// 每个节点的values
-    private func getDictionaryValues(index: Int) -> [String] {
-        let node = self.source[index] as Dictionary<String, Array<String>>
-        let first = node.first
-        let values = first?.value
-        return values!
-    }
-}
-
 /// CourseTableController
 internal final class CourseTableView: UITableView, ICourseTableView {
     
+    /// 节点
+    var sections: [String] = []
     
-    var titleSections: [String] = []
-    var cellRows: Dictionary<String, String> = [:]
+    /// 所有行的集合
+    var rows: [[String]] = []
     
-    public var source: [Dictionary<String, Array<String>>] = []
+    /// 每一行对应的闭包action
+    var actions: Dictionary<String, ((IndexPath) -> Void)?> = [:]
     
     convenience init(data: [Dictionary<String, Array<String>>]) {
         self.init()
@@ -75,7 +55,7 @@ extension CourseTableView: UITableViewDataSource {
     /// - Parameter tableView: tableView description
     /// - Returns: return value description
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.getDictionaryCount()
+        return self.sections.count
     }
     
     
@@ -86,7 +66,7 @@ extension CourseTableView: UITableViewDataSource {
     ///   - section: section description
     /// - Returns: return value description
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let values = self.getDictionaryValues(index: section)
+        let values = self.rows[section]
         return values.count
     }
     
@@ -98,8 +78,7 @@ extension CourseTableView: UITableViewDataSource {
     ///   - section: section description
     /// - Returns: return value description
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let nodeKey = self.getDictionaryKey(index: section)
-        return nodeKey
+        return self.sections[section]
     }
     
     
@@ -121,11 +100,11 @@ extension CourseTableView: UITableViewDataSource {
     ///   - indexPath: indexPath description
     /// - Returns: return value description
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let values = self.getDictionaryValues(index: indexPath.section)
+        let model = (self.rows[indexPath.section])[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
         cell.accessoryType = .disclosureIndicator // disclosureIndicator:显示">"图标
-        cell.textLabel?.text = values[indexPath.row]
+        cell.textLabel?.text = model
         return cell
     }
     
@@ -138,10 +117,17 @@ extension CourseTableView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         
-        //let title = CourseTableController.getDictionaryKey(index: indexPath.section)
-        //let values = CourseTableController.getDictionaryValues(index: indexPath.section)
-        //let selectedRow = values[indexPath.row]
+        //let section = self.sections[indexPath.section]
+        let row = self.rows[indexPath.section][indexPath.row]
+        let action = self.actions[row]
         
+        if action != nil {
+            let a = action!
+            if a != nil {
+                let b = a!
+                b(indexPath)
+            }
+        }
         
         //取消选中的行
         tableView.deselectRow(at: indexPath, animated: true)
