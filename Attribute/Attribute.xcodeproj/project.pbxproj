@@ -19,6 +19,7 @@
 		2C175FA021954A9E00F66F96 /* DispatchQueueMainAsyncAfterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C175F9F21954A9E00F66F96 /* DispatchQueueMainAsyncAfterController.swift */; };
 		2C175FA32195736900F66F96 /* DefineTableViewCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C175FA22195736900F66F96 /* DefineTableViewCellController.swift */; };
 		2C175FAC2195B3B800F66F96 /* GestureHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C175FAB2195B3B800F66F96 /* GestureHomeController.swift */; };
+		2C175FB02195BFE300F66F96 /* CourseTableViewDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C175FAF2195BFE300F66F96 /* CourseTableViewDemoController.swift */; };
 		2C3CFC7821933B410040C707 /* NavigationSelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3CFC7721933B410040C707 /* NavigationSelfViewController.swift */; };
 		2CB83EED2191BC8300806091 /* TableHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB83EEC2191BC8300806091 /* TableHomeController.swift */; };
 		2CB83EEF2191BDF400806091 /* NavigationHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB83EEE2191BDF400806091 /* NavigationHomeController.swift */; };
@@ -65,6 +66,7 @@
 		2C175F9F21954A9E00F66F96 /* DispatchQueueMainAsyncAfterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueueMainAsyncAfterController.swift; sourceTree = "<group>"; };
 		2C175FA22195736900F66F96 /* DefineTableViewCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefineTableViewCellController.swift; sourceTree = "<group>"; };
 		2C175FAB2195B3B800F66F96 /* GestureHomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureHomeController.swift; sourceTree = "<group>"; };
+		2C175FAF2195BFE300F66F96 /* CourseTableViewDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTableViewDemoController.swift; sourceTree = "<group>"; };
 		2C3CFC7721933B410040C707 /* NavigationSelfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationSelfViewController.swift; sourceTree = "<group>"; };
 		2CB83EEC2191BC8300806091 /* TableHomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableHomeController.swift; sourceTree = "<group>"; };
 		2CB83EEE2191BDF400806091 /* NavigationHomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHomeController.swift; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				2CBCA894219477B500B8BC9F /* CourseTableView.swift */,
+				2C175FAF2195BFE300F66F96 /* CourseTableViewDemoController.swift */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -291,9 +294,9 @@
 		2CD715DA2190A5A300309DEF /* Attribute */ = {
 			isa = PBXGroup;
 			children = (
+				2CBCA896219478CE00B8BC9F /* Tool */,
 				2C175FAD2195B94800F66F96 /* Dialog */,
 				2C175FAA2195B3A500F66F96 /* Gesture */,
-				2CBCA896219478CE00B8BC9F /* Tool */,
 				2CBCA88F2194397400B8BC9F /* Unit */,
 				2C004C502192E8FF00A28A40 /* Thread */,
 				2C004C4621928FA700A28A40 /* Swift */,
@@ -584,6 +587,7 @@
 				2CBCA89121943A5000B8BC9F /* UnitHomeController.swift in Sources */,
 				2C004C4D2192C24700A28A40 /* NavigationSystemController.swift in Sources */,
 				2C175FA021954A9E00F66F96 /* DispatchQueueMainAsyncAfterController.swift in Sources */,
+				2C175FB02195BFE300F66F96 /* CourseTableViewDemoController.swift in Sources */,
 				2CBCA895219477B500B8BC9F /* CourseTableView.swift in Sources */,
 				2C175F9C219526CA00F66F96 /* SwiftInitController.swift in Sources */,
 				2CD715DC2190A5A300309DEF /* AppDelegate.swift in Sources */,
