@@ -26,7 +26,7 @@ internal final class HomeCourseCellDataSource: ICourseCellDataSource {
     internal  static let _uiUnit: String = "小部件"
     internal  static let _uiUITableView: String = "UITableView"
     internal static  let _uiUITabBar: String = "UITabBar"
-    internal static  let _uiNavigation: String = "Navigation"
+    internal static  let _uiNavigation: String = "导航栏"
     //--Dialog--
     internal  static let _dialogDialog1: String = "Dialog1"
     //--动画--
