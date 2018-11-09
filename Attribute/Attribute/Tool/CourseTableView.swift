@@ -9,46 +9,56 @@
 import UIKit
 import SnapKit
 
-protocol ICourseTableView {
+protocol ICourseCellDataSource {
     
     /// 节点
     var sections: [String] { get set }
     /// 所有行的集合
     var rows: [[String]] { get set }
     /// 每一行对应的闭包action
-    var actions: Dictionary<String, ((IndexPath) -> Void)?> { get set }
+    var actions: Dictionary<String, ((UIViewController, IndexPath) -> Void)?> { get set }
+    
+    var target: UIViewController! { get }
 }
 
-protocol CellDataSource {
-    var title: String { get }
-}
-final class CourceView : UITableView {
-    private var temDataSource: [CellDataSource]
-    init(dataSource: [CellDataSource]) {
-        self.temDataSource = dataSource
+/// CourseTableController
+internal final class CourseTableView: UITableView {
+    
+    var data: ICourseCellDataSource! = nil
+    weak var target: UIViewController! = nil
+    
+    
+    /// 指定构造器
+    /// 「」
+    /// - Parameters:
+    ///   - target: target description
+    ///   - data: data description
+    init(target: UIViewController, data: ICourseCellDataSource) {
         super.init(frame: CGRect.zero, style: UITableView.Style.plain)
+        self.data = data
+        self.target = target
+        //self.data|self.target 赋值应该在“self.initSelf()”之前，否则会报错
+        self.initSelf()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-}
-/// CourseTableController
-internal final class CourseTableView: UITableView, ICourseTableView {
     
-    /// 节点
-    var sections: [String] = []
+//    /// 便利构造器
+//    /// 「能正确执行」
+//    /// - Parameters:
+//    ///   - target: target description
+//    ///   - data: data description
+//    convenience init(target: UIViewController, data: ICourseCellDataSource) {
+//        self.init()
+//        self.data = data
+//        self.target = target
+//        //self.data|self.target 赋值应该在“self.initSelf()”之前，否则会报错
+//        self.initSelf()
+//    }
     
-    /// 所有行的集合
-    var rows: [[String]] = []
-    
-    /// 每一行对应的闭包action
-    var actions: Dictionary<String, ((IndexPath) -> Void)?> = [:]
-    
-    
-    convenience init(sections: [String], rows: [[String]], actions: Dictionary<String, ((IndexPath) -> Void)?>) {
-        self.init()
-        
+    private func initSelf() {
         self.backgroundView = nil
         self.backgroundColor = UIColor.orange
         self.delegate = self
@@ -71,7 +81,7 @@ extension CourseTableView: UITableViewDataSource {
     /// - Parameter tableView: tableView description
     /// - Returns: return value description
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.sections.count
+        return self.data.sections.count
     }
     
     
@@ -82,7 +92,7 @@ extension CourseTableView: UITableViewDataSource {
     ///   - section: section description
     /// - Returns: return value description
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let values = self.rows[section]
+        let values = self.data.rows[section]
         return values.count
     }
     
@@ -94,7 +104,7 @@ extension CourseTableView: UITableViewDataSource {
     ///   - section: section description
     /// - Returns: return value description
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return self.sections[section]
+        return self.data.sections[section]
     }
     
     
@@ -116,7 +126,7 @@ extension CourseTableView: UITableViewDataSource {
     ///   - indexPath: indexPath description
     /// - Returns: return value description
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let model = (self.rows[indexPath.section])[indexPath.row]
+        let model = (self.data.rows[indexPath.section])[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
         cell.accessoryType = .disclosureIndicator // disclosureIndicator:显示">"图标
@@ -134,12 +144,12 @@ extension CourseTableView: UITableViewDelegate {
         
         
         //let section = self.sections[indexPath.section]
-        let row = self.rows[indexPath.section][indexPath.row]
-        let action = self.actions[row]
+        let row = self.data.rows[indexPath.section][indexPath.row]
+        let action = self.data.actions[row]
         
         if action != nil && (action!) != nil {
             let a = action!!
-            a(indexPath)
+            a(self.target, indexPath)
         }
         
         //取消选中的行

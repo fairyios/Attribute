@@ -65,7 +65,7 @@ internal final class UnitHomeController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = HomeController()._uiUnit
+        self.navigationItem.title = HomeCourseCellDataSource._uiUnit
         self.view.backgroundColor = UIColor.orange
         
         

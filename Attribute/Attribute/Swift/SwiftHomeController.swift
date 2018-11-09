@@ -53,7 +53,7 @@
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = HomeController()._swiftSwift1
+        self.navigationItem.title = HomeCourseCellDataSource._swiftSwift1
         self.view.backgroundColor = UIColor.orange
         
         
