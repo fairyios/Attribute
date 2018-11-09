@@ -12,7 +12,7 @@
  internal final class GestureHomeCourseCellDataSource: ICourseCellDataSource {
     
     internal static let sectionGesture = "手势"
-    internal static let sectionUIGestureRecognizer = "UIGestureRecognizer"
+    internal static let sectionUIGestureRecognizer = "手势识别UIGestureRecognizer"
     
     //--sectionGesture--
     internal static let rowGesture1: String = "手势 1"
