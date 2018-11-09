@@ -1,6 +1,6 @@
  
  //
- //  ViewController.swift
+ //  SwiftHomeController.swift
  //  Attribute
  //
  //  Created by Fairy on 2018/11/6.
@@ -53,7 +53,7 @@
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = HomeCourseCellDataSource._swiftSwift1
+        self.navigationItem.title = HomeCourseCellDataSource.rowSwift1
         self.view.backgroundColor = UIColor.orange
         
         

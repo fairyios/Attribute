@@ -11,92 +11,107 @@ import SnapKit
 
 internal final class HomeCourseCellDataSource: ICourseCellDataSource {
     
-    
-    internal static    let _ui = "UI"
-    internal  static let _dialog = "Dialog"
-    internal static  let _animation = "动画"
-    internal  static let _kit = "Kit"
-    internal static  let _swift = "Swift"
-    internal static  let _thread = "线程"
-    internal static let _visualEffect = "虚拟特效"
-    internal static let _iosDiffrent = "IOS系统版本差异"
-    internal static let _pit = "踩坑"
+    internal static let sectionUI = "UI"
+    internal static let sectionDialog = "Dialog"
+    internal static let sectionAnimation = "动画"
+    internal static let sectionGesture = "手势"
+    internal static let sectionKit = "第三方"
+    internal static let sectionSwift = "Swift"
+    internal static let sectionThread = "线程"
+    internal static let sectionVisualEffect = "虚拟特效"
+    internal static let sectionIosDiffrent = "IOS系统版本差异"
+    internal static let sectionPit = "踩坑"
     
     //--UI--
-    internal  static let _uiUnit: String = "小部件"
-    internal  static let _uiUITableView: String = "UITableView"
-    internal static  let _uiUITabBar: String = "UITabBar"
-    internal static  let _uiNavigation: String = "导航栏"
+    internal static let rowUIUnit: String = "小部件"
+    internal static let rowUIUITableView: String = "UITableView"
+    internal static let rowUIUITabBar: String = "UITabBar"
+    internal static let rowUINavigation: String = "导航栏"
     //--Dialog--
-    internal  static let _dialogDialog1: String = "Dialog1"
+    internal static let rowDialogDialog1: String = "Dialog1"
     //--动画--
-    internal  static let _animationAnimation1: String = "Animation1"
+    internal static let rowAnimation1: String = "Animation1"
+    //--_gesture--
+    internal static let rowGesture1 = "手势1"
     //--Kit--
-    internal  static let _kitSnapKit: String = "SnapKit"
+    internal static let rowKitSnapKit: String = "SnapKit"
     //--Swift--
-    internal  static let _swiftSwift1: String = "Swift1"
+    internal static let rowSwift1: String = "Swift1"
     //--Thread--
-    internal  static let _threadThread1: String = "Thread1"
+    internal static let rowThread1: String = "Thread1"
     //--VisualEffect--
-    internal static let _visualEffectUIBlurEffect: String = "UIBlurEffect"
+    internal static let rowEffectUIBlurEffect: String = "UIBlurEffect"
     //--_iosDiffrent--
-    internal static let _iosDiffrentD1 = "IOS系统版本差异 1"
+    internal static let rowIosDiffrentD1 = "IOS系统版本差异 1"
     //--_pit--
-     internal static let _pitPit1 = "踩坑 1"
+    internal static let rowPitPit1 = "踩坑 1"
     
-    var sections: [String] = [_ui, _dialog, _animation, _kit, _swift, _thread,
-                              _visualEffect, _iosDiffrent, _pit
-                              ]
+    var sections: [String] = [
+        sectionUI, sectionDialog, sectionAnimation,
+        sectionGesture, sectionKit, sectionSwift,
+        sectionThread, sectionVisualEffect,
+        sectionIosDiffrent, sectionPit
+    ]
     
     var rows: [[String]] = [
-        [_uiUnit, _uiUITableView, _uiUITabBar, _uiNavigation],
-        [_dialogDialog1],
-        [_animationAnimation1],
-        [_kitSnapKit],
-        [_swiftSwift1],
-        [_threadThread1],
-        [_visualEffectUIBlurEffect],
-        [_iosDiffrentD1],
-        [_pitPit1]
+        [rowUIUnit, rowUIUITableView, rowUIUITabBar, rowUINavigation],
+        [rowDialogDialog1],
+        [rowAnimation1],
+        [rowGesture1],
+        [rowKitSnapKit],
+        [rowSwift1],
+        [rowThread1],
+        [rowEffectUIBlurEffect],
+        [rowIosDiffrentD1],
+        [rowPitPit1]
     ]
     
     var actions: Dictionary<String, ((UIViewController,IndexPath) -> Void)?> = [
-        _uiUnit: {(target, indexPath) -> Void in
+        rowUIUnit: {(target, indexPath) -> Void in
             let unitController = UnitHomeController()
             target.show(unitController, sender: nil)
         },
-        _uiUITableView: {(target, indexPath) -> Void in
+        rowUIUITableView: {(target, indexPath) -> Void in
             let homeTable = TableHomeController()
             target.show(homeTable, sender: nil)
         },
-        _uiUITabBar: {(target, indexPath) -> Void in
+        rowUIUITabBar: {(target, indexPath) -> Void in
             
         },
-        _uiNavigation: {(target, indexPath) -> Void in
+        rowUINavigation: {(target, indexPath) -> Void in
             let homeNavigation = NavigationHomeController()
             target.show(homeNavigation, sender: nil)
         },
-        _dialogDialog1: {(target, indexPath) -> Void in
+        rowDialogDialog1: {(target, indexPath) -> Void in
             
         },
-        _animationAnimation1: {(target, indexPath) -> Void in
+        rowAnimation1: {(target, indexPath) -> Void in
             
         },
-        _kitSnapKit: {(target, indexPath) -> Void in
+        rowGesture1: {(target, indexPath) -> Void in
             
         },
-        _swiftSwift1: {(target, indexPath) -> Void in
+        rowKitSnapKit: {(target, indexPath) -> Void in
+            
+        },
+        rowSwift1: {(target, indexPath) -> Void in
             let homeTable = SwiftHomeController()
             target.show(homeTable, sender: nil)
         },
-        _threadThread1: {(target, indexPath) -> Void in
+        rowThread1: {(target, indexPath) -> Void in
             let homeTable = ThreadHomeController()
             target.show(homeTable, sender: nil)
         },
-        _visualEffectUIBlurEffect: {(target, indexPath) -> Void in
+        rowEffectUIBlurEffect: {(target, indexPath) -> Void in
             
         },
-    ]
+        rowIosDiffrentD1: {(target, indexPath) -> Void in
+            
+        },
+        rowPitPit1: {(target, indexPath) -> Void in
+        
+        },
+        ]
     
     
 }
@@ -124,5 +139,5 @@ internal final class HomeController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
+    
 }

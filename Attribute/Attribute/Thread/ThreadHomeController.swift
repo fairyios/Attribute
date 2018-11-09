@@ -61,7 +61,7 @@
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = HomeCourseCellDataSource._threadThread1
+        self.navigationItem.title = HomeCourseCellDataSource.rowThread1
         self.view.backgroundColor = UIColor.orange
         self.view.addSubview(self.myTable)
         self.myTable.snp.remakeConstraints { maker in maker.edges.equalTo(self.view) }

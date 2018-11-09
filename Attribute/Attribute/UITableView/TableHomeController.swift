@@ -47,7 +47,7 @@ internal final class TableHomeController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = HomeCourseCellDataSource._uiUITableView
+        self.navigationItem.title = HomeCourseCellDataSource.rowUIUITableView
         self.view.backgroundColor = UIColor.orange
         
         
