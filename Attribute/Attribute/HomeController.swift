@@ -89,7 +89,8 @@ internal final class HomeCourseCellDataSource: ICourseCellDataSource {
             
         },
         rowGesture1: {(target, indexPath) -> Void in
-            
+            let gesture = GestureHomeController()
+            target.show(gesture, sender: nil)
         },
         rowKitSnapKit: {(target, indexPath) -> Void in
             
