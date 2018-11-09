@@ -13,6 +13,7 @@
  internal extension SwiftHomeController {
     internal static let _keyword = "关键字"
     internal static let _collection = "集合"
+    internal static let sectionSort = "排序"
     
     //--UI--
     internal static let _keywordTypealias: String = "typealias(别名)"
@@ -26,7 +27,7 @@
     var firstSection: [String] = [_keyword, _collection]
     var secondSection: [[String]] = [
         [
-            _keywordTypealias, _keywordInit
+            _keywordTypealias, _keywordInit, sectionSort
         ],
         [
             _collection1

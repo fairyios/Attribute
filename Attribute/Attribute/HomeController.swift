@@ -21,6 +21,13 @@ internal final class HomeCourseCellDataSource: ICourseCellDataSource {
     internal static let sectionVisualEffect = "虚拟特效"
     internal static let sectionIosDiffrent = "IOS系统版本差异"
     internal static let sectionPit = "踩坑"
+    internal static let sectionBluetooth = "蓝牙"
+    internal static let sectionPrint = "打印"
+    internal static let sectionMqtt = "MQTT"
+    internal static let sectionHttp = "网络"
+    internal static let sectionWebKit = "加载网页"
+    internal static let sectionVideo = "视频"
+    internal static let sectionCamera = "相机"
     
     //--UI--
     internal static let rowUIUnit: String = "小部件"
@@ -46,11 +53,29 @@ internal final class HomeCourseCellDataSource: ICourseCellDataSource {
     //--_pit--
     internal static let rowPitPit1 = "踩坑 1"
     
+    //--sectionBluetooth--
+    internal static let rowBluetooth1 = "蓝牙"
+    //--sectionPrint--
+    internal static let rowPrint1 = "打印"
+    //--sectionMqtt--
+    internal static let rowMqtt1 = "MQTT"
+    //--sectionHttp--
+    internal static let rowHttp1 = "网络"
+    //--sectionWebKit--
+    internal static let rowWebKit1 = "加载网页"
+    //--sectionVideo--
+    internal static let rowVideo = "视频"
+    //--sectionCamera--
+    internal static let rowCamera1 = "相机"
+    
     var sections: [String] = [
         sectionUI, sectionDialog, sectionAnimation,
         sectionGesture, sectionKit, sectionSwift,
         sectionThread, sectionVisualEffect,
-        sectionIosDiffrent, sectionPit
+        sectionIosDiffrent, sectionPit,
+        sectionBluetooth, sectionPrint, sectionMqtt,
+        sectionHttp, sectionWebKit, sectionVideo,
+        sectionCamera
     ]
     
     var rows: [[String]] = [
@@ -63,7 +88,14 @@ internal final class HomeCourseCellDataSource: ICourseCellDataSource {
         [rowThread1],
         [rowEffectUIBlurEffect],
         [rowIosDiffrentD1],
-        [rowPitPit1]
+        [rowPitPit1],
+        [rowBluetooth1],
+        [rowPrint1],
+        [rowMqtt1],
+        [rowHttp1],
+        [rowWebKit1],
+        [rowVideo],
+        [rowCamera1]
     ]
     
     var actions: Dictionary<String, ((UIViewController,IndexPath) -> Void)?> = [
@@ -112,7 +144,28 @@ internal final class HomeCourseCellDataSource: ICourseCellDataSource {
         rowPitPit1: {(target, indexPath) -> Void in
         
         },
-        ]
+        rowBluetooth1: {(target, indexPath) -> Void in
+        
+        },
+        rowPrint1: {(target, indexPath) -> Void in
+        
+        },
+        rowMqtt1: {(target, indexPath) -> Void in
+        
+        },
+        rowHttp1: {(target, indexPath) -> Void in
+        
+        },
+        rowWebKit1: {(target, indexPath) -> Void in
+        
+        },
+        rowVideo: {(target, indexPath) -> Void in
+        
+        },
+        rowCamera1: {(target, indexPath) -> Void in
+        
+        },
+    ]
     
     
 }

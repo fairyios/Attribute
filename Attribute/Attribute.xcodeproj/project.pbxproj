@@ -124,6 +124,7 @@
 		2C004C4621928FA700A28A40 /* Swift */ = {
 			isa = PBXGroup;
 			children = (
+				2C175FAE2195BD7F00F66F96 /* 排序 */,
 				2C175FA82195A8B400F66F96 /* 集合 */,
 				2C175FA72195A8A200F66F96 /* 初始化init */,
 				2C175FA62195A89400F66F96 /* 语法关键字 */,
@@ -215,6 +216,20 @@
 			path = Gesture;
 			sourceTree = "<group>";
 		};
+		2C175FAD2195B94800F66F96 /* Dialog */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Dialog;
+			sourceTree = "<group>";
+		};
+		2C175FAE2195BD7F00F66F96 /* 排序 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "排序";
+			sourceTree = "<group>";
+		};
 		2C76C66B21918622007FA4F4 /* UITableView */ = {
 			isa = PBXGroup;
 			children = (
@@ -276,6 +291,7 @@
 		2CD715DA2190A5A300309DEF /* Attribute */ = {
 			isa = PBXGroup;
 			children = (
+				2C175FAD2195B94800F66F96 /* Dialog */,
 				2C175FAA2195B3A500F66F96 /* Gesture */,
 				2CBCA896219478CE00B8BC9F /* Tool */,
 				2CBCA88F2194397400B8BC9F /* Unit */,
