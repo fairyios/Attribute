@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		09908E3EB88765E0920209F2 /* Pods_AttributeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EE7D0526675D5C8DD322A9C /* Pods_AttributeUITests.framework */; };
 		2C004C4821928FC800A28A40 /* SwiftHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C004C4721928FC800A28A40 /* SwiftHomeController.swift */; };
-		2C004C4B2192929B00A28A40 /* UITableViewTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C004C4A2192929B00A28A40 /* UITableViewTypeCell.swift */; };
+		2C004C4B2192929B00A28A40 /* DefineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C004C4A2192929B00A28A40 /* DefineTableViewCell.swift */; };
 		2C004C4D2192C24700A28A40 /* NavigationSystemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C004C4C2192C24700A28A40 /* NavigationSystemController.swift */; };
 		2C004C4F2192C8EF00A28A40 /* UINavigationControllerSelf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C004C4E2192C8EF00A28A40 /* UINavigationControllerSelf.swift */; };
 		2C004C522192E92700A28A40 /* ThreadHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C004C512192E92700A28A40 /* ThreadHomeController.swift */; };
@@ -17,6 +17,7 @@
 		2C175F9C219526CA00F66F96 /* SwiftInitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C175F9B219526CA00F66F96 /* SwiftInitController.swift */; };
 		2C175F9E2195279E00F66F96 /* DefineTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C175F9D2195279E00F66F96 /* DefineTableView.swift */; };
 		2C175FA021954A9E00F66F96 /* DispatchQueueMainAsyncAfterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C175F9F21954A9E00F66F96 /* DispatchQueueMainAsyncAfterController.swift */; };
+		2C175FA32195736900F66F96 /* DefineTableViewCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C175FA22195736900F66F96 /* DefineTableViewCellController.swift */; };
 		2C3CFC7821933B410040C707 /* NavigationSelfController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3CFC7721933B410040C707 /* NavigationSelfController.swift */; };
 		2CB83EED2191BC8300806091 /* TableHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB83EEC2191BC8300806091 /* TableHomeController.swift */; };
 		2CB83EEF2191BDF400806091 /* NavigationHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB83EEE2191BDF400806091 /* NavigationHomeController.swift */; };
@@ -53,7 +54,7 @@
 /* Begin PBXFileReference section */
 		1EB0731D35CB096B37BB6AEB /* Pods_Attribute.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Attribute.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C004C4721928FC800A28A40 /* SwiftHomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftHomeController.swift; sourceTree = "<group>"; };
-		2C004C4A2192929B00A28A40 /* UITableViewTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewTypeCell.swift; sourceTree = "<group>"; };
+		2C004C4A2192929B00A28A40 /* DefineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefineTableViewCell.swift; sourceTree = "<group>"; };
 		2C004C4C2192C24700A28A40 /* NavigationSystemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationSystemController.swift; sourceTree = "<group>"; };
 		2C004C4E2192C8EF00A28A40 /* UINavigationControllerSelf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerSelf.swift; sourceTree = "<group>"; };
 		2C004C512192E92700A28A40 /* ThreadHomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadHomeController.swift; sourceTree = "<group>"; };
@@ -61,6 +62,7 @@
 		2C175F9B219526CA00F66F96 /* SwiftInitController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftInitController.swift; sourceTree = "<group>"; };
 		2C175F9D2195279E00F66F96 /* DefineTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefineTableView.swift; sourceTree = "<group>"; };
 		2C175F9F21954A9E00F66F96 /* DispatchQueueMainAsyncAfterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueueMainAsyncAfterController.swift; sourceTree = "<group>"; };
+		2C175FA22195736900F66F96 /* DefineTableViewCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefineTableViewCellController.swift; sourceTree = "<group>"; };
 		2C3CFC7721933B410040C707 /* NavigationSelfController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationSelfController.swift; sourceTree = "<group>"; };
 		2CB83EEC2191BC8300806091 /* TableHomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableHomeController.swift; sourceTree = "<group>"; };
 		2CB83EEE2191BDF400806091 /* NavigationHomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHomeController.swift; sourceTree = "<group>"; };
@@ -128,12 +130,13 @@
 			path = Swift;
 			sourceTree = "<group>";
 		};
-		2C004C492192927B00A28A40 /* Cells */ = {
+		2C004C492192927B00A28A40 /* 自定义TableViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				2C004C4A2192929B00A28A40 /* UITableViewTypeCell.swift */,
+				2C004C4A2192929B00A28A40 /* DefineTableViewCell.swift */,
+				2C175FA22195736900F66F96 /* DefineTableViewCellController.swift */,
 			);
-			path = Cells;
+			path = "自定义TableViewCell";
 			sourceTree = "<group>";
 		};
 		2C004C502192E8FF00A28A40 /* Thread */ = {
@@ -145,12 +148,20 @@
 			path = Thread;
 			sourceTree = "<group>";
 		};
+		2C175FA12195698D00F66F96 /* 自定义TableView */ = {
+			isa = PBXGroup;
+			children = (
+				2C175F9D2195279E00F66F96 /* DefineTableView.swift */,
+			);
+			path = "自定义TableView";
+			sourceTree = "<group>";
+		};
 		2C76C66B21918622007FA4F4 /* UITableView */ = {
 			isa = PBXGroup;
 			children = (
-				2C004C492192927B00A28A40 /* Cells */,
+				2C175FA12195698D00F66F96 /* 自定义TableView */,
+				2C004C492192927B00A28A40 /* 自定义TableViewCell */,
 				2CB83EEC2191BC8300806091 /* TableHomeController.swift */,
-				2C175F9D2195279E00F66F96 /* DefineTableView.swift */,
 			);
 			path = UITableView;
 			sourceTree = "<group>";
@@ -504,7 +515,8 @@
 				2C004C4F2192C8EF00A28A40 /* UINavigationControllerSelf.swift in Sources */,
 				2C3CFC7821933B410040C707 /* NavigationSelfController.swift in Sources */,
 				2C175F9E2195279E00F66F96 /* DefineTableView.swift in Sources */,
-				2C004C4B2192929B00A28A40 /* UITableViewTypeCell.swift in Sources */,
+				2C175FA32195736900F66F96 /* DefineTableViewCellController.swift in Sources */,
+				2C004C4B2192929B00A28A40 /* DefineTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

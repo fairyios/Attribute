@@ -28,6 +28,10 @@ final class DefineTableView<T: DefineCellDataSource> : UITableView {
         self.temDataSource = dataSource
         //super.init(frame: CGRect.zero) // 这个构造器是UIView的，不是UITableView的，结果会报错
         super.init(frame: CGRect.zero, style: UITableView.Style.plain)
+        
+        // 设置预估行高 --> 先让 tableView 能滚动，在滚动的时候再去计算显示的 cell 的真正的行高，并且调整 tabelView 的滚动范围
+        self.estimatedRowHeight = 300
+        self.rowHeight = 300
     }
     
     required init?(coder aDecoder: NSCoder) {

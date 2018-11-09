@@ -40,7 +40,6 @@ internal final class DispatchQueueMainAsyncAfterCourseCellDataSource: ICourseCel
         },
         ]
     
-    var target: UIViewController! = nil
 }
 
 /// ThreadHomeController
@@ -62,7 +61,7 @@ internal final class DispatchQueueMainAsyncAfterController: UIViewController {
         
     }
     
-    /// DispatchQueue.main 异步提交时Sleep -> 结果：会导致ui不能及时更新
+    /// DispatchQueue.main 异步提交时Sleep -> 结果：会导致uipo不能及时更新
     public func afterSleep1() {
         debugPrint("[mainQueue.asyncAfter][main][1]")
         

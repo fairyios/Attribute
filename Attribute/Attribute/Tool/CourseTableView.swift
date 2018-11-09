@@ -17,8 +17,7 @@ protocol ICourseCellDataSource {
     var rows: [[String]] { get set }
     /// 每一行对应的闭包action
     var actions: Dictionary<String, ((UIViewController, IndexPath) -> Void)?> { get set }
-    
-    var target: UIViewController! { get }
+     
 }
 
 /// CourseTableController

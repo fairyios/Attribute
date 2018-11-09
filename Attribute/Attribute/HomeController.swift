@@ -34,10 +34,7 @@ internal final class HomeCourseCellDataSource: ICourseCellDataSource {
     internal  static let _swiftSwift1: String = "Swift1"
     //--Thread--
     internal  static let _threadThread1: String = "Thread1"
-    
-    
-    weak var target: UIViewController!
-    
+     
     var sections: [String] = [_ui, _dialog, _animation, _kit, _swift, _thread]
     
     var rows: [[String]] = [

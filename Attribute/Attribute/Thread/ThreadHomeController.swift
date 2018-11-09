@@ -47,7 +47,6 @@
         },
     ]
     
-    var target: UIViewController! = nil
  }
  
  /// ThreadHomeController
