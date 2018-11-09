@@ -10,6 +10,8 @@
  import UIKit
  import SnapKit
  
+ 
+ /// 
  internal final class ThreadHomeCourseCellDataSource: ICourseCellDataSource {
     
     internal static let sectionDispatchQueueMain = "DispatchQueue.main"
@@ -40,14 +42,15 @@
             
         },
         rowDispatchQueueMainAsyncAfter: {(target, indexPath) -> Void in
-            
+            let asyncAfter = DispatchQueueMainAsyncAfterController()
+            target.show(asyncAfter, sender: nil)
         },
     ]
     
     var target: UIViewController! = nil
  }
  
- /// UIHomeSwiftController
+ /// ThreadHomeController
  internal final class ThreadHomeController: UIViewController {
     
     private lazy var myTable: CourseTableView! = {
@@ -64,45 +67,6 @@
         self.view.addSubview(self.myTable)
         self.myTable.snp.remakeConstraints { maker in maker.edges.equalTo(self.view) }
         
-    }
-    
-    /// DispatchQueue.main 异步提交时Sleep -> 结果：会导致ui不能及时更新
-    private func dispatchQueueMainAsyncAfterSleep() {
-        debugPrint("[mainQueue.asyncAfter][main][1]")
-        
-        //主队列异步任务,结果为有序
-        let mainQueue = DispatchQueue.main
-        mainQueue.asyncAfter(deadline: DispatchTime.now() + 0.0) {
-            debugPrint("[mainQueue.asyncAfter][-1]")
-            Thread.sleep(forTimeInterval: 1.0)
-        }
-        mainQueue.asyncAfter(deadline: DispatchTime.now() + 0.0) {
-            debugPrint("[mainQueue.asyncAfter][0]")
-            Thread.sleep(forTimeInterval: 1.0)
-        }
-        mainQueue.asyncAfter(deadline: DispatchTime.now() + 0.0) {
-            debugPrint("[mainQueue.asyncAfter][1]")
-            Thread.sleep(forTimeInterval: 2.0)
-        }
-        debugPrint("[mainQueue.asyncAfter][main][2]")
-    }
-    
-    /// DispatchQueue.main 异步提交时Sleep -> 结果：不会导致ui不能及时更新
-    private func dispatchQueueMainAsyncAfterSleep2() {
-        debugPrint("[mainQueue.asyncAfter][main][1]")
-        
-        //主队列异步任务,结果为有序
-        let mainQueue = DispatchQueue.main
-        mainQueue.asyncAfter(deadline: DispatchTime.now() + 1.0) {
-            debugPrint("[mainQueue.asyncAfter][-1]")
-        }
-        mainQueue.asyncAfter(deadline: DispatchTime.now() + 2.0) {
-            debugPrint("[mainQueue.asyncAfter][0]")
-        }
-        mainQueue.asyncAfter(deadline: DispatchTime.now() + 3.0) {
-            debugPrint("[mainQueue.asyncAfter][1]")
-        }
-        debugPrint("[mainQueue.asyncAfter][main][2]")
     }
     
     /// 三个任务，分别开辟三个线程，都执行完毕后通知主线程（group）
