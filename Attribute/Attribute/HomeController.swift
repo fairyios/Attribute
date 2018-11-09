@@ -24,10 +24,13 @@ internal final class HomeCourseCellDataSource: ICourseCellDataSource {
     internal static let sectionBluetooth = "蓝牙"
     internal static let sectionPrint = "打印"
     internal static let sectionMqtt = "MQTT"
-    internal static let sectionHttp = "网络"
+    internal static let sectionHttp = "网络Http"
     internal static let sectionWebKit = "加载网页"
     internal static let sectionVideo = "视频"
     internal static let sectionCamera = "相机"
+    internal static let sectionSystemSource = "系统资源"//文件操作,相机,
+    internal static let sectionDB = "数据库+缓存"
+    internal static let sectionCpu = "性能+CPU..."
     
     //--UI--
     internal static let rowUIUnit: String = "小部件"
@@ -67,6 +70,14 @@ internal final class HomeCourseCellDataSource: ICourseCellDataSource {
     internal static let rowVideo = "视频"
     //--sectionCamera--
     internal static let rowCamera1 = "相机"
+    //--sectionSystemSource--
+    internal static let rowSystemSource1 = "文件操作"
+    internal static let rowSystemSource2 = "相机"
+    internal static let rowSystemSource3 = "---"
+    //--sectionDB--
+    internal static let rowDB1 = "数据库+缓存"
+    //--sectionCpu--
+    internal static let rowCpu1 = "性能+CPU..."
     
     var sections: [String] = [
         sectionUI, sectionDialog, sectionAnimation,
@@ -75,7 +86,8 @@ internal final class HomeCourseCellDataSource: ICourseCellDataSource {
         sectionIosDiffrent, sectionPit,
         sectionBluetooth, sectionPrint, sectionMqtt,
         sectionHttp, sectionWebKit, sectionVideo,
-        sectionCamera
+        sectionCamera, sectionSystemSource, sectionDB,
+        sectionCpu
     ]
     
     var rows: [[String]] = [
@@ -95,7 +107,10 @@ internal final class HomeCourseCellDataSource: ICourseCellDataSource {
         [rowHttp1],
         [rowWebKit1],
         [rowVideo],
-        [rowCamera1]
+        [rowCamera1],
+        [rowSystemSource1, rowSystemSource2, rowSystemSource3],
+        [rowDB1],
+        [rowCpu1]
     ]
     
     var actions: Dictionary<String, ((UIViewController,IndexPath) -> Void)?> = [
