@@ -149,10 +149,6 @@ extension UnitHomeController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         
-        let first = firstSection[indexPath.section]
-        let second = secondSection[indexPath.section][indexPath.row]
-        
-        
         
         //取消选中的行
         tableView.deselectRow(at: indexPath, animated: true)
