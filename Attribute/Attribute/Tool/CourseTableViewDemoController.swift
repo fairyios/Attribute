@@ -11,7 +11,7 @@ import UIKit
 import SnapKit
 
 
-// MARK: - extension DemoCourseCellDataSource
+
 extension DemoCourseCellDataSource {
     // MARK: - section
     internal static let section1 = "section1"
@@ -192,10 +192,10 @@ internal final class DemoCourseCellDataSource: ICourseCellDataSource {
     ]
 }
 
-// MARK: - UIViewController
+
 internal final class CourseTableViewDemoController: UIViewController {
     
-    // MARK: - myTable
+    
     private lazy var myTable: CourseTableView! = {
         let data = DemoCourseCellDataSource()
         let table = CourseTableView(target: self, data: data)
@@ -204,7 +204,7 @@ internal final class CourseTableViewDemoController: UIViewController {
     
     
     
-    // MARK: - override func viewDidLoad()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Demo"
