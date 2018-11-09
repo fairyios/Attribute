@@ -11,7 +11,7 @@ import UIKit
 
 
 /// 自定义导航h栏
-final class UINavigationControllerSelf : UINavigationController, UINavigationControllerDelegate {
+final class NavigationSelfController : UINavigationController, UINavigationControllerDelegate {
     
     
     
@@ -49,7 +49,7 @@ final class UINavigationControllerSelf : UINavigationController, UINavigationCon
     }
     
     convenience init() {
-        let root = NavigationSelfController()
+        let root = NavigationSelfViewController()
         
         //设置导航栏:返回按钮
         //let backTitle = rootViewController.navigationItem.title

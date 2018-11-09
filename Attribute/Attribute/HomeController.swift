@@ -18,6 +18,9 @@ internal final class HomeCourseCellDataSource: ICourseCellDataSource {
     internal  static let _kit = "Kit"
     internal static  let _swift = "Swift"
     internal static  let _thread = "线程"
+    internal static let _visualEffect = "虚拟特效"
+    internal static let _iosDiffrent = "IOS系统版本差异"
+    internal static let _pit = "踩坑"
     
     //--UI--
     internal  static let _uiUnit: String = "小部件"
@@ -34,8 +37,16 @@ internal final class HomeCourseCellDataSource: ICourseCellDataSource {
     internal  static let _swiftSwift1: String = "Swift1"
     //--Thread--
     internal  static let _threadThread1: String = "Thread1"
-     
-    var sections: [String] = [_ui, _dialog, _animation, _kit, _swift, _thread]
+    //--VisualEffect--
+    internal static let _visualEffectUIBlurEffect: String = "UIBlurEffect"
+    //--_iosDiffrent--
+    internal static let _iosDiffrentD1 = "IOS系统版本差异 1"
+    //--_pit--
+     internal static let _pitPit1 = "踩坑 1"
+    
+    var sections: [String] = [_ui, _dialog, _animation, _kit, _swift, _thread,
+                              _visualEffect, _iosDiffrent, _pit
+                              ]
     
     var rows: [[String]] = [
         [_uiUnit, _uiUITableView, _uiUITabBar, _uiNavigation],
@@ -43,7 +54,10 @@ internal final class HomeCourseCellDataSource: ICourseCellDataSource {
         [_animationAnimation1],
         [_kitSnapKit],
         [_swiftSwift1],
-        [_threadThread1]
+        [_threadThread1],
+        [_visualEffectUIBlurEffect],
+        [_iosDiffrentD1],
+        [_pitPit1]
     ]
     
     var actions: Dictionary<String, ((UIViewController,IndexPath) -> Void)?> = [
@@ -78,6 +92,9 @@ internal final class HomeCourseCellDataSource: ICourseCellDataSource {
         _threadThread1: {(target, indexPath) -> Void in
             let homeTable = ThreadHomeController()
             target.show(homeTable, sender: nil)
+        },
+        _visualEffectUIBlurEffect: {(target, indexPath) -> Void in
+            
         },
     ]
     

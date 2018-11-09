@@ -11,14 +11,14 @@
 		2C004C4821928FC800A28A40 /* SwiftHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C004C4721928FC800A28A40 /* SwiftHomeController.swift */; };
 		2C004C4B2192929B00A28A40 /* DefineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C004C4A2192929B00A28A40 /* DefineTableViewCell.swift */; };
 		2C004C4D2192C24700A28A40 /* NavigationSystemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C004C4C2192C24700A28A40 /* NavigationSystemController.swift */; };
-		2C004C4F2192C8EF00A28A40 /* UINavigationControllerSelf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C004C4E2192C8EF00A28A40 /* UINavigationControllerSelf.swift */; };
+		2C004C4F2192C8EF00A28A40 /* NavigationSelfController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C004C4E2192C8EF00A28A40 /* NavigationSelfController.swift */; };
 		2C004C522192E92700A28A40 /* ThreadHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C004C512192E92700A28A40 /* ThreadHomeController.swift */; };
 		2C175F9A2195246D00F66F96 /* SwiftKeywordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C175F992195246D00F66F96 /* SwiftKeywordController.swift */; };
 		2C175F9C219526CA00F66F96 /* SwiftInitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C175F9B219526CA00F66F96 /* SwiftInitController.swift */; };
 		2C175F9E2195279E00F66F96 /* DefineTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C175F9D2195279E00F66F96 /* DefineTableView.swift */; };
 		2C175FA021954A9E00F66F96 /* DispatchQueueMainAsyncAfterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C175F9F21954A9E00F66F96 /* DispatchQueueMainAsyncAfterController.swift */; };
 		2C175FA32195736900F66F96 /* DefineTableViewCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C175FA22195736900F66F96 /* DefineTableViewCellController.swift */; };
-		2C3CFC7821933B410040C707 /* NavigationSelfController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3CFC7721933B410040C707 /* NavigationSelfController.swift */; };
+		2C3CFC7821933B410040C707 /* NavigationSelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3CFC7721933B410040C707 /* NavigationSelfViewController.swift */; };
 		2CB83EED2191BC8300806091 /* TableHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB83EEC2191BC8300806091 /* TableHomeController.swift */; };
 		2CB83EEF2191BDF400806091 /* NavigationHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB83EEE2191BDF400806091 /* NavigationHomeController.swift */; };
 		2CBCA89121943A5000B8BC9F /* UnitHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBCA89021943A5000B8BC9F /* UnitHomeController.swift */; };
@@ -56,14 +56,14 @@
 		2C004C4721928FC800A28A40 /* SwiftHomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftHomeController.swift; sourceTree = "<group>"; };
 		2C004C4A2192929B00A28A40 /* DefineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefineTableViewCell.swift; sourceTree = "<group>"; };
 		2C004C4C2192C24700A28A40 /* NavigationSystemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationSystemController.swift; sourceTree = "<group>"; };
-		2C004C4E2192C8EF00A28A40 /* UINavigationControllerSelf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerSelf.swift; sourceTree = "<group>"; };
+		2C004C4E2192C8EF00A28A40 /* NavigationSelfController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationSelfController.swift; sourceTree = "<group>"; };
 		2C004C512192E92700A28A40 /* ThreadHomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadHomeController.swift; sourceTree = "<group>"; };
 		2C175F992195246D00F66F96 /* SwiftKeywordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftKeywordController.swift; sourceTree = "<group>"; };
 		2C175F9B219526CA00F66F96 /* SwiftInitController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftInitController.swift; sourceTree = "<group>"; };
 		2C175F9D2195279E00F66F96 /* DefineTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefineTableView.swift; sourceTree = "<group>"; };
 		2C175F9F21954A9E00F66F96 /* DispatchQueueMainAsyncAfterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueueMainAsyncAfterController.swift; sourceTree = "<group>"; };
 		2C175FA22195736900F66F96 /* DefineTableViewCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefineTableViewCellController.swift; sourceTree = "<group>"; };
-		2C3CFC7721933B410040C707 /* NavigationSelfController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationSelfController.swift; sourceTree = "<group>"; };
+		2C3CFC7721933B410040C707 /* NavigationSelfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationSelfViewController.swift; sourceTree = "<group>"; };
 		2CB83EEC2191BC8300806091 /* TableHomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableHomeController.swift; sourceTree = "<group>"; };
 		2CB83EEE2191BDF400806091 /* NavigationHomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHomeController.swift; sourceTree = "<group>"; };
 		2CBCA89021943A5000B8BC9F /* UnitHomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitHomeController.swift; sourceTree = "<group>"; };
@@ -156,6 +156,15 @@
 			path = "自定义TableView";
 			sourceTree = "<group>";
 		};
+		2C175FA42195A44700F66F96 /* UINavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				2C3CFC7721933B410040C707 /* NavigationSelfViewController.swift */,
+				2C004C4E2192C8EF00A28A40 /* NavigationSelfController.swift */,
+			);
+			path = UINavigationController;
+			sourceTree = "<group>";
+		};
 		2C76C66B21918622007FA4F4 /* UITableView */ = {
 			isa = PBXGroup;
 			children = (
@@ -169,10 +178,9 @@
 		2CB83EEB2191BC5D00806091 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				2C175FA42195A44700F66F96 /* UINavigationController */,
 				2CB83EEE2191BDF400806091 /* NavigationHomeController.swift */,
 				2C004C4C2192C24700A28A40 /* NavigationSystemController.swift */,
-				2C004C4E2192C8EF00A28A40 /* UINavigationControllerSelf.swift */,
-				2C3CFC7721933B410040C707 /* NavigationSelfController.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -512,8 +520,8 @@
 				2C175F9C219526CA00F66F96 /* SwiftInitController.swift in Sources */,
 				2CD715DC2190A5A300309DEF /* AppDelegate.swift in Sources */,
 				2CB83EED2191BC8300806091 /* TableHomeController.swift in Sources */,
-				2C004C4F2192C8EF00A28A40 /* UINavigationControllerSelf.swift in Sources */,
-				2C3CFC7821933B410040C707 /* NavigationSelfController.swift in Sources */,
+				2C004C4F2192C8EF00A28A40 /* NavigationSelfController.swift in Sources */,
+				2C3CFC7821933B410040C707 /* NavigationSelfViewController.swift in Sources */,
 				2C175F9E2195279E00F66F96 /* DefineTableView.swift in Sources */,
 				2C175FA32195736900F66F96 /* DefineTableViewCellController.swift in Sources */,
 				2C004C4B2192929B00A28A40 /* DefineTableViewCell.swift in Sources */,

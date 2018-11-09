@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-final class NavigationSelfController : UIViewController {
+final class NavigationSelfViewController : UIViewController {
     
     /// 退场按钮
     private lazy var dismissButton: UIButton = {
