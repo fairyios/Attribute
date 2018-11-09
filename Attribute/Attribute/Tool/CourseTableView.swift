@@ -18,6 +18,21 @@ protocol ICourseTableView {
     /// 每一行对应的闭包action
     var actions: Dictionary<String, ((IndexPath) -> Void)?> { get set }
 }
+
+protocol CellDataSource {
+    var title: String { get }
+}
+final class CourceView : UITableView {
+    private var temDataSource: [CellDataSource]
+    init(dataSource: [CellDataSource]) {
+        self.temDataSource = dataSource
+        super.init(frame: CGRect.zero, style: UITableView.Style.plain)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
 /// CourseTableController
 internal final class CourseTableView: UITableView, ICourseTableView {
     
@@ -30,7 +45,8 @@ internal final class CourseTableView: UITableView, ICourseTableView {
     /// 每一行对应的闭包action
     var actions: Dictionary<String, ((IndexPath) -> Void)?> = [:]
     
-    convenience init(data: [Dictionary<String, Array<String>>]) {
+    
+    convenience init(sections: [String], rows: [[String]], actions: Dictionary<String, ((IndexPath) -> Void)?>) {
         self.init()
         
         self.backgroundView = nil

@@ -16,6 +16,7 @@
     
     //--UI--
     internal static let _keywordTypealias: String = "typealias(别名)"
+    internal static let _keywordInit: String = "Init"
     internal static let _collection1: String = "Dictionary,Set,Array"
  }
  
@@ -25,7 +26,7 @@
     var firstSection: [String] = [_keyword, _collection]
     var secondSection: [[String]] = [
         [
-            _keywordTypealias
+            _keywordTypealias, _keywordInit
         ],
         [
             _collection1
@@ -52,7 +53,7 @@
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = HomeController._swiftSwift1
+        self.navigationItem.title = HomeController()._swiftSwift1
         self.view.backgroundColor = UIColor.orange
         
         
@@ -136,31 +137,20 @@
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         
-        let first = firstSection[indexPath.section]
+        let _ = firstSection[indexPath.section]
         let second = secondSection[indexPath.section][indexPath.row]
-        switch first {
-        case SwiftHomeController._keyword:
-            switch second {
-                case SwiftHomeController._keywordTypealias:
-                    //https://www.jianshu.com/p/5a3fd872257e
-                    break
-                default:
-                    break
-            }
-            break
-        case SwiftHomeController._collection:
-            switch second {
-                case SwiftHomeController._collection1:
-                    let collectionC = SwiftCollectionController()
-                    self.show(collectionC, sender: nil)
-                    break
-                default:
-                    break
-            }
-            break
-        default:
-            break
+        switch second {
+            case SwiftHomeController._keywordTypealias:
+                //https://www.jianshu.com/p/5a3fd872257e
+                break
+            case SwiftHomeController._collection1:
+                let collectionC = SwiftCollectionController()
+                self.show(collectionC, sender: nil)
+                break
+            default:
+                break
         }
+        
         
         
         //取消选中的行
