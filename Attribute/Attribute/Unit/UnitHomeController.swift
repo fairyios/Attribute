@@ -11,37 +11,77 @@ import UIKit
 import SnapKit
 internal final class UnitHomeCourseCellDataSource: ICourseCellDataSource {
     
-    internal static let firstUI = "UI"
-    internal static let firstSource = "Source"
+    internal static let sectionUI = "UI"
+    internal static let sectionSource = "Source"
     
-    //--UI--
-    internal static let secondUIUIView: String = "UIView"
-    internal static let secondUIUILabel: String = "UILabel"
-    internal static let secondUIUIButton: String = "UIButton"
-    internal static let secondUIUISlider: String = "UISlider"
-    internal static let secondUIUIImage: String = "UIImage"
-    internal static let secondUIUIImageView: String = "UIImageView"
-    internal static let secondUIUIBarButtonItem: String = "UIBarButtonItem"
+    //--section1--
+    internal static let rowUIView: String = "UIView"
+    internal static let rowUILabel: String = "UILabel"
+    internal static let rowUIButton: String = "UIButton"
+    internal static let rowUISlider: String = "UISlider"
+    internal static let rowUIImage: String = "UIImage"
+    internal static let rowUIImageView: String = "UIImageView"
+    internal static let rowUIBarButtonItem: String = "UIBarButtonItem"
     
-    //--Source--
-    internal static let secondSourceUIFont: String = "UIFont"
-    internal static let secondSourceUIColor: String = "UIColor"
-    internal static let secondSourceUIScreen: String = "UIScreen"
-    internal static let secondSourceUIDevice: String = "UIDevice"
-    //internal static let secondSource: String = ""
+    //--section2--
+    internal static let rowUIFont: String = "UIFont"
+    internal static let rowUIColor: String = "UIColor"
+    internal static let rowUIScreen: String = "UIScreen"
+    internal static let rowUIDevice: String = "UIDevice"
     
-    var sections: [String] = [firstUI, firstSource]
+    var sections: [String] = [sectionUI, sectionSource]
     
     var rows: [[String]] = [
+            //--section1--
         [
-            secondUIUIView, secondUIUILabel, secondUIUIButton, secondUIUISlider, secondUIUIImage,
-            secondUIUIImageView, secondUIUIBarButtonItem
+            rowUIView, rowUILabel, rowUIButton, rowUISlider, rowUIImage,
+            rowUIImageView, rowUIBarButtonItem
         ],
-        [secondSourceUIFont, secondSourceUIColor, secondSourceUIScreen, secondSourceUIDevice
+            //--section2--
+        [
+            rowUIFont, rowUIColor, rowUIScreen, rowUIDevice
         ]
     ]
     
-    var actions: Dictionary<String, ((UIViewController, IndexPath) -> Void)?> = [:]
+    var actions: Dictionary<String, ((UIViewController, IndexPath) -> Void)?> = [
+            //--section2--
+        rowUIView: {(target, indexPath) -> Void in
+            
+        },
+        rowUILabel: {(target, indexPath) -> Void in
+            let con = UnitLabelHomeController()
+            target.show(con, sender: nil)
+        },
+        rowUIButton: {(target, indexPath) -> Void in
+            
+        },
+        rowUISlider: {(target, indexPath) -> Void in
+            
+        },
+        rowUIImage: {(target, indexPath) -> Void in
+            
+        },
+        rowUIImageView: {(target, indexPath) -> Void in
+            
+        },
+        rowUIBarButtonItem: {(target, indexPath) -> Void in
+            
+        },
+            //--section2--
+        rowUIFont: {(target, indexPath) -> Void in
+            
+        },
+        rowUIColor: {(target, indexPath) -> Void in
+            
+        },
+        rowUIScreen: {(target, indexPath) -> Void in
+            
+        },
+        rowUIDevice: {(target, indexPath) -> Void in
+            
+        },
+            //--section3--
+    ]
 }
 
 /// 小部件：UILabel,UIButton,UIImage...

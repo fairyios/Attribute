@@ -20,6 +20,7 @@
 		2C175FA32195736900F66F96 /* DefineTableViewCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C175FA22195736900F66F96 /* DefineTableViewCellController.swift */; };
 		2C175FAC2195B3B800F66F96 /* GestureHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C175FAB2195B3B800F66F96 /* GestureHomeController.swift */; };
 		2C175FB02195BFE300F66F96 /* CourseTableViewDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C175FAF2195BFE300F66F96 /* CourseTableViewDemoController.swift */; };
+		2C175FB32195C2D100F66F96 /* UnitLabelHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C175FB22195C2D100F66F96 /* UnitLabelHomeController.swift */; };
 		2C3CFC7821933B410040C707 /* NavigationSelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3CFC7721933B410040C707 /* NavigationSelfViewController.swift */; };
 		2CB83EED2191BC8300806091 /* TableHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB83EEC2191BC8300806091 /* TableHomeController.swift */; };
 		2CB83EEF2191BDF400806091 /* NavigationHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB83EEE2191BDF400806091 /* NavigationHomeController.swift */; };
@@ -67,6 +68,7 @@
 		2C175FA22195736900F66F96 /* DefineTableViewCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefineTableViewCellController.swift; sourceTree = "<group>"; };
 		2C175FAB2195B3B800F66F96 /* GestureHomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureHomeController.swift; sourceTree = "<group>"; };
 		2C175FAF2195BFE300F66F96 /* CourseTableViewDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTableViewDemoController.swift; sourceTree = "<group>"; };
+		2C175FB22195C2D100F66F96 /* UnitLabelHomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitLabelHomeController.swift; sourceTree = "<group>"; };
 		2C3CFC7721933B410040C707 /* NavigationSelfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationSelfViewController.swift; sourceTree = "<group>"; };
 		2CB83EEC2191BC8300806091 /* TableHomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableHomeController.swift; sourceTree = "<group>"; };
 		2CB83EEE2191BDF400806091 /* NavigationHomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHomeController.swift; sourceTree = "<group>"; };
@@ -232,6 +234,14 @@
 			path = "排序";
 			sourceTree = "<group>";
 		};
+		2C175FB12195C2B000F66F96 /* UILabel */ = {
+			isa = PBXGroup;
+			children = (
+				2C175FB22195C2D100F66F96 /* UnitLabelHomeController.swift */,
+			);
+			path = UILabel;
+			sourceTree = "<group>";
+		};
 		2C76C66B21918622007FA4F4 /* UITableView */ = {
 			isa = PBXGroup;
 			children = (
@@ -255,6 +265,7 @@
 		2CBCA88F2194397400B8BC9F /* Unit */ = {
 			isa = PBXGroup;
 			children = (
+				2C175FB12195C2B000F66F96 /* UILabel */,
 				2CBCA89021943A5000B8BC9F /* UnitHomeController.swift */,
 			);
 			path = Unit;
@@ -579,6 +590,7 @@
 			files = (
 				2C004C4821928FC800A28A40 /* SwiftHomeController.swift in Sources */,
 				2C175F9A2195246D00F66F96 /* SwiftKeywordController.swift in Sources */,
+				2C175FB32195C2D100F66F96 /* UnitLabelHomeController.swift in Sources */,
 				2C004C522192E92700A28A40 /* ThreadHomeController.swift in Sources */,
 				2CB83EEF2191BDF400806091 /* NavigationHomeController.swift in Sources */,
 				2CBCA8932194732500B8BC9F /* SwiftCollectionController.swift in Sources */,
