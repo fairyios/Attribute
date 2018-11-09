@@ -24,7 +24,7 @@ internal final class HomeCourseCellDataSource: ICourseCellDataSource {
     internal static let sectionBluetooth = "蓝牙"
     internal static let sectionPrint = "打印"
     internal static let sectionMqtt = "MQTT"
-    internal static let sectionHttp = "网络Http"
+    internal static let sectionNetwork = "网络"
     internal static let sectionWebKit = "加载网页"
     internal static let sectionVideo = "视频"
     internal static let sectionCamera = "相机"
@@ -62,8 +62,9 @@ internal final class HomeCourseCellDataSource: ICourseCellDataSource {
     internal static let rowPrint1 = "打印"
     //--sectionMqtt--
     internal static let rowMqtt1 = "MQTT"
-    //--sectionHttp--
-    internal static let rowHttp1 = "网络"
+    //--sectionNetwork--
+    internal static let rowNetworkHttp = "http"
+    internal static let rowNetworkMqtt = "mqtt"
     //--sectionWebKit--
     internal static let rowWebKit1 = "加载网页"
     //--sectionVideo--
@@ -85,7 +86,7 @@ internal final class HomeCourseCellDataSource: ICourseCellDataSource {
         sectionThread, sectionVisualEffect,
         sectionIosDiffrent, sectionPit,
         sectionBluetooth, sectionPrint, sectionMqtt,
-        sectionHttp, sectionWebKit, sectionVideo,
+        sectionNetwork, sectionWebKit, sectionVideo,
         sectionCamera, sectionSystemSource, sectionDB,
         sectionCpu
     ]
@@ -104,7 +105,7 @@ internal final class HomeCourseCellDataSource: ICourseCellDataSource {
         [rowBluetooth1],
         [rowPrint1],
         [rowMqtt1],
-        [rowHttp1],
+        [rowNetworkHttp, rowNetworkMqtt],
         [rowWebKit1],
         [rowVideo],
         [rowCamera1],
@@ -168,8 +169,11 @@ internal final class HomeCourseCellDataSource: ICourseCellDataSource {
         rowMqtt1: {(target, indexPath) -> Void in
         
         },
-        rowHttp1: {(target, indexPath) -> Void in
+        rowNetworkHttp: {(target, indexPath) -> Void in
         
+        },
+        rowNetworkMqtt: {(target, indexPath) -> Void in
+            
         },
         rowWebKit1: {(target, indexPath) -> Void in
         
