@@ -21,13 +21,16 @@ internal final class DefineTableViewCellController: UIViewController {
     private lazy var myTable: UITableView! = {
         let table = UITableView()
         // 设置预估行高 --> 先让 tableView 能滚动，在滚动的时候再去计算显示的 cell 的真正的行高，并且调整 tabelView 的滚动范围
-        //table.estimatedRowHeight = CGFloat(500)
-        table.rowHeight = CGFloat(500)
+        //3：设置estimatedRowHeight或者是实现预估高度代理方法，该值非0即可，或者设置为cell的一半
+        //可以说estimatedRowHeight的正确设置，不仅影响了table的绘制效率，同时还能避免出现很多莫名其妙的诡异问题，希望后面的同学在使用中多加注意
+        table.estimatedRowHeight = DefineTableViewCell.defineRowHeight
+        table.rowHeight = DefineTableViewCell.defineRowHeight
+        //table.rowHeight = UITableView.automaticDimension //设置为自动行高
         table.backgroundView = nil
-        table.backgroundColor = UIColor.orange
+        table.backgroundColor = UIColor.magenta
+        table.separatorColor = UIColor.red
         table.delegate = self
         table.dataSource = self
-        table.rowHeight = 30.0
         table.tableHeaderView = UIView()
         table.tableFooterView = nil
         //【DefineTableViewCell.self 能正常运行】

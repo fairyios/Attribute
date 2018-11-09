@@ -30,8 +30,9 @@ final class DefineTableView<T: DefineCellDataSource> : UITableView {
         super.init(frame: CGRect.zero, style: UITableView.Style.plain)
         
         // 设置预估行高 --> 先让 tableView 能滚动，在滚动的时候再去计算显示的 cell 的真正的行高，并且调整 tabelView 的滚动范围
-        self.estimatedRowHeight = 300
-        self.rowHeight = 300
+        self.estimatedRowHeight = 300 //3：设置estimatedRowHeight或者是实现预估高度代理方法，该值非0即可，或者设置为cell的一半
+        //self.rowHeight = 300
+        self.rowHeight = UITableView.automaticDimension
     }
     
     required init?(coder aDecoder: NSCoder) {

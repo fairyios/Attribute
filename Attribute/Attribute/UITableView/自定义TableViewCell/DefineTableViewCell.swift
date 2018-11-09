@@ -9,17 +9,10 @@
 import UIKit
 import SnapKit
 
-internal protocol DefineTableViewCellAttribute {
-    var defineHeight: CGFloat { get }
-}
 
 internal class DefineTableViewCell : UITableViewCell  {
     
-    
-    //var reuseIdentifier: String = NSStringFromClass(UITableViewTypeCell.self)
-    //var cellClass: AnyClass = UITableViewTypeCell.self
-    
-    var defineHeight: CGFloat = CGFloat(500)
+    internal static let defineRowHeight: CGFloat = CGFloat(400)
     
     lazy var myContentView: UIView! = {
         let contentView = UIView()
@@ -37,26 +30,18 @@ internal class DefineTableViewCell : UITableViewCell  {
         //contentView.layer.shadowPath = UIBezierPath.init(roundedRect: self.bounds, cornerRadius: 5).cgPath
         //contentView.layer.contents = UIScreen.main.scale
         
-        contentView.snp.makeConstraints({ (make) in
-            make.height.equalTo(CGFloat(300))
-        })
+        
         return contentView
     }()
     
     /// 图片【UIImageView 设置圆角“imageView.clipsToBounds = true”后阴影效果会消失】
     lazy var myImageView: UIImageView! = {
-        let imageView = UIImageView(image: #imageLiteral(resourceName: "icon-76"))
+        let imageView = UIImageView(image: UIImage(named: "huaqiangu_logo_600x600iPhoneXPortraitiOS11_375x812pt"))
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.backgroundColor = UIColor.clear
         imageView.contentMode = .scaleToFill
         imageView.layer.cornerRadius = CGFloat(20)
         imageView.clipsToBounds = true//设置为true，阴影失效
-        
-        
-        self.myContentView.addSubview(imageView)
-        imageView.snp.makeConstraints({ (make) in
-            make.edges.equalTo(self.myContentView)
-        })
         
         return imageView
     }()
@@ -71,14 +56,6 @@ internal class DefineTableViewCell : UITableViewCell  {
         //effect.textColor = UIColor.red
         //effect.frame.size.width = CGFloat(50)
         //effect.frame.size.height = CGFloat(50)
-        
-        self.myContentView.addSubview(effect)
-        effect.snp.makeConstraints({ (make) in
-            make.width.equalTo(self.myContentView)
-            make.height.equalTo(CGFloat(50))
-            make.centerX.equalTo(self.myContentView)
-            make.top.equalTo(self.myContentView)
-        })
         
         return effect
     }()
@@ -95,30 +72,46 @@ internal class DefineTableViewCell : UITableViewCell  {
         label.text = "花v千骨vv花v千骨vv"
         label.textAlignment  = .center
         
-        self.myEffect.addSubview(label)
-        label.snp.makeConstraints({ (make) in
-            make.edges.equalTo(self.myEffect)
-        })
-        
         return label
     }()
     
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
         
         self.backgroundColor = UIColor.gray
+//        self不能设置snp，否则会看不cell
+//        self.snp.makeConstraints { (make) in
+//            make.height.equalTo(500)
+//        }
         
         self.addSubview(self.myContentView)
         self.myContentView.snp.makeConstraints({ (make) in
-            make.edges.equalTo(self)
-//            make.top.equalTo(self)
-//            make.bottom.equalTo(self)
-//            make.leading.equalTo(self)
-//            make.trailing.equalTo(self)
+            make.width.equalTo(300)
+            make.height.equalTo(self).offset(-40)
+            make.centerX.equalTo(self)
+            make.centerY.equalTo(self)
+        })
+ 
+        self.myContentView.addSubview(self.myImageView)
+        self.myImageView.snp.makeConstraints({ (make) in
+            make.edges.equalTo(self.myContentView)
         })
         
+        self.myContentView.addSubview(self.myEffect)
+        self.myEffect.snp.makeConstraints({ (make) in
+            make.width.equalTo(self.myContentView)
+            make.height.equalTo(CGFloat(50))
+            make.bottom.equalTo(self.myContentView)
+            make.centerX.equalTo(self.myContentView)
+            
+        })
+        
+        self.myEffect.contentView.addSubview(self.myLabelInEffect)
+        self.myLabelInEffect.snp.makeConstraints({ (make) in
+            make.edges.equalTo(self.myEffect.contentView)
+        })
         
     }
     
