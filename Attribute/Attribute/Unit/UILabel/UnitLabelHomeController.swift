@@ -15,7 +15,7 @@ import SnapKit
 extension UnitLabelHomeCourseCellDataSource {
     // MARK: - section
     internal static let section1 = "基本属性"
-    internal static let section2 = "section2"
+    internal static let section2 = "自定义Label" //https://cloud.tencent.com/developer/ask/150777
     internal static let section3 = "section3"
     internal static let section4 = "section4"
     internal static let section5 = "section5"
