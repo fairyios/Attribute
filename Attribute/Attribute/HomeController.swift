@@ -82,7 +82,7 @@ internal final class HomeCourseCellDataSource: ICourseCellDataSource {
             let homeTable = ThreadHomeController()
             target.show(homeTable, sender: nil)
         },
-        ]
+    ]
     
     
 }
