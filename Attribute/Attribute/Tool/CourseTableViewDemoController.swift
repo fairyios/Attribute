@@ -16,6 +16,14 @@ extension DemoCourseCellDataSource {
     // MARK: - section
     internal static let section1 = "section1"
     internal static let section2 = "section2"
+    internal static let section3 = "section3"
+    internal static let section4 = "section4"
+    internal static let section5 = "section5"
+    internal static let section6 = "section6"
+    internal static let section7 = "section7"
+    internal static let section8 = "section8"
+    internal static let section9 = "section9"
+    internal static let section10 = "section10"
     
     //--section1--
     internal static let row1_1: String = "row1_1"
@@ -61,7 +69,10 @@ extension DemoCourseCellDataSource {
 // MARK: - ICourseCellDataSource
 internal final class DemoCourseCellDataSource: ICourseCellDataSource {
     
-    var sections: [String] = [section1, section2]
+    var sections: [String] = [
+        section1, section2, section3, section4, section5,
+        section6, section7, section8, section9, section10
+    ]
     
     var rows: [[String]] = [
             //--section1--
@@ -79,7 +90,31 @@ internal final class DemoCourseCellDataSource: ICourseCellDataSource {
             //--section4--
         [
             row4_1, row4_2
-        ]
+        ],
+            //--section5--
+        [
+            row5_1, row5_2
+        ],
+            //--section6--
+        [
+            row6_1, row6_2
+        ],
+            //--section7--
+        [
+            row7_1, row7_2
+        ],
+            //--section8--
+        [
+            row8_1, row8_2
+        ],
+            //--section9--
+        [
+            row9_1, row9_2
+        ],
+            //--section10--
+        [
+            row10_1, row10_2
+        ],
     ]
     
     var actions: Dictionary<String, ((UIViewController, IndexPath) -> Void)?> = [
