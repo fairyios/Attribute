@@ -14,7 +14,7 @@ import SnapKit
 // MARK: - extension DemoCourseCellDataSource
 extension UnitLabelHomeCourseCellDataSource {
     // MARK: - section
-    internal static let section1 = "section1"
+    internal static let section1 = "基本属性"
     internal static let section2 = "section2"
     internal static let section3 = "section3"
     internal static let section4 = "section4"
@@ -26,8 +26,8 @@ extension UnitLabelHomeCourseCellDataSource {
     internal static let section10 = "section10"
     
     //--section1--
-    internal static let row1_1: String = "row1_1"
-    internal static let row1_2: String = "row1_2"
+    internal static let row1_1: String = "自动换行"
+    internal static let row1_2: String = "文字添加阴影"
     
     //--section2--
     internal static let row2_1: String = "row2_1"
@@ -120,11 +120,14 @@ internal final class UnitLabelHomeCourseCellDataSource: ICourseCellDataSource {
     var actions: Dictionary<String, ((UIViewController, IndexPath) -> Void)?> = [
         //--section1--
         row1_1: {(target, indexPath) -> Void in
-            let con = UIViewController()
-            target.show(con, sender: nil)
+            //自动换行
+            let tar = target as! IUnitLabelHomeController
+            tar.row1_1_action()
         },
         row1_2: {(target, indexPath) -> Void in
-            
+            //文字添加阴影
+            let tar = target as! IUnitLabelHomeController
+            tar.row1_2_action()
         },
         //--section2--
         row2_1: {(target, indexPath) -> Void in
@@ -192,8 +195,16 @@ internal final class UnitLabelHomeCourseCellDataSource: ICourseCellDataSource {
     ]
 }
 
+protocol IUnitLabelHomeController {
+    /// row1_1:自动换行
+    func row1_1_action()
+    
+    /// 文字添加阴影
+    func row1_2_action()
+}
+
 // MARK: - UIViewController
-internal final class UnitLabelHomeController: UIViewController {
+internal final class UnitLabelHomeController: UIViewController, IUnitLabelHomeController {
     
     // MARK: - myTable
     private lazy var myTable: CourseTableView! = {
@@ -207,7 +218,7 @@ internal final class UnitLabelHomeController: UIViewController {
     // MARK: - override func viewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Demo"
+        self.navigationItem.title = UnitHomeCourseCellDataSource.rowUILabel
         self.view.backgroundColor = UIColor.orange
         
         
@@ -216,6 +227,65 @@ internal final class UnitLabelHomeController: UIViewController {
     }
     
     
+    /// 文字添加阴影
+    public func row1_2_action() {
+        let con = UIViewController()
+        con.view.backgroundColor = UIColor.gray
+        
+        let label1 = UILabel()
+        label1.backgroundColor = UIColor.orange
+        label1.text = "文字添加阴影"
+        label1.numberOfLines = 0
+        label1.font = UIFont.systemFont(ofSize: 30) //调整文字大小
+        label1.shadowColor = UIColor.gray//设置阴影颜色
+        label1.shadowOffset = CGSize(width: 5, height: 5)//设置阴影大小
+        
+        con.view.addSubview(label1)
+        label1.snp.makeConstraints { (make) in
+            make.width.equalTo(con.view)
+            make.height.equalTo(50)
+            make.centerX.equalTo(con.view)
+            make.top.equalTo(con.view).offset(70)
+        }
+        
+        self.show(con, sender: nil)
+    }
+    
+    /// row1_1:自动换行
+    public func row1_1_action() {
+        let con = UIViewController()
+        con.view.backgroundColor = UIColor.gray
+        
+        let label1 = UILabel()
+        label1.backgroundColor = UIColor.orange
+        label1.text = "自动换行label1.numberOfLines = 0自动换行label1.numberOfLines = 0自动换行label1.numberOfLines = 0自动换行label1.numberOfLines = 0"
+        label1.numberOfLines = 0
+        
+        con.view.addSubview(label1)
+        label1.snp.makeConstraints { (make) in
+            make.width.equalTo(con.view)
+            make.height.equalTo(100)
+            make.centerX.equalTo(con.view)
+            make.top.equalTo(con.view).offset(70)
+        }
+        
+        
+        let label2 = UILabel()
+        label2.backgroundColor = UIColor.orange
+        label2.text = "高度太小不会自动换行高度太小不会自动换行高度太小不会自动换行"
+        label2.numberOfLines = 0
+        
+        con.view.addSubview(label2)
+        label2.snp.makeConstraints { (make) in
+            make.width.equalTo(con.view)
+            make.height.equalTo(40)
+            make.centerX.equalTo(con.view)
+            make.top.equalTo(label1.snp.bottom).offset(10)
+        }
+        
+        self.show(con, sender: nil)
+        
+    }
 }
 
 
