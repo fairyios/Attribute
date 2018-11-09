@@ -165,8 +165,8 @@
         mainQueue.asyncAfter(deadline: DispatchTime.now() + 1.0) {
             //self.title = "title" // 没有效果
             //self.navigationController?.navigationItem.title = "title"// 没有效果
-            self.navigationItem.prompt = NavigationHomeController.secondSystem
-            self.navigationItem.title = NavigationHomeController.secondSystem
+            self.navigationItem.prompt = NavigationHomeCourseCellDataSource.secondSystem
+            self.navigationItem.title = NavigationHomeCourseCellDataSource.secondSystem
             
         }
         mainQueue.asyncAfter(deadline: DispatchTime.now() + 2.0) {

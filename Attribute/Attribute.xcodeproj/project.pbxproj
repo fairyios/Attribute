@@ -156,13 +156,13 @@
 			path = "自定义TableView";
 			sourceTree = "<group>";
 		};
-		2C175FA42195A44700F66F96 /* UINavigationController */ = {
+		2C175FA42195A44700F66F96 /* 自定义UINavigationController */ = {
 			isa = PBXGroup;
 			children = (
 				2C3CFC7721933B410040C707 /* NavigationSelfViewController.swift */,
 				2C004C4E2192C8EF00A28A40 /* NavigationSelfController.swift */,
 			);
-			path = UINavigationController;
+			path = "自定义UINavigationController";
 			sourceTree = "<group>";
 		};
 		2C76C66B21918622007FA4F4 /* UITableView */ = {
@@ -178,7 +178,7 @@
 		2CB83EEB2191BC5D00806091 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				2C175FA42195A44700F66F96 /* UINavigationController */,
+				2C175FA42195A44700F66F96 /* 自定义UINavigationController */,
 				2CB83EEE2191BDF400806091 /* NavigationHomeController.swift */,
 				2C004C4C2192C24700A28A40 /* NavigationSystemController.swift */,
 			);
