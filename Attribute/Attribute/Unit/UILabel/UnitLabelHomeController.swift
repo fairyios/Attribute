@@ -237,8 +237,8 @@ internal final class UnitLabelHomeController: UIViewController, IUnitLabelHomeCo
         label1.text = "文字添加阴影"
         label1.numberOfLines = 0
         label1.font = UIFont.systemFont(ofSize: 30) //调整文字大小
-        label1.shadowColor = UIColor.gray//设置阴影颜色
-        label1.shadowOffset = CGSize(width: 5, height: 5)//设置阴影大小
+        label1.shadowColor = UIColor.red//设置阴影颜色
+        label1.shadowOffset = CGSize(width: 5.0, height: 5.0)//设置阴影大小
         
         con.view.addSubview(label1)
         label1.snp.makeConstraints { (make) in
@@ -246,6 +246,23 @@ internal final class UnitLabelHomeController: UIViewController, IUnitLabelHomeCo
             make.height.equalTo(50)
             make.centerX.equalTo(con.view)
             make.top.equalTo(con.view).offset(70)
+        }
+        
+        let label2 = UILabel()
+        label2.backgroundColor = UIColor.orange
+        label2.text = "文字添加阴影+不透明度"
+        label2.numberOfLines = 0
+        label2.font = UIFont.systemFont(ofSize: 30) //调整文字大小
+        label2.shadowColor = UIColor.red//设置阴影颜色
+        label2.shadowOffset = CGSize(width: 5.0, height: 5.0)//设置阴影大小
+        label2.layer.shadowOpacity = 0.1 //图层阴影的不透明度
+        
+        con.view.addSubview(label2)
+        label2.snp.makeConstraints { (make) in
+            make.width.equalTo(con.view)
+            make.height.equalTo(50)
+            make.centerX.equalTo(con.view)
+            make.top.equalTo(label1.snp.bottom).offset(10)
         }
         
         self.show(con, sender: nil)
