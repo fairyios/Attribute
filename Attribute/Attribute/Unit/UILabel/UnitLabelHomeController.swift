@@ -30,7 +30,7 @@ extension UnitLabelHomeCourseCellDataSource {
     internal static let row1_2: String = "文字添加阴影"
     
     //--section2--
-    internal static let row2_1: String = "row2_1"
+    internal static let row2_1: String = "文本周围的阴影轮廓(实心)"
     internal static let row2_2: String = "row2_2"
     
     //--section3--
@@ -131,7 +131,9 @@ internal final class UnitLabelHomeCourseCellDataSource: ICourseCellDataSource {
         },
         //--section2--
         row2_1: {(target, indexPath) -> Void in
-            
+            /// 文本周围的阴影轮廓(实心)
+            let tar = target as! IUnitLabelHomeController
+            tar.row2_1_action()
         },
         row2_2: {(target, indexPath) -> Void in
             
@@ -201,10 +203,15 @@ protocol IUnitLabelHomeController {
     
     /// 文字添加阴影
     func row1_2_action()
+    
+    /// 文本周围的阴影轮廓(实心)
+    func row2_1_action()
 }
 
 // MARK: - UIViewController
 internal final class UnitLabelHomeController: UIViewController, IUnitLabelHomeController {
+    
+    
     
     // MARK: - myTable
     private lazy var myTable: CourseTableView! = {
@@ -227,6 +234,34 @@ internal final class UnitLabelHomeController: UIViewController, IUnitLabelHomeCo
     }
     
     
+    // MARK: - 自定义Label
+    /// 文本周围的阴影轮廓(实心)
+    public func row2_1_action() {
+        let con = UIViewController()
+        con.view.backgroundColor = UIColor.gray
+        
+        let define = DefineUILabel()
+        define.backgroundColor = UIColor.orange
+        define.text = "文本周围的阴影轮廓(实心)"
+        define.numberOfLines = 0
+//        define.layer.shadowColor = UIColor.red.cgColor
+//        define.layer.shadowOffset = CGSize(width: 5.0, height: 5.0)
+//        define.layer.shadowOpacity = 1.0
+//        define.layer.shadowRadius = 0.0
+        
+        con.view.addSubview(define)
+        define.snp.makeConstraints { (make) in
+            make.width.equalTo(con.view)
+            make.height.equalTo(100)
+            make.centerX.equalTo(con.view)
+            make.top.equalTo(con.view).offset(70)
+        }
+        
+        self.show(con, sender: nil)
+    }
+    
+    
+    // MARK: - 基本属性
     /// 文字添加阴影
     public func row1_2_action() {
         let con = UIViewController()

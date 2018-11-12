@@ -55,6 +55,10 @@
         },
         rowUITapGestureRecognizer: {(target, indexPath) -> Void in
             //轻点手势识别UITapGestureRecognizer
+            let view = UseTapGestureRecognizerController()
+           
+            let tar = target as! GestureHomeController
+            tar.show(view, sender: nil)
         },
         rowUIPinchGestureRecognizer: {(target, indexPath) -> Void in
             //捏合手势识别对象UIPinchGestureRecognizer
@@ -75,6 +79,37 @@
             //长按手势识别UILongPressGestureRecognizer
         },
     ]
+    
+    
+ }
+ 
+ 
+ protocol IGestureHomeController {
+    /// row1_1:
+    func row1_1_action()
+    
+    /// row1_2:
+    func row1_2_action()
+    
+    /// row2_1:
+    func row2_1_action()
+ }
+ 
+ extension GestureHomeController: IGestureHomeController {
+    /// row1_1:
+    func row1_1_action() {
+        
+    }
+    
+    /// row1_2:
+    func row1_2_action() {
+        
+    }
+    
+    /// row2_1:
+    func row2_1_action() {
+        
+    }
     
     
  }

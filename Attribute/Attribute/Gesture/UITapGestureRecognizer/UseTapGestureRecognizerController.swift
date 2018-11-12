@@ -1,4 +1,6 @@
 
+
+
 //
 //  UIViewController.swift
 //  Attribute
@@ -12,9 +14,9 @@ import SnapKit
 
 
 
-extension DemoCourseCellDataSource {
+extension UseTapGestureRecognizerCourseCellDataSource {
     // MARK: - section
-    internal static let section1 = "section1"
+    internal static let section1 = "轻点手势"
     internal static let section2 = "section2"
     internal static let section3 = "section3"
     internal static let section4 = "section4"
@@ -26,7 +28,7 @@ extension DemoCourseCellDataSource {
     internal static let section10 = "section10"
     
     //--section1--
-    internal static let row1_1: String = "row1_1"
+    internal static let row1_1: String = "用于键盘回收"
     internal static let row1_2: String = "row1_2"
     
     //--section2--
@@ -67,7 +69,7 @@ extension DemoCourseCellDataSource {
     
 }
 // MARK: - ICourseCellDataSource
-internal final class DemoCourseCellDataSource: ICourseCellDataSource {
+internal final class UseTapGestureRecognizerCourseCellDataSource: ICourseCellDataSource {
     
     var sections: [String] = [
         section1, section2, section3, section4, section5,
@@ -75,74 +77,74 @@ internal final class DemoCourseCellDataSource: ICourseCellDataSource {
     ]
     
     var rows: [[String]] = [
-            //--section1--
+        //--section1--
         [
             row1_1, row1_2
         ],
-            //--section2--
+        //--section2--
         [
             row2_1, row2_2
         ],
-            //--section3--
+        //--section3--
         [
             row3_1, row3_2
         ],
-            //--section4--
+        //--section4--
         [
             row4_1, row4_2
         ],
-            //--section5--
+        //--section5--
         [
             row5_1, row5_2
         ],
-            //--section6--
+        //--section6--
         [
             row6_1, row6_2
         ],
-            //--section7--
+        //--section7--
         [
             row7_1, row7_2
         ],
-            //--section8--
+        //--section8--
         [
             row8_1, row8_2
         ],
-            //--section9--
+        //--section9--
         [
             row9_1, row9_2
         ],
-            //--section10--
+        //--section10--
         [
             row10_1, row10_2
         ],
-    ]
+        ]
     
     var actions: Dictionary<String, ((UIViewController, IndexPath) -> Void)?> = [
-            //--section1--
+        //--section1--
         row1_1: {(target, indexPath) -> Void in
-            let con = target as! ICourseTableViewDemoController
+            let con = target as! IUseTapGestureRecognizerController
             con.row1_1_action(con: target, indexPath: indexPath)
         },
         row1_2: {(target, indexPath) -> Void in
-            let con = target as! ICourseTableViewDemoController
+            let con = target as! IUseTapGestureRecognizerController
             con.row1_2_action(con: target, indexPath: indexPath)
         },
-            //--section2--
+        //--section2--
         row2_1: {(target, indexPath) -> Void in
-            let con = target as! ICourseTableViewDemoController
+            let con = target as! IUseTapGestureRecognizerController
             con.row2_1_action(con: target, indexPath: indexPath)
         },
         row2_2: {(target, indexPath) -> Void in
             
         },
-            //--section3--
+        //--section3--
         row3_1: {(target, indexPath) -> Void in
             
         },
         row3_2: {(target, indexPath) -> Void in
             
         },
-            //--section4--
+        //--section4--
         row4_1: {(target, indexPath) -> Void in
             
         },
@@ -191,10 +193,9 @@ internal final class DemoCourseCellDataSource: ICourseCellDataSource {
         row10_2: {(target, indexPath) -> Void in
             
         },
-    ]
+        ]
 }
-
-protocol ICourseTableViewDemoController {
+protocol IUseTapGestureRecognizerController {
     /// row1_1:
     func row1_1_action(con: UIViewController, indexPath: IndexPath)
     
@@ -205,10 +206,44 @@ protocol ICourseTableViewDemoController {
     func row2_1_action(con: UIViewController, indexPath: IndexPath)
 }
 
-extension CourseTableViewDemoController: ICourseTableViewDemoController {
-    /// row1_1:
+extension UseTapGestureRecognizerController: IUseTapGestureRecognizerController {
+    /// row1_1:常用轻点手势 常用于键盘回收，事件一次性响应等操作
     public func row1_1_action(con: UIViewController, indexPath: IndexPath) {
         
+        let new = UIViewController()
+        new.view.backgroundColor = UIColor.gray
+        
+        let text = UITextField()
+        text.backgroundColor = UIColor.white
+        text.placeholder = "请输入文字"
+        new.view.addSubview(text)
+        text.snp.makeConstraints { (make) in
+            make.width.equalTo(200)
+            make.height.equalTo(50)
+            make.centerX.equalTo(new.view.snp.centerX)
+            make.centerY.equalTo(new.view.snp.centerY)
+        }
+        
+        let tapGesture = UITapGestureRecognizer.init()
+        tapGesture.numberOfTouchesRequired = 1  //手指个数
+        tapGesture.numberOfTapsRequired = 1 //轻点次数
+        tapGesture.addTarget(self, action: #selector(self.tapAction(action:text:)))
+        new.view.addGestureRecognizer(tapGesture)
+        
+        
+        
+        self.show(new, sender: nil)
+    }
+    /*轻点手势的方法*/
+    @objc func tapAction(action:UITapGestureRecognizer, text: UITextField) {
+        
+        print("常用轻点手势常用于键盘回收begin")
+        
+        //关闭键盘
+        text.resignFirstResponder()
+        action.view?.endEditing(true)
+        
+        print("常用轻点手势常用于键盘回收end")
     }
     
     /// row1_2:
@@ -223,11 +258,12 @@ extension CourseTableViewDemoController: ICourseTableViewDemoController {
     
     
 }
-internal final class CourseTableViewDemoController: UIViewController {
+
+internal final class UseTapGestureRecognizerController: UIViewController {
     
     
     private lazy var myTable: CourseTableView! = {
-        let data = DemoCourseCellDataSource()
+        let data = UseTapGestureRecognizerCourseCellDataSource()
         let table = CourseTableView(target: self, data: data)
         return table
     }()
@@ -237,7 +273,7 @@ internal final class CourseTableViewDemoController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Demo"
+        self.navigationItem.title = GestureHomeCourseCellDataSource.rowUITapGestureRecognizer
         self.view.backgroundColor = UIColor.orange
         
         
@@ -249,3 +285,7 @@ internal final class CourseTableViewDemoController: UIViewController {
 }
 
 
+
+final class FUITapGestureRecognizer : UITapGestureRecognizer {
+
+}

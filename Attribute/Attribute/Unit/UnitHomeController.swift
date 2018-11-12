@@ -13,6 +13,7 @@ internal final class UnitHomeCourseCellDataSource: ICourseCellDataSource {
     
     internal static let sectionUI = "UI"
     internal static let sectionSource = "Source"
+    internal static let sectionApp = "App"
     
     
     //--section1--
@@ -29,6 +30,11 @@ internal final class UnitHomeCourseCellDataSource: ICourseCellDataSource {
     internal static let rowUIColor: String = "UIColor"
     internal static let rowUIScreen: String = "UIScreen"
     internal static let rowUIDevice: String = "UIDevice"
+    internal static let rowUITouch: String = "UITouch"
+    internal static let rowKeyboard: String = "键盘"
+    
+    //--section2--
+    internal static let rowAppDelegate: String = "AppDelegate"
     
     var sections: [String] = [sectionUI, sectionSource]
     
