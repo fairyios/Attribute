@@ -227,7 +227,7 @@ extension UseTapGestureRecognizerController: IUseTapGestureRecognizerController 
         let tapGesture = UITapGestureRecognizer.init()
         tapGesture.numberOfTouchesRequired = 1  //手指个数
         tapGesture.numberOfTapsRequired = 1 //轻点次数
-        tapGesture.addTarget(self, action: #selector(self.tapAction(action:text:)))
+        tapGesture.addTarget(self, action: #selector(self.row1_1_action_tapAction(action:text:)))
         new.view.addGestureRecognizer(tapGesture)
         
         
@@ -235,12 +235,12 @@ extension UseTapGestureRecognizerController: IUseTapGestureRecognizerController 
         self.show(new, sender: nil)
     }
     /*轻点手势的方法*/
-    @objc func tapAction(action:UITapGestureRecognizer, text: UITextField) {
+    @objc func row1_1_action_tapAction(action:UITapGestureRecognizer, text: UITextField) {
         
         print("常用轻点手势常用于键盘回收begin")
         
         //关闭键盘
-        text.resignFirstResponder()
+        //text.resignFirstResponder()
         action.view?.endEditing(true)
         
         print("常用轻点手势常用于键盘回收end")
