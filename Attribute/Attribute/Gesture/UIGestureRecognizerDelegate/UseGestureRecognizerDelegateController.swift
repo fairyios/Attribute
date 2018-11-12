@@ -25,46 +25,44 @@ internal final class UseGestureRecognizerDelegateController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = GestureHomeCourseCellDataSource.rowGestureDelegate
-        self.view.backgroundColor = UIColor.orange
+        self.view.backgroundColor = UIColor.gray
         
-        //添加拖拽手势
-        let panGesture = UIPanGestureRecognizer.init()
-        panGesture.minimumNumberOfTouches = 1  //手指个数 /*最大最小的手势触摸次数*/
-        panGesture.maximumNumberOfTouches = 2 //手指个数 /*最大最小的手势触摸次数*/
-        panGesture.delegate = self// 指定delegate后，实现的delegate才能执 行
-        panGesture.addTarget(self, action: #selector(self.panAction(pan:)))
-        self.view.addGestureRecognizer(panGesture)
         
-        //添加轻点手势
-        let tapGesture = UITapGestureRecognizer()
-        tapGesture.numberOfTapsRequired = 2
-        tapGesture.numberOfTouchesRequired = 1
-        tapGesture.delegate = self
-        tapGesture.addTarget(self, action: #selector(self.tapAction(tap:)))
-        self.view.addGestureRecognizer(tapGesture)
+        self.AddTapView()
+        self.addPanView()
+        
+        return
         
         //长按手势
         let longGesture = UILongPressGestureRecognizer()
+        longGesture.numberOfTapsRequired = 1 //点击数。
+        longGesture.numberOfTouchesRequired = 1 //手指数
+        longGesture.delegate = self
         longGesture.addTarget(self, action: #selector(self.longAction(long:)))
         self.view.addGestureRecognizer(longGesture)
         
         //清扫手势:用于查找一个或多个方向的滑动手势。 ??????????????????????
         let swipeGesture = UISwipeGestureRecognizer()
+        swipeGesture.numberOfTouchesRequired = 1 //手指数
+        swipeGesture.delegate = self
         swipeGesture.addTarget(self, action: #selector(self.swipeAction(swipe:)))
         self.view.addGestureRecognizer(swipeGesture)
         
-        //捏手势识别器
+        //捏合手势识别器
         let pinchGesture = UIPinchGestureRecognizer()
+        pinchGesture.delegate = self
         pinchGesture.addTarget(self, action: #selector(self.pinchAction(pinch:)))
         self.view.addGestureRecognizer(pinchGesture)
         
         //旋转手势识别器
         let rotationGesture = UIRotationGestureRecognizer()
+        rotationGesture.delegate = self
         rotationGesture.addTarget(self, action: #selector(self.rotationAction(rotation:)))
         self.view.addGestureRecognizer(rotationGesture)
         
         //屏幕边缘拖动手势识别器
         let screenEdgePanGesture = UIScreenEdgePanGestureRecognizer()
+        screenEdgePanGesture.delegate = self
         screenEdgePanGesture.addTarget(self, action: #selector(self.screenEdgePanAction(screenEdgePan:)))
         self.view.addGestureRecognizer(screenEdgePanGesture)
     }
@@ -86,13 +84,13 @@ internal final class UseGestureRecognizerDelegateController: UIViewController {
     }
     
     
-    /// 捏手势识别器
+    /// 捏合手势识别器
     ///
     /// - Parameter pinch: pinch description
     @objc func pinchAction(pinch: UIPinchGestureRecognizer) {
         //let scale = pinch.scale
         ///let velocity = pinch.velocity
-        debugPrint("[#selector]捏手势识别器UIPinchGestureRecognizer: pinch.scale = \(pinch.scale), pinch.velocity = \(pinch.velocity)")
+        debugPrint("[#selector]捏合手势识别器UIPinchGestureRecognizer: pinch.scale = \(pinch.scale), pinch.velocity = \(pinch.velocity)")
     }
     
     
@@ -100,7 +98,8 @@ internal final class UseGestureRecognizerDelegateController: UIViewController {
     ///
     /// - Parameter swipe: swipe description
     @objc func swipeAction(swipe: UISwipeGestureRecognizer) {
-        swipe.direction = [UISwipeGestureRecognizer.Direction.right , .left]
+        //swipe.direction = [UISwipeGestureRecognizer.Direction.right , .left]
+        swipe.direction = [.right , .left, .up, .down]
         debugPrint("[#selector]清扫手势UISwipeGestureRecognizer: swipe.direction = \(swipe.direction)")
     }
     
@@ -112,25 +111,108 @@ internal final class UseGestureRecognizerDelegateController: UIViewController {
         debugPrint("[#selector]长按手势UILongPressGestureRecognizer:")
     }
     
-    /// 拖拽手势
-    ///
-    /// - Parameter pan: pan description
-    @objc func panAction(pan: UIPanGestureRecognizer) {
+   
+    
+    
+}
+// MARK: - 轻点手势
+extension UseGestureRecognizerDelegateController {
+    /// 轻点手势-单指单击手势
+    private func AddTapView() {
         
-        let orgin: CGPoint = pan.translation(in: self.view)
-        debugPrint("[#selector]拖拽手势UIPanGestureRecognizer: let orgin: CGPoint = \(orgin)")
+        let label = UILabel(frame: CGRect.zero)
+        label.backgroundColor = UIColor.orange
+        label.text = "轻点手势-单指单击手势"
+        label.textAlignment = .center
+        label.adjustsFontSizeToFitWidth = true //调整字体大小以适合宽度
+        label.isUserInteractionEnabled = true //忽略用户事件并从事件队列中删除:手势事件才能执行
+        self.view.addSubview(label)
+        label.snp.makeConstraints { (make) in
+            make.width.equalTo(self.view.snp.width)
+            make.height.equalTo(40)
+            make.top.equalTo(70)
+        }
+        
+        //添加轻点手势
+        let tapGesture = UITapGestureRecognizer()
+        tapGesture.numberOfTapsRequired = 1
+        tapGesture.numberOfTouchesRequired = 1
+        tapGesture.delegate = self
+        tapGesture.addTarget(self, action: #selector(self.tapAction(tap:)))
+        label.addGestureRecognizer(tapGesture)
     }
-    
-    
     
     /// 轻点手势
     ///
     /// - Parameter tap: tap description
     @objc func tapAction(tap: UITapGestureRecognizer) {
+        let label = tap.view as! UILabel
+        label.textColor = UIColor.red
+        label.backgroundColor = UIColor.white
         debugPrint("[#selector]轻点手势UITapGestureRecognizer:")
     }
 }
 
+// MARK: - 拖拽手势
+extension UseGestureRecognizerDelegateController {
+    private func addPanView() {
+        let label = UILabel(frame: CGRect.zero)
+        label.backgroundColor = UIColor.orange
+        label.text = "拖拽手势-"
+        label.textAlignment = .center
+        //label.adjustsFontSizeToFitWidth = true //调整字体大小以适合宽度
+        label.isUserInteractionEnabled = true //忽略用户事件并从事件队列中删除:手势事件才能执行
+        self.view.addSubview(label)
+        label.snp.makeConstraints { (make) in
+            make.width.equalTo(self.view.snp.width)
+            make.height.equalTo(40)
+            make.top.equalTo(120)
+        }
+        
+        //添加拖拽手势
+        let panGesture = UIPanGestureRecognizer.init()
+        panGesture.minimumNumberOfTouches = 1  //手指个数 /*最大最小的手势触摸次数*/
+        panGesture.maximumNumberOfTouches = 1 //手指个数 /*最大最小的手势触摸次数*/
+        panGesture.delegate = self// 指定delegate后，实现的delegate才能执 行
+        panGesture.addTarget(self, action: #selector(self.panAction(pan:)))
+        label.addGestureRecognizer(panGesture)
+        
+        
+    }
+    
+    /// 拖拽手势
+    ///
+    /// - Parameter pan: pan description
+    @objc func panAction(pan: UIPanGestureRecognizer) {
+        
+        let orgin: CGPoint = pan.translation(in: pan.view)
+        debugPrint("[#selector]拖拽手势UIPanGestureRecognizer: let orgin: CGPoint = \(orgin)")
+        
+        let label = pan.view as! UILabel
+        let labelOrginX = label.frame.origin.x//label.frame.origin原点
+        let labelOrginY = label.frame.origin.y//make.top.equalTo(120)
+        debugPrint(labelOrginX)
+        debugPrint(labelOrginY)
+        
+        //移动: 原点+手势的方向点
+        label.transform = CGAffineTransform(translationX: orgin.x, y: orgin.y)
+        
+        debugPrint(label.frame.origin.x)//label.frame.origin原点
+        debugPrint(label.frame.origin.y)//make.top.equalTo(120)
+        
+        if pan.state == .began
+        {
+            label.textColor = UIColor.red
+            label.backgroundColor = UIColor.white
+        }
+        else if pan.state == .ended
+        {
+            label.textColor = UIColor.white
+            label.backgroundColor = UIColor.yellow
+            
+        }
+    }
+}
 
 
 // MARK: - UIGestureRecognizerDelegate
