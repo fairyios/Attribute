@@ -205,7 +205,7 @@ protocol IUseTapGestureRecognizerController {
     /// row2_1:
     func row2_1_action(con: UIViewController, indexPath: IndexPath)
 }
-
+ 
 extension UseTapGestureRecognizerController: IUseTapGestureRecognizerController {
     /// row1_1:常用轻点手势 常用于键盘回收，事件一次性响应等操作
     public func row1_1_action(con: UIViewController, indexPath: IndexPath) {
@@ -287,5 +287,5 @@ internal final class UseTapGestureRecognizerController: UIViewController {
 
 
 final class FUITapGestureRecognizer : UITapGestureRecognizer {
-
+    
 }

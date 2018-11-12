@@ -15,7 +15,7 @@
     internal static let sectionUIGestureRecognizer = "手势识别UIGestureRecognizer"
     
     //--sectionGesture--
-    internal static let rowGesture1: String = "手势 1"
+    internal static let rowGestureDelegate: String = "GestureRecognizerDelegate"
     
     //--sectionUIGestureRecognizer--
     
@@ -39,7 +39,7 @@
     
     var rows: [[String]] = [
         [
-            rowGesture1
+            rowGestureDelegate
         ],
         //--sectionUIGestureRecognizer--
         [
@@ -50,8 +50,11 @@
         ]
     ]
     var actions: Dictionary<String, ((UIViewController, IndexPath) -> Void)?> = [
-        rowGesture1: {(target, indexPath) -> Void in
+        rowGestureDelegate: {(target, indexPath) -> Void in
+            let proxy = UseGestureRecognizerDelegateController()
             
+            let tar = target as! GestureHomeController
+            tar.show(proxy, sender: nil)
         },
         rowUITapGestureRecognizer: {(target, indexPath) -> Void in
             //轻点手势识别UITapGestureRecognizer

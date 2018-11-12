@@ -23,6 +23,7 @@
 		2C175FB32195C2D100F66F96 /* UnitLabelHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C175FB22195C2D100F66F96 /* UnitLabelHomeController.swift */; };
 		2C175FB62197323F00F66F96 /* DefineUILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C175FB52197323F00F66F96 /* DefineUILabel.swift */; };
 		2C1A0609219912A600E2D11C /* UseTapGestureRecognizerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1A0608219912A600E2D11C /* UseTapGestureRecognizerController.swift */; };
+		2C1A060B2199AE0D00E2D11C /* UseGestureRecognizerDelegateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1A060A2199AE0D00E2D11C /* UseGestureRecognizerDelegateController.swift */; };
 		2C3CFC7821933B410040C707 /* NavigationSelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3CFC7721933B410040C707 /* NavigationSelfViewController.swift */; };
 		2CB83EED2191BC8300806091 /* TableHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB83EEC2191BC8300806091 /* TableHomeController.swift */; };
 		2CB83EEF2191BDF400806091 /* NavigationHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB83EEE2191BDF400806091 /* NavigationHomeController.swift */; };
@@ -73,6 +74,7 @@
 		2C175FB22195C2D100F66F96 /* UnitLabelHomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitLabelHomeController.swift; sourceTree = "<group>"; };
 		2C175FB52197323F00F66F96 /* DefineUILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefineUILabel.swift; sourceTree = "<group>"; };
 		2C1A0608219912A600E2D11C /* UseTapGestureRecognizerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseTapGestureRecognizerController.swift; sourceTree = "<group>"; };
+		2C1A060A2199AE0D00E2D11C /* UseGestureRecognizerDelegateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseGestureRecognizerDelegateController.swift; sourceTree = "<group>"; };
 		2C3CFC7721933B410040C707 /* NavigationSelfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationSelfViewController.swift; sourceTree = "<group>"; };
 		2CB83EEC2191BC8300806091 /* TableHomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableHomeController.swift; sourceTree = "<group>"; };
 		2CB83EEE2191BDF400806091 /* NavigationHomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHomeController.swift; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 		2C175FAA2195B3A500F66F96 /* Gesture */ = {
 			isa = PBXGroup;
 			children = (
+				2C1A060C2199AF8500E2D11C /* UIGestureRecognizerDelegate */,
 				2C1A06072199129000E2D11C /* UITapGestureRecognizer */,
 				2C175FAB2195B3B800F66F96 /* GestureHomeController.swift */,
 			);
@@ -262,6 +265,14 @@
 				2C1A0608219912A600E2D11C /* UseTapGestureRecognizerController.swift */,
 			);
 			path = UITapGestureRecognizer;
+			sourceTree = "<group>";
+		};
+		2C1A060C2199AF8500E2D11C /* UIGestureRecognizerDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				2C1A060A2199AE0D00E2D11C /* UseGestureRecognizerDelegateController.swift */,
+			);
+			path = UIGestureRecognizerDelegate;
 			sourceTree = "<group>";
 		};
 		2C76C66B21918622007FA4F4 /* UITableView */ = {
@@ -620,6 +631,7 @@
 				2C175FAC2195B3B800F66F96 /* GestureHomeController.swift in Sources */,
 				2CBCA89121943A5000B8BC9F /* UnitHomeController.swift in Sources */,
 				2C004C4D2192C24700A28A40 /* NavigationSystemController.swift in Sources */,
+				2C1A060B2199AE0D00E2D11C /* UseGestureRecognizerDelegateController.swift in Sources */,
 				2C175FA021954A9E00F66F96 /* DispatchQueueMainAsyncAfterController.swift in Sources */,
 				2C175FB02195BFE300F66F96 /* CourseTableViewDemoController.swift in Sources */,
 				2CBCA895219477B500B8BC9F /* CourseTableView.swift in Sources */,
