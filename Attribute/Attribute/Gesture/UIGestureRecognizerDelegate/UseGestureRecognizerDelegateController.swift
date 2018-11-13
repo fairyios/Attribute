@@ -96,13 +96,13 @@ internal final class UseGestureRecognizerDelegateController: UIViewController {
 
 
 
-// MARK: - 清扫手势
+// MARK: - 轻扫手势
 extension UseGestureRecognizerDelegateController {
     
     private func addSwipeView(top: Double) {
         let label = UILabel(frame: CGRect.zero)
         label.backgroundColor = UIColor.orange
-        label.text = "清扫手势-"
+        label.text = "轻扫手势-"
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true //调整字体大小以适合宽度
         label.isUserInteractionEnabled = true //设置label支持用户交互:忽略用户事件并从事件队列中删除:手势事件才能执行
@@ -110,16 +110,16 @@ extension UseGestureRecognizerDelegateController {
         self.view.addSubview(label)
         label.snp.makeConstraints { (make) in
             make.width.equalTo(self.view.snp.width)
-            make.height.equalTo(Double(40))
+            make.height.equalTo(Double(200))
             make.top.equalTo(top)
         }
         
-        //清扫手势:用于查找一个或多个方向的滑动手势。
+        //轻扫手势:用于查找一个或多个方向的滑动手势。
         let swipeGesture = UISwipeGestureRecognizer()
         swipeGesture.numberOfTouchesRequired = 1 //手指数
         //UISwipeGestureRecognizer.Direction.right
         //swipeGesture.direction = [.right , .left, .up, .down]
-        swipeGesture.direction = [.left]
+        swipeGesture.direction = [.left] //方向只能同时设置一个，替换方案：加多个轻扫手势
         swipeGesture.delegate = self
         swipeGesture.addTarget(self, action: #selector(self.swipeAction(swipe:)))
         label.addGestureRecognizer(swipeGesture)
@@ -128,27 +128,40 @@ extension UseGestureRecognizerDelegateController {
     
     static var offsetX: CGFloat = CGFloat(0)
     
-    /// 清扫手势
-    ///
+    /// 轻扫手势
+    /// 一次轻扫只能执行一遍代码
     /// - Parameter swipe: swipe description
     @objc func swipeAction(swipe: UISwipeGestureRecognizer) {
-        //debugPrint("[#selector]清扫手势UISwipeGestureRecognizer: swipe.state = \(swipe.state)")
-        debugPrint("[#selector]清扫手势UISwipeGestureRecognizer: swipe.direction = \(swipe.direction)")
         
-        //location 在手势的ended状态也是同一个值
-        let location = swipe.location(in: self.view)//手势在label中位置
-        debugPrint("手势在label中位置 = \(location)")
+        let locationSelfView = swipe.location(in: self.view)//手势在label中位置
+        debugPrint("手势在self.view中位置 = \(locationSelfView)")
+        
+        let locationLabel = swipe.location(in: swipe.view)
+        debugPrint("手势在label中位置 = \(locationLabel)")
         
         let label = swipe.view as! UILabel
+        label.text = "轻扫手势-执行中"
+        label.textColor = UIColor.white
+        label.backgroundColor = UIColor.black
         
         UseGestureRecognizerDelegateController.offsetX += CGFloat(10)
-        let temp = UseGestureRecognizerDelegateController.offsetX
+        let _ = UseGestureRecognizerDelegateController.offsetX
         
         switch swipe.direction {
         case UISwipeGestureRecognizer.Direction.right:
-            label.transform = CGAffineTransform(translationX: temp , y: 0.0)
+            debugPrint("[#selector]轻扫手势swipe.direction = right")
+            
+            self.view.bringSubviewToFront(label)
+            label.transform = CGAffineTransform(translationX:
+                            (label.frame.width - locationLabel.x) , y: locationLabel.y)
+            break
         case UISwipeGestureRecognizer.Direction.left:
-            label.transform = CGAffineTransform(translationX: -(label.frame.width - location.x) , y: 0.0)
+            debugPrint("[#selector]轻扫手势swipe.direction = left")
+            
+            self.view.bringSubviewToFront(label)
+            label.transform = CGAffineTransform(translationX:
+                            -(label.frame.width - locationLabel.x) , y: locationLabel.y)
+            break
         default:
             break
         }
@@ -158,31 +171,38 @@ extension UseGestureRecognizerDelegateController {
         //swipe.state 永远为 .ended
         switch swipe.state {
         case .began:
-            debugPrint("[#selector]清扫手势: swipe.state = .began")
+            debugPrint("[#selector]轻扫手势: swipe.state = .began")
             
             break
         case .changed:
-            debugPrint("[#selector]清扫手势: swipe.state = .changed")
+            debugPrint("[#selector]轻扫手势: swipe.state = .changed")
             break
         case .ended:
-            debugPrint("[#selector]清扫手势: swipe.state = .ended")
+            debugPrint("[#selector]轻扫手势: swipe.state = .ended")
             
-            UIViewPropertyAnimator(duration: 1.0, dampingRatio: 0.5) {
+            //duration:秒，动画执行总时间
+            //dampingRatio：动画开始之后的延迟（以秒为单位）。
+            let animator =  UIViewPropertyAnimator(duration: 3.0, dampingRatio: 3.0) {
                 UseGestureRecognizerDelegateController.offsetX = CGFloat(0)
-                //label.transform = .identity
-            }.startAnimation()
+                label.transform = .identity
+                
+                label.backgroundColor = UIColor.orange
+                label.text = "轻扫手势-"
+                label.textColor = UIColor.white
+            }
+            animator.startAnimation()
             break
         case .cancelled:
-            debugPrint("[#selector]清扫手势: swipe.state = .cancelled")
+            debugPrint("[#selector]轻扫手势: swipe.state = .cancelled")
             break
         case .failed:
-            debugPrint("[#selector]清扫手势: swipe.state = .failed")
+            debugPrint("[#selector]轻扫手势: swipe.state = .failed")
             break
         case .possible:
-            debugPrint("[#selector]清扫手势: swipe.state = .possible")
+            debugPrint("[#selector]轻扫手势: swipe.state = .possible")
             break
         default:
-            debugPrint("[#selector]清扫手势: swipe.state = default")
+            debugPrint("[#selector]轻扫手势: swipe.state = default")
             break
         }
     }
