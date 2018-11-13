@@ -13,57 +13,110 @@ import UIKit
 import SnapKit
 
 
-
-
-
-
-
 /// 使用UIGestureRecognizerDelegate
-internal final class UseGestureRecognizerDelegateController: UIViewController {
+internal final class UseGestureRecognizerDelegateController: UIViewController,
+    UIScrollViewDelegate {
     
+    private let scrollView: UIScrollView = {
+        let scrollV = UIScrollView(frame: CGRect.zero)
+        scrollV.backgroundColor = UIColor.gray
+        scrollV.showsHorizontalScrollIndicator = true
+        scrollV.showsVerticalScrollIndicator = true
+        scrollV.isScrollEnabled = true // 可以上下滚动
+        return scrollV
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = GestureHomeCourseCellDataSource.rowGestureDelegate
-        self.view.backgroundColor = UIColor.gray
+        //
+        self.view.backgroundColor = UIColor.white
+        //
+        self.view.addSubview(self.scrollView)
+        self.scrollView.delegate = self
+        self.scrollView.snp.makeConstraints { (make) in
+            make.edges.equalTo(self.view)
+        }
+
+        let tapLabel = self.addTapView(top: nil)
+        let tapLabel1 = self.addTapView(top: tapLabel)
+        let tapLabel2 = self.addTapView(top: tapLabel1)
+        let tapLabel3 = self.addTapView(top: tapLabel2)
+        let tapLabel4 = self.addTapView(top: tapLabel3)
+        let tapLabel5 = self.addTapView(top: tapLabel4)
+        let tapLabel6 = self.addTapView(top: tapLabel5)
+        let _ = self.addTapView(top: tapLabel6)
         
-        
-        self.addTapView(top: Double(70.0))
-        self.addPanView(top: Double(120.0))
-        self.addLongView(top: Double(170.0))
-        self.addSwipeView(top: Double(220.0))
-        
-        return
-        
-        
-        
-        
-        
-        //捏合手势识别器
-        let pinchGesture = UIPinchGestureRecognizer()
-        pinchGesture.delegate = self
-        pinchGesture.addTarget(self, action: #selector(self.pinchAction(pinch:)))
-        self.view.addGestureRecognizer(pinchGesture)
-        
-        //旋转手势识别器
-        let rotationGesture = UIRotationGestureRecognizer()
-        rotationGesture.delegate = self
-        rotationGesture.addTarget(self, action: #selector(self.rotationAction(rotation:)))
-        self.view.addGestureRecognizer(rotationGesture)
+//        self.addPanView(top: Double(120.0))
+//        self.addLongView(top: Double(170.0))
+//        self.addSwipeView(top: Double(220.0))
+//        self.addPinchView(top: Double(420.0))
+//        self.addRotationView(top: Double(620))
+//        self.addScreenEdgePanView(top: Double(720))
+    }
+    
+}
+
+
+// MARK: - 屏幕边缘拖动手势
+extension UseGestureRecognizerDelegateController {
+
+    private func addScreenEdgePanView(top: Double) {
+        let label = UILabel(frame: CGRect.zero)
+        label.backgroundColor = UIColor.orange
+        label.text = "屏幕边缘拖动手势-"
+        label.textAlignment = .center
+        label.adjustsFontSizeToFitWidth = true //调整字体大小以适合宽度
+        label.isUserInteractionEnabled = true //设置label支持用户交互:忽略用户事件并从事件队列中删除:手势事件才能执行
+        label.isMultipleTouchEnabled = true// 设置label支持多点触碰
+        self.view.addSubview(label)
+        label.snp.makeConstraints { (make) in
+            make.width.equalTo(self.view.snp.width)
+            make.height.equalTo(Double(50))
+            make.top.equalTo(top)
+        }
         
         //屏幕边缘拖动手势识别器
         let screenEdgePanGesture = UIScreenEdgePanGestureRecognizer()
         screenEdgePanGesture.delegate = self
         screenEdgePanGesture.addTarget(self, action: #selector(self.screenEdgePanAction(screenEdgePan:)))
-        self.view.addGestureRecognizer(screenEdgePanGesture)
+        label.addGestureRecognizer(screenEdgePanGesture)
+        
+        
     }
-    
-    
     /// 屏幕边缘拖动手势识别器
     ///
     /// - Parameter screenEdgePan: screenEdgePan description
     @objc func screenEdgePanAction(screenEdgePan: UIScreenEdgePanGestureRecognizer) {
         debugPrint("[#selector]屏幕边缘拖动手势识别器UIScreenEdgePanGestureRecognizer: ")
+    }
+}
+
+// MARK: - 旋转手势
+extension UseGestureRecognizerDelegateController {
+    
+    private func addRotationView(top: Double) {
+        let label = UILabel(frame: CGRect.zero)
+        label.backgroundColor = UIColor.orange
+        label.text = "旋转手势-"
+        label.textAlignment = .center
+        label.adjustsFontSizeToFitWidth = true //调整字体大小以适合宽度
+        label.isUserInteractionEnabled = true //设置label支持用户交互:忽略用户事件并从事件队列中删除:手势事件才能执行
+        label.isMultipleTouchEnabled = true// 设置label支持多点触碰
+        self.view.addSubview(label)
+        label.snp.makeConstraints { (make) in
+            make.width.equalTo(self.view.snp.width)
+            make.height.equalTo(Double(50))
+            make.top.equalTo(top)
+        }
+        
+        //旋转手势识别器
+        let rotationGesture = UIRotationGestureRecognizer()
+        rotationGesture.delegate = self
+        rotationGesture.addTarget(self, action: #selector(self.rotationAction(rotation:)))
+        label.addGestureRecognizer(rotationGesture)
+        
+        
     }
     
     /// 旋转手势识别器
@@ -74,6 +127,37 @@ internal final class UseGestureRecognizerDelegateController: UIViewController {
         debugPrint("[#selector]旋转手势识别器UIRotationGestureRecognizer: ")
     }
     
+}
+
+
+
+// MARK: - 捏合手势识别器
+extension UseGestureRecognizerDelegateController {
+    private func addPinchView(top: Double) {
+        let label = UILabel(frame: CGRect.zero)
+        label.backgroundColor = UIColor.orange
+        label.text = "捏合手势-"
+        label.textAlignment = .center
+        label.adjustsFontSizeToFitWidth = true //调整字体大小以适合宽度
+        label.isUserInteractionEnabled = true //设置label支持用户交互:忽略用户事件并从事件队列中删除:手势事件才能执行
+        label.isMultipleTouchEnabled = true// 设置label支持多点触碰
+        self.view.addSubview(label)
+        label.snp.makeConstraints { (make) in
+            make.width.equalTo(self.view.snp.width)
+            make.height.equalTo(Double(100))
+            make.top.equalTo(top)
+        }
+        
+        
+        //捏合手势识别器
+        let pinchGesture = UIPinchGestureRecognizer()
+        pinchGesture.delegate = self
+        pinchGesture.addTarget(self, action: #selector(self.pinchAction(pinch:)))
+        label.addGestureRecognizer(pinchGesture)
+        
+        
+        
+    }
     
     /// 捏合手势识别器
     ///
@@ -83,17 +167,7 @@ internal final class UseGestureRecognizerDelegateController: UIViewController {
         ///let velocity = pinch.velocity
         debugPrint("[#selector]捏合手势识别器UIPinchGestureRecognizer: pinch.scale = \(pinch.scale), pinch.velocity = \(pinch.velocity)")
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }
-
 
 
 // MARK: - 轻扫手势
@@ -110,7 +184,7 @@ extension UseGestureRecognizerDelegateController {
         self.view.addSubview(label)
         label.snp.makeConstraints { (make) in
             make.width.equalTo(self.view.snp.width)
-            make.height.equalTo(Double(200))
+            make.height.equalTo(Double(100))
             make.top.equalTo(top)
         }
         
@@ -212,7 +286,7 @@ extension UseGestureRecognizerDelegateController {
 // MARK: - 轻点手势
 extension UseGestureRecognizerDelegateController {
     /// 轻点手势-单指单击手势
-    private func addTapView(top: Double) {
+    private func addTapView(top: UILabel?) -> UILabel {
         
         let label = UILabel(frame: CGRect.zero)
         label.backgroundColor = UIColor.orange
@@ -220,11 +294,17 @@ extension UseGestureRecognizerDelegateController {
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true //调整字体大小以适合宽度
         label.isUserInteractionEnabled = true //设置label支持用户交互:忽略用户事件并从事件队列中删除:手势事件才能执行
-        self.view.addSubview(label)
+        self.scrollView.addSubview(label)
         label.snp.makeConstraints { (make) in
-            make.width.equalTo(self.view.snp.width)
-            make.height.equalTo(Double(40))
-            make.top.equalTo(top)
+            make.width.equalTo(self.scrollView.snp.width)
+            make.height.equalTo(Double(100))
+            if top == nil {
+                make.top.equalTo(Double(10.0))
+            }
+            else {
+                make.top.equalTo(top!.snp.bottom).offset(10)
+            }
+            
         }
         
         //添加轻点手势
@@ -234,6 +314,8 @@ extension UseGestureRecognizerDelegateController {
         tapGesture.delegate = self
         tapGesture.addTarget(self, action: #selector(self.tapAction(tap:)))
         label.addGestureRecognizer(tapGesture)
+        
+        return label
     }
     
     /// 轻点手势
