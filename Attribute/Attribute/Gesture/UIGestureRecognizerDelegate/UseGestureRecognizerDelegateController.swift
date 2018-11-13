@@ -118,35 +118,71 @@ extension UseGestureRecognizerDelegateController {
         let swipeGesture = UISwipeGestureRecognizer()
         swipeGesture.numberOfTouchesRequired = 1 //手指数
         //UISwipeGestureRecognizer.Direction.right
-        swipeGesture.direction = [.right , .left, .up, .down]
+        //swipeGesture.direction = [.right , .left, .up, .down]
+        swipeGesture.direction = [.left]
         swipeGesture.delegate = self
         swipeGesture.addTarget(self, action: #selector(self.swipeAction(swipe:)))
         label.addGestureRecognizer(swipeGesture)
         
     }
     
+    static var offsetX: CGFloat = CGFloat(0)
     
     /// 清扫手势
     ///
     /// - Parameter swipe: swipe description
     @objc func swipeAction(swipe: UISwipeGestureRecognizer) {
+        //debugPrint("[#selector]清扫手势UISwipeGestureRecognizer: swipe.state = \(swipe.state)")
         debugPrint("[#selector]清扫手势UISwipeGestureRecognizer: swipe.direction = \(swipe.direction)")
+        
+        //location 在手势的ended状态也是同一个值
+        let location = swipe.location(in: self.view)//手势在label中位置
+        debugPrint("手势在label中位置 = \(location)")
         
         let label = swipe.view as! UILabel
         
+        UseGestureRecognizerDelegateController.offsetX += CGFloat(10)
+        let temp = UseGestureRecognizerDelegateController.offsetX
         
+        switch swipe.direction {
+        case UISwipeGestureRecognizer.Direction.right:
+            label.transform = CGAffineTransform(translationX: temp , y: 0.0)
+        case UISwipeGestureRecognizer.Direction.left:
+            label.transform = CGAffineTransform(translationX: -(label.frame.width - location.x) , y: 0.0)
+        default:
+            break
+        }
+        
+        
+        
+        //swipe.state 永远为 .ended
         switch swipe.state {
         case .began:
-            break
-        case .changed:
+            debugPrint("[#selector]清扫手势: swipe.state = .began")
             
             break
+        case .changed:
+            debugPrint("[#selector]清扫手势: swipe.state = .changed")
+            break
         case .ended:
-            UIViewPropertyAnimator(duration: 0.5, dampingRatio: 0.5) {
-                
+            debugPrint("[#selector]清扫手势: swipe.state = .ended")
+            
+            UIViewPropertyAnimator(duration: 1.0, dampingRatio: 0.5) {
+                UseGestureRecognizerDelegateController.offsetX = CGFloat(0)
+                //label.transform = .identity
             }.startAnimation()
             break
+        case .cancelled:
+            debugPrint("[#selector]清扫手势: swipe.state = .cancelled")
+            break
+        case .failed:
+            debugPrint("[#selector]清扫手势: swipe.state = .failed")
+            break
+        case .possible:
+            debugPrint("[#selector]清扫手势: swipe.state = .possible")
+            break
         default:
+            debugPrint("[#selector]清扫手势: swipe.state = default")
             break
         }
     }
@@ -233,8 +269,8 @@ extension UseGestureRecognizerDelegateController {
         let labelOrgin = label.frame.origin//label.frame.origin原点
         debugPrint("label.frame.origin = \(labelOrgin)")
         
-        let location = pan.location(in: pan.view)//返回计算为接收器表示的手势的给定视图中的位置的点。
-        debugPrint("pan.location(in: pan.view) = \(location)")
+        let location = pan.location(in: pan.view)//手势在label中位置
+        debugPrint("手势在label中位置 = \(location)")
         
         //平移量
         let translation: CGPoint = pan.translation(in: pan.view)//平移手势在指定视图的坐标系中的平移。
