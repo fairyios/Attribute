@@ -31,17 +31,13 @@ internal final class UseGestureRecognizerDelegateController: UIViewController {
         self.addTapView(top: Double(70.0))
         self.addPanView(top: Double(120.0))
         self.addLongView(top: Double(170.0))
+        self.addSwipeView(top: Double(220.0))
         
         return
         
         
         
-        //清扫手势:用于查找一个或多个方向的滑动手势。 ??????????????????????
-        let swipeGesture = UISwipeGestureRecognizer()
-        swipeGesture.numberOfTouchesRequired = 1 //手指数
-        swipeGesture.delegate = self
-        swipeGesture.addTarget(self, action: #selector(self.swipeAction(swipe:)))
-        self.view.addGestureRecognizer(swipeGesture)
+        
         
         //捏合手势识别器
         let pinchGesture = UIPinchGestureRecognizer()
@@ -89,14 +85,6 @@ internal final class UseGestureRecognizerDelegateController: UIViewController {
     }
     
     
-    /// 清扫手势
-    ///
-    /// - Parameter swipe: swipe description
-    @objc func swipeAction(swipe: UISwipeGestureRecognizer) {
-        //swipe.direction = [UISwipeGestureRecognizer.Direction.right , .left]
-        swipe.direction = [.right , .left, .up, .down]
-        debugPrint("[#selector]清扫手势UISwipeGestureRecognizer: swipe.direction = \(swipe.direction)")
-    }
     
     
     
@@ -108,6 +96,57 @@ internal final class UseGestureRecognizerDelegateController: UIViewController {
 
 
 
+// MARK: - 清扫手势
+extension UseGestureRecognizerDelegateController {
+    
+    private func addSwipeView(top: Double) {
+        let label = UILabel(frame: CGRect.zero)
+        label.backgroundColor = UIColor.orange
+        label.text = "清扫手势-"
+        label.textAlignment = .center
+        label.adjustsFontSizeToFitWidth = true //调整字体大小以适合宽度
+        label.isUserInteractionEnabled = true //设置label支持用户交互:忽略用户事件并从事件队列中删除:手势事件才能执行
+        label.isMultipleTouchEnabled = true// 设置label支持多点触碰
+        self.view.addSubview(label)
+        label.snp.makeConstraints { (make) in
+            make.width.equalTo(self.view.snp.width)
+            make.height.equalTo(Double(40))
+            make.top.equalTo(top)
+        }
+        
+        //清扫手势:用于查找一个或多个方向的滑动手势。
+        let swipeGesture = UISwipeGestureRecognizer()
+        swipeGesture.numberOfTouchesRequired = 1 //手指数
+        //UISwipeGestureRecognizer.Direction.right
+        swipeGesture.direction = [.right , .left, .up, .down]
+        swipeGesture.delegate = self
+        swipeGesture.addTarget(self, action: #selector(self.swipeAction(swipe:)))
+        label.addGestureRecognizer(swipeGesture)
+        
+    }
+    
+    
+    /// 清扫手势
+    ///
+    /// - Parameter swipe: swipe description
+    @objc func swipeAction(swipe: UISwipeGestureRecognizer) {
+        debugPrint("[#selector]清扫手势UISwipeGestureRecognizer: swipe.direction = \(swipe.direction)")
+        
+        switch swipe.state {
+        case .began:
+            break
+        case .changed:
+            let point = swipe
+            break
+        case .ended:
+            break
+        default:
+            break
+        }
+    }
+    
+}
+
 // MARK: - 轻点手势
 extension UseGestureRecognizerDelegateController {
     /// 轻点手势-单指单击手势
@@ -118,7 +157,7 @@ extension UseGestureRecognizerDelegateController {
         label.text = "轻点手势-单指单击手势"
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true //调整字体大小以适合宽度
-        label.isUserInteractionEnabled = true //忽略用户事件并从事件队列中删除:手势事件才能执行
+        label.isUserInteractionEnabled = true //设置label支持用户交互:忽略用户事件并从事件队列中删除:手势事件才能执行
         self.view.addSubview(label)
         label.snp.makeConstraints { (make) in
             make.width.equalTo(self.view.snp.width)
@@ -160,7 +199,7 @@ extension UseGestureRecognizerDelegateController {
         label.text = "拖拽手势-"
         label.textAlignment = .center
         //label.adjustsFontSizeToFitWidth = true //调整字体大小以适合宽度
-        label.isUserInteractionEnabled = true //忽略用户事件并从事件队列中删除:手势事件才能执行
+        label.isUserInteractionEnabled = true //设置label支持用户交互:忽略用户事件并从事件队列中删除:手势事件才能执行
         self.view.addSubview(label)
         label.snp.makeConstraints { (make) in
             make.width.equalTo(self.view.snp.width)
@@ -191,10 +230,12 @@ extension UseGestureRecognizerDelegateController {
         let location = pan.location(in: pan.view)//返回计算为接收器表示的手势的给定视图中的位置的点。
         debugPrint("pan.location(in: pan.view) = \(location)")
         
-        let orgin: CGPoint = pan.translation(in: pan.view)//平移手势在指定视图的坐标系中的平移。
-        debugPrint("pan.translation(in: pan.view) = \(orgin)")
+        //平移量
+        let translation: CGPoint = pan.translation(in: pan.view)//平移手势在指定视图的坐标系中的平移。
+        debugPrint("pan.translation(in: pan.view) = \(translation)")
         
-        
+        let angle = sin(translation.x / (label.frame.width))
+        debugPrint("sin(translation.x / (label.frame.width)) = \(angle)")
         
         //debugPrint("label.frame.origin = \(label.frame.origin)")//label.frame.origin原点
         
@@ -212,7 +253,9 @@ extension UseGestureRecognizerDelegateController {
             debugPrint("if pan.state == .changed")
             
             //移动: 原点+手势的方向点
-            label.transform = CGAffineTransform(translationX: orgin.x, y: orgin.y)
+            let transform = CGAffineTransform(translationX: translation.x, y: translation.y)
+            //transform = transform.rotated(by: angle)
+            label.transform = transform
         }
         else if pan.state == .ended
         {
@@ -240,7 +283,7 @@ extension UseGestureRecognizerDelegateController {
         label.text = "长按手势-"
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true //调整字体大小以适合宽度
-        label.isUserInteractionEnabled = true //忽略用户事件并从事件队列中删除:手势事件才能执行
+        label.isUserInteractionEnabled = true //设置label支持用户交互:忽略用户事件并从事件队列中删除:手势事件才能执行
         self.view.addSubview(label)
         
         label.snp.makeConstraints { (make) in
