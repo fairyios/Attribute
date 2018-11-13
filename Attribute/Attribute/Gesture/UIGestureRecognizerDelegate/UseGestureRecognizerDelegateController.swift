@@ -132,13 +132,19 @@ extension UseGestureRecognizerDelegateController {
     @objc func swipeAction(swipe: UISwipeGestureRecognizer) {
         debugPrint("[#selector]清扫手势UISwipeGestureRecognizer: swipe.direction = \(swipe.direction)")
         
+        let label = swipe.view as! UILabel
+        
+        
         switch swipe.state {
         case .began:
             break
         case .changed:
-            let point = swipe
+            
             break
         case .ended:
+            UIViewPropertyAnimator(duration: 0.5, dampingRatio: 0.5) {
+                
+            }.startAnimation()
             break
         default:
             break
@@ -232,10 +238,11 @@ extension UseGestureRecognizerDelegateController {
         
         //平移量
         let translation: CGPoint = pan.translation(in: pan.view)//平移手势在指定视图的坐标系中的平移。
-        debugPrint("pan.translation(in: pan.view) = \(translation)")
+        debugPrint("平移量translation = \(translation)")
         
+        //角度
         let angle = sin(translation.x / (label.frame.width))
-        debugPrint("sin(translation.x / (label.frame.width)) = \(angle)")
+        debugPrint("角度angle = \(angle)")
         
         //debugPrint("label.frame.origin = \(label.frame.origin)")//label.frame.origin原点
         
@@ -252,13 +259,18 @@ extension UseGestureRecognizerDelegateController {
             //只代表状态更改：每次移动时都会执行
             debugPrint("if pan.state == .changed")
             
-            //移动: 原点+手势的方向点
-            let transform = CGAffineTransform(translationX: translation.x, y: translation.y)
-            //transform = transform.rotated(by: angle)
+            //CGAffineTransform 2D变换：http://xiaoboswift.com/course/91/task/813/show
+            //CGAffineTransform 2D变换：translate移动: 原点+手势的方向点
+            //CGAffineTransform 2D变换：scale缩放:
+            //CGAffineTransform 2D变换：rotate旋转：
+            var transform = CGAffineTransform(translationX: translation.x, y: translation.y)
+            transform = transform.rotated(by: angle) //rotated 旋转
+            debugPrint("旋转transform.rotated(by: angle) = \(transform)")
             label.transform = transform
         }
         else if pan.state == .ended
         {
+            debugPrint("拖拽手势-state == .ended")
             label.text = "拖拽手势-state == .ended"
             label.textColor = UIColor.white
             label.backgroundColor = UIColor.black
