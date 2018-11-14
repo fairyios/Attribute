@@ -15,7 +15,7 @@ import SnapKit
 
 /// 使用UseGestureController
 internal final class UseGestureController: UIViewController,
-    UIScrollViewDelegate {
+UIScrollViewDelegate {
     
     
     // UIScrollView 能不能滚动根它的contentSize的大小有关，太小则不能滚动
@@ -60,8 +60,10 @@ internal final class UseGestureController: UIViewController,
     }
     
     private var imgView: UIImageView!
+    //    private var imgViewScale: CGFloat = 1.0
+    //    private var imgViewLocation: CGPoint = CGPoint.zero
     
-// MARK: - 页面加载完成
+    // MARK: - 页面加载完成
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = GestureHomeCourseCellDataSource.rowGestureDelegate
@@ -79,7 +81,7 @@ internal final class UseGestureController: UIViewController,
         let viewWidth =  self.view.frame.size.width
         //UIScrollView 设置内容大小
         //UIScrollView 能不能滚动根它的contentSize的大小有关，太小则不能滚动
-        self.scrollView.contentSize = CGSize(width: viewWidth - 40, height: CGFloat(900))
+        self.scrollView.contentSize = CGSize(width: viewWidth - 40, height: CGFloat(1200))
         //
         let tapLabel = self.addTapView(top: nil)
         let panLabel = self.addPanView(top: tapLabel)
@@ -95,13 +97,31 @@ internal final class UseGestureController: UIViewController,
 
 // MARK: - 屏幕边缘拖动手势
 extension UseGestureController {
-
+    
     private func addScreenEdgePanView(top: UILabel?) -> UILabel {
-        let label = self.newUILabel(top: top, text: "屏幕边缘拖动手势-")
+        let label = UILabel(frame: CGRect.zero)
+        label.backgroundColor = UIColor.orange
+        label.text = "屏幕边缘拖动手势-"
+        label.textAlignment = .center
+        label.adjustsFontSizeToFitWidth = true //调整字体大小以适合宽度
+        label.isUserInteractionEnabled = true //设置label支持用户交互:忽略用户事件并从事件队列中删除:手势事件才能执行
+        label.isMultipleTouchEnabled = true// 设置label支持多点触碰
+        self.view.addSubview(label)
+        label.snp.makeConstraints { (make) in
+            make.width.equalTo(self.view.snp.width)
+            make.height.equalTo(Double(50))
+            if top == nil {
+                make.top.equalTo(Double(10.0))
+            }
+            else {
+                make.top.equalTo(top!.snp.bottom).offset(10)
+            }
+        }
         //屏幕边缘拖动手势识别器
         let screenEdgePanGesture = UIScreenEdgePanGestureRecognizer()
+        screenEdgePanGesture.edges = UIRectEdge.right //从右边缘开始滑动
         screenEdgePanGesture.delegate = self
-        screenEdgePanGesture.addTarget(self, action: #selector(self.screenEdgePanAction(screenEdgePan:)))
+        screenEdgePanGesture.addTarget(self, action: #selector(self.screenEdgePanAction(gesture:)))
         label.addGestureRecognizer(screenEdgePanGesture)
         
         return label
@@ -109,9 +129,24 @@ extension UseGestureController {
     /// 屏幕边缘拖动手势识别器
     ///
     /// - Parameter screenEdgePan: screenEdgePan description
-    @objc func screenEdgePanAction(screenEdgePan: UIScreenEdgePanGestureRecognizer) {
-        debugPrint("[#selector]屏幕边缘拖动手势识别器UIScreenEdgePanGestureRecognizer: ")
+    @objc func screenEdgePanAction(gesture: UIScreenEdgePanGestureRecognizer) {
+        debugPrint("[屏幕边缘拖动手势]: ")
         
+        //let location = gesture.location(in: gesture.view)
+        //平移量
+        let translation = gesture.translation(in: gesture.view)
+        
+        let label = gesture.view as! UILabel
+        
+        if gesture.state == .changed {
+            label.transform = CGAffineTransform(translationX: translation.x, y: translation.y)
+        }
+        
+        if gesture.state == .ended {
+            UIViewPropertyAnimator(duration: 3.0, dampingRatio: 3.0) {
+                label.transform = .identity
+            }.startAnimation()
+        }
     }
 }
 
@@ -133,7 +168,7 @@ extension UseGestureController {
         //旋转手势识别器
         let rotationGesture = UIRotationGestureRecognizer()
         rotationGesture.delegate = self
-        rotationGesture.addTarget(self, action: #selector(self.rotationAction(rotation:)))
+        rotationGesture.addTarget(self, action: #selector(self.rotationAction(gesture:)))
         label.addGestureRecognizer(rotationGesture)
         
         return label
@@ -142,9 +177,18 @@ extension UseGestureController {
     /// 旋转手势识别器
     ///
     /// - Parameter rotation: rotation description
-    @objc func rotationAction(rotation: UIRotationGestureRecognizer) {
+    @objc func rotationAction(gesture: UIRotationGestureRecognizer) {
         
         debugPrint("[#selector]旋转手势识别器UIRotationGestureRecognizer: ")
+        
+        let view = gesture.view as! UILabel
+        view.transform = view.transform.rotated(by: gesture.rotation)
+        
+        if gesture.state == .ended {
+            UIViewPropertyAnimator(duration: 3.0, dampingRatio: 3.0) {
+                view.transform = .identity
+                }.startAnimation()
+        }
     }
     
 }
@@ -210,6 +254,11 @@ extension UseGestureController {
         let location = pinch.location(in: self.scrollView)
         debugPrint("[捏合手势]location = \(location)")
         
+        if pinch.state == .began {
+            
+            
+        }
+        
         if pinch.state == .changed {
             //let imgLv = self.imgView.frame.width / self.imgView.frame.height
             let newTransform = CGAffineTransform(scaleX: pinch.scale, y: pinch.scale * 1)
@@ -219,7 +268,7 @@ extension UseGestureController {
         if pinch.state == .ended {
             UIViewPropertyAnimator(duration: 3.0, dampingRatio: 3.0) {
                 self.imgView.transform = .identity
-            }.startAnimation()
+                }.startAnimation()
         }
     }
 }
@@ -271,14 +320,14 @@ extension UseGestureController {
             
             self.scrollView.bringSubviewToFront(label)
             label.transform = CGAffineTransform(translationX:
-                            (label.frame.width - locationLabel.x) , y: locationLabel.y)
+                (label.frame.width - locationLabel.x) , y: locationLabel.y)
             break
         case UISwipeGestureRecognizer.Direction.left:
             debugPrint("[#selector]轻扫手势swipe.direction = left")
             
             self.scrollView.bringSubviewToFront(label)
             label.transform = CGAffineTransform(translationX:
-                            -(label.frame.width - locationLabel.x) , y: locationLabel.y)
+                -(label.frame.width - locationLabel.x) , y: locationLabel.y)
             break
         default:
             break
