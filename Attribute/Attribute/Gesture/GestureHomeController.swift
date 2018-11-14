@@ -12,7 +12,7 @@
  internal final class GestureHomeCourseCellDataSource: ICourseCellDataSource {
     
     internal static let sectionGesture = "手势"
-    internal static let sectionUIGestureRecognizer = "手势识别UIGestureRecognizer"
+    internal static let sectionUIGestureRecognizer = "各种手势"
     
     //--sectionGesture--
     internal static let rowGestureDelegate: String = "GestureRecognizerDelegate"
@@ -51,7 +51,7 @@
     ]
     var actions: Dictionary<String, ((UIViewController, IndexPath) -> Void)?> = [
         rowGestureDelegate: {(target, indexPath) -> Void in
-            let proxy = UseGestureRecognizerDelegateController()
+            let proxy = UseGestureController()
             
             let tar = target as! GestureHomeController
             tar.show(proxy, sender: nil)
