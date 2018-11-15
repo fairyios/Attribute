@@ -11,89 +11,107 @@ import UIKit
 import SnapKit
 internal final class UnitHomeCourseCellDataSource: IFtableView {
     
-    internal static let sectionUI = "UI"
-    internal static let sectionSource = "Source"
-    internal static let sectionApp = "App"
     
+    var sections: [String] = []
     
-    //--section1--
-    internal static let rowUIView: String = "UIView"
-    internal static let rowUILabel: String = "UILabel"
-    internal static let rowUIButton: String = "UIButton"
-    internal static let rowUISlider: String = "UISlider"
-    internal static let rowUIImage: String = "UIImage"
-    internal static let rowUIImageView: String = "UIImageView"
-    internal static let rowUIBarButtonItem: String = "UIBarButtonItem"
+    var rows: [[String]] = [ ]
     
-    //--section2--
-    internal static let rowUIFont: String = "UIFont"
-    internal static let rowUIColor: String = "UIColor"
-    internal static let rowUIScreen: String = "UIScreen"
-    internal static let rowUIDevice: String = "UIDevice"
-    internal static let rowUITouch: String = "UITouch"
-    internal static let rowKeyboard: String = "键盘"
+    var actions: Dictionary<String, ((UIViewController, IndexPath) -> Void)?> = [:]
     
-    //--section2--
-    internal static let rowAppDelegate: String = "AppDelegate"
-    
-    var sections: [String] = [sectionUI, sectionSource]
-    
-    var rows: [[String]] = [
-            //--section1--
+    var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = [
         [
-            rowUIView, rowUILabel, rowUIButton, rowUISlider, rowUIImage,
-            rowUIImageView, rowUIBarButtonItem
+            "UIView": {(target, indexPath, rowKey) -> Void in
+                
+            }
         ],
-            //--section2--
         [
-            rowUIFont, rowUIColor, rowUIScreen, rowUIDevice
-        ]
+            "UILabel": {(target, indexPath, rowKey) -> Void in
+                let con = UnitLabelHomeController()
+                target.show(con, sender: nil)
+            }
+        ],
+        [
+            "UIButton": {(target, indexPath, rowKey) -> Void in
+                
+            }
+        ],
+        [
+            "UISlider": {(target, indexPath, rowKey) -> Void in
+                
+            }
+        ],
+        [
+            "UIImage": {(target, indexPath, rowKey) -> Void in
+                
+            }
+        ],
+        [
+            "UIImageView": {(target, indexPath, rowKey) -> Void in
+                
+            }
+        ],
+        [
+            "UIBarButtonItem": {(target, indexPath, rowKey) -> Void in
+                
+            }
+        ],
+        [
+            "UIFont": {(target, indexPath, rowKey) -> Void in
+                
+            }
+        ],
+        [
+            "UIColor": {(target, indexPath, rowKey) -> Void in
+                
+            }
+        ],
+        [
+            "UIScreen": {(target, indexPath, rowKey) -> Void in
+                
+            }
+        ],
+        [
+            "UIDevice": {(target, indexPath, rowKey) -> Void in
+                
+            }
+        ],
+        [
+            "UITouch": {(target, indexPath, rowKey) -> Void in
+                
+            }
+        ],
+        [
+            "键盘": {(target, indexPath, rowKey) -> Void in
+                
+            }
+        ],
+        [
+            "AppDelegate": {(target, indexPath, rowKey) -> Void in
+                
+            }
+        ],
+        [
+            "": {(target, indexPath, rowKey) -> Void in
+                
+            }
+        ],
+        [
+            "": {(target, indexPath, rowKey) -> Void in
+                
+            }
+        ],
     ]
     
-    var actions: Dictionary<String, ((UIViewController, IndexPath) -> Void)?> = [
-            //--section2--
-        rowUIView: {(target, indexPath) -> Void in
-            
-        },
-        rowUILabel: {(target, indexPath) -> Void in
-            let con = UnitLabelHomeController()
-            target.show(con, sender: nil)
-        },
-        rowUIButton: {(target, indexPath) -> Void in
-            
-        },
-        rowUISlider: {(target, indexPath) -> Void in
-            
-        },
-        rowUIImage: {(target, indexPath) -> Void in
-            
-        },
-        rowUIImageView: {(target, indexPath) -> Void in
-            
-        },
-        rowUIBarButtonItem: {(target, indexPath) -> Void in
-            
-        },
-            //--section2--
-        rowUIFont: {(target, indexPath) -> Void in
-            
-        },
-        rowUIColor: {(target, indexPath) -> Void in
-            
-        },
-        rowUIScreen: {(target, indexPath) -> Void in
-            
-        },
-        rowUIDevice: {(target, indexPath) -> Void in
-            
-        },
-            //--section3--
-    ]
 }
 
 /// 小部件：UILabel,UIButton,UIImage...
-internal final class UnitHomeController: UIViewController {
+internal final class UnitHomeController: UIViewController, IController {
+    var navigationTitle: String? = nil
     
+    convenience init(title: String) {
+        self.init()
+        self.navigationTitle = title
+    }
     
     
     private lazy var myTable: FtableView! = {
@@ -107,7 +125,7 @@ internal final class UnitHomeController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = HomeCourseCellDataSource.rowUIUnit
+        self.navigationItem.title = navigationTitle
         self.view.backgroundColor = UIColor.orange
         
         

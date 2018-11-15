@@ -11,38 +11,45 @@
  import SnapKit
  internal final class NavigationHomeCourseCellDataSource: IFtableView {
     
-    internal static let firstSystem = "导航栏"
+    var sections: [String] = [ ]
+    var rows: [[String]] = [ ]
+    var actions: Dictionary<String, ((UIViewController, IndexPath) -> Void)?> = [:]
     
-    //--UI--
-    internal static let secondSystem: String = "系统导航栏"
-    internal static let secondDefine: String = "自定义导航栏"
-    
-    var sections: [String] = [firstSystem]
-    
-    var rows: [[String]] = [
+    var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = [
         [
-            secondSystem, secondDefine
-        ]
+            "系统导航栏": {(target, indexPath, rowKey) -> Void in
+                let system = NavigationSystemController(title: rowKey)
+                let systemNavigation = UINavigationController(rootViewController: system)
+                target.present(systemNavigation, animated: true, completion: nil)
+            }
+        ],
+        [
+            "自定义导航栏": {(target, indexPath, rowKey) -> Void in
+                //let define = NavigationSelfViewController()
+                //let defineNavigation = NavigationSelfController(rootViewController: define)
+                let defineNavigation = NavigationSelfController(title: rowKey)
+                target.present(defineNavigation, animated: true, completion: nil)
+            }
+        ],
+        [
+            "": {(target, indexPath, rowKey) -> Void in
+                
+            }
+        ],
     ]
-    var actions: Dictionary<String, ((UIViewController, IndexPath) -> Void)?> = [
-        secondSystem: {(target, indexPath) -> Void in
-            let system = NavigationSystemController()
-            let systemNavigation = UINavigationController(rootViewController: system)
-            target.present(systemNavigation, animated: true, completion: nil)
-        },
-        secondDefine: {(target, indexPath) -> Void in
-            //let define = NavigationSelfViewController()
-            //let defineNavigation = NavigationSelfController(rootViewController: define)
-            let defineNavigation = NavigationSelfController()
-            target.present(defineNavigation, animated: true, completion: nil)
-        },
-        ]
-    
-    
  }
  
  /// NavigationHomeController
- internal final class NavigationHomeController: UIViewController, UINavigationControllerDelegate {
+ internal final class NavigationHomeController: UIViewController, IController,
+    UINavigationControllerDelegate  {
+    
+    var navigationTitle: String? = nil
+    
+    convenience init(title: String) {
+        self.init()
+        self.navigationTitle = title
+    }
+    
     
     private lazy var myTable: FtableView! = {
         let data = NavigationHomeCourseCellDataSource()
@@ -53,7 +60,7 @@
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = PartHomeCourseCellDataSource.row3_1
+        self.navigationItem.title = self.navigationTitle
         self.view.backgroundColor = UIColor.orange
         
         debugPrint("self.navigationController ?? Any.self")

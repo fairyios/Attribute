@@ -11,9 +11,14 @@ import UIKit
 
 
 /// 自定义导航h栏
-final class NavigationSelfController : UINavigationController, UINavigationControllerDelegate {
+final class NavigationSelfController : UINavigationController, IController, UINavigationControllerDelegate {
     
+    var navigationTitle: String? = nil
     
+    convenience init(title: String) {
+        self.init()
+        self.navigationTitle = title
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

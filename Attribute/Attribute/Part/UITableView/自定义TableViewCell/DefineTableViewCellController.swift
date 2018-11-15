@@ -13,11 +13,21 @@ import SnapKit
 
 
 /// DefineTableViewCellController
-internal final class DefineTableViewCellController: UIViewController {
+internal final class DefineTableViewCellController: UIViewController, IController {
     //"Attribute.DefineTableViewCell" 获取类名
     private let reuseIdentifier2: String = NSStringFromClass(DefineTableViewCell.self)
     //"DefineTableViewCell" 获取类名
     private let reuseIdentifier: String = String(describing: DefineTableViewCell.self)
+    
+    var navigationTitle: String? = nil
+    
+    convenience init(title: String) {
+        self.init()
+        self.navigationTitle = title
+    }
+    
+    
+    
     private lazy var myTable: UITableView! = {
         let table = UITableView()
         // 设置预估行高 --> 先让 tableView 能滚动，在滚动的时候再去计算显示的 cell 的真正的行高，并且调整 tabelView 的滚动范围
@@ -43,7 +53,7 @@ internal final class DefineTableViewCellController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = TableHomeCourseCellDataSource.rowDefineCell
+        self.navigationItem.title = self.navigationTitle
         self.view.backgroundColor = UIColor.orange
         self.view.addSubview(self.myTable)
         self.myTable.snp.remakeConstraints { maker in maker.edges.equalTo(self.view) }

@@ -22,7 +22,14 @@
  }
  
  /// UIHomeSwiftController
- internal final class SwiftHomeController: UIViewController {
+ internal final class SwiftHomeController: UIViewController, IController {
+    var navigationTitle: String? = nil
+    
+    convenience init(title: String) {
+        self.init()
+        self.navigationTitle = title
+    }
+    
     
     var firstSection: [String] = [_keyword, _collection]
     var secondSection: [[String]] = [
@@ -54,7 +61,7 @@
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = HomeCourseCellDataSource.rowSwift1
+        self.navigationItem.title = self.navigationTitle
         self.view.backgroundColor = UIColor.orange
         
         

@@ -1,6 +1,6 @@
- 
+
 //
-//  ViewController.swift
+//  UIViewController.swift
 //  Attribute
 //
 //  Created by Fairy on 2018/11/6.
@@ -10,23 +10,18 @@
 import UIKit
 import SnapKit
 
- 
- internal final class TableHomeCourseCellDataSource: IFtableView {
+
+// MARK: - 数据源
+internal final class DemoFtableView: IFtableView {
     
     var sections: [String] = [ ]
-    var rows: [[String]] = [ ]
-    var actions: Dictionary<String, ((UIViewController,IndexPath) -> Void)?> = [:]
+    var rows: [[String]] = []
+    var actions: Dictionary<String, ((UIViewController, IndexPath) -> Void)?> = [:]
+    
     var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = [
         [
-            "自定义TableViewCell": {(target, indexPath, rowKey) -> Void in
-                let defineTableViewCell = DefineTableViewCellController(title: rowKey)
-                target.show(defineTableViewCell, sender: nil)
-            }
-        ],
-        [
-            "Header In Section": {(target, indexPath, rowKey) -> Void in
-                let sectionHeader = TableSectionHeaderController(title: rowKey)
-                target.show(sectionHeader, sender: nil)
+            "": {(target, indexPath, rowKey) -> Void in
+                
             }
         ],
         [
@@ -34,27 +29,41 @@ import SnapKit
                 
             }
         ],
-        ]
- }
+        [
+            "": {(target, indexPath, rowKey) -> Void in
+                
+            }
+        ],
+    ]
+}
 
-/// TableHomeController
-internal final class TableHomeController: UIViewController, IController {
+
+
+// MARK: - 定义Controller
+internal final class DemoController: UIViewController, IController {
     
+    
+    /// 页面标题
     var navigationTitle: String? = nil
     
+    /// 初始化
+    ///
+    /// - Parameter title: 标题
     convenience init(title: String) {
         self.init()
         self.navigationTitle = title
     }
     
     
+    /// F TableView
     private lazy var myTable: FtableView! = {
-        let data = TableHomeCourseCellDataSource()
+        let data = DemoFtableView()
         let table = FtableView(target: self, data: data)
         return table
     }()
     
     
+    /// 页面加载完成
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = self.navigationTitle
@@ -65,11 +74,7 @@ internal final class TableHomeController: UIViewController, IController {
         self.myTable.snp.remakeConstraints { maker in maker.edges.equalTo(self.view) }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
     
 }
 
 
- 

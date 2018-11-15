@@ -11,207 +11,72 @@ import UIKit
 import SnapKit
 
 
-// MARK: - extension DemoCourseCellDataSource
-extension UnitLabelHomeCourseCellDataSource {
-    // MARK: - section
-    internal static let section1 = "基本属性"
-    internal static let section2 = "自定义Label" //https://cloud.tencent.com/developer/ask/150777
-    internal static let section3 = "section3"
-    internal static let section4 = "section4"
-    internal static let section5 = "section5"
-    internal static let section6 = "section6"
-    internal static let section7 = "section7"
-    internal static let section8 = "section8"
-    internal static let section9 = "section9"
-    internal static let section10 = "section10"
-    
-    //--section1--
-    internal static let row1_1: String = "自动换行"
-    internal static let row1_2: String = "文字添加阴影"
-    
-    //--section2--
-    internal static let row2_1: String = "文本周围的阴影轮廓(实心)"
-    internal static let row2_2: String = "row2_2"
-    
-    //--section3--
-    internal static let row3_1: String = "row3_1"
-    internal static let row3_2: String = "row3_2"
-    
-    //--section4--
-    internal static let row4_1: String = "row4_1"
-    internal static let row4_2: String = "row4_2"
-    
-    //--section5--
-    internal static let row5_1: String = "row5_1"
-    internal static let row5_2: String = "row5_2"
-    
-    //--section6--
-    internal static let row6_1: String = "row6_1"
-    internal static let row6_2: String = "row6_2"
-    
-    //--section7--
-    internal static let row7_1: String = "row7_1"
-    internal static let row7_2: String = "row7_2"
-    
-    //--section8--
-    internal static let row8_1: String = "row8_1"
-    internal static let row8_2: String = "row8_2"
-    
-    //--section9--
-    internal static let row9_1: String = "row9_1"
-    internal static let row9_2: String = "row9_2"
-    
-    //--section10--
-    internal static let row10_1: String = "row10_1"
-    internal static let row10_2: String = "row10_2"
-    
-}
+
 // MARK: - ICourseCellDataSource
 internal final class UnitLabelHomeCourseCellDataSource: IFtableView {
     
-    var sections: [String] = [
-        section1, section2, section3, section4, section5,
-        section6, section7, section8, section9, section10
-    ]
     
-    var rows: [[String]] = [
-        //--section1--
-        [
-            row1_1, row1_2
-        ],
-        //--section2--
-        [
-            row2_1, row2_2
-        ],
-        //--section3--
-        [
-            row3_1, row3_2
-        ],
-        //--section4--
-        [
-            row4_1, row4_2
-        ],
-        //--section5--
-        [
-            row5_1, row5_2
-        ],
-        //--section6--
-        [
-            row6_1, row6_2
-        ],
-        //--section7--
-        [
-            row7_1, row7_2
-        ],
-        //--section8--
-        [
-            row8_1, row8_2
-        ],
-        //--section9--
-        [
-            row9_1, row9_2
-        ],
-        //--section10--
-        [
-            row10_1, row10_2
-        ],
-    ]
+    var sections: [String] = [ ]
     
-    var actions: Dictionary<String, ((UIViewController, IndexPath) -> Void)?> = [
-        //--section1--
-        row1_1: {(target, indexPath) -> Void in
-            //自动换行
-            let tar = target as! IUnitLabelHomeController
-            tar.row1_1_action()
-        },
-        row1_2: {(target, indexPath) -> Void in
-            //文字添加阴影
-            let tar = target as! IUnitLabelHomeController
-            tar.row1_2_action()
-        },
-        //--section2--
-        row2_1: {(target, indexPath) -> Void in
-            /// 文本周围的阴影轮廓(实心)
-            let tar = target as! IUnitLabelHomeController
-            tar.row2_1_action()
-        },
-        row2_2: {(target, indexPath) -> Void in
-            
-        },
-        //--section3--
-        row3_1: {(target, indexPath) -> Void in
-            
-        },
-        row3_2: {(target, indexPath) -> Void in
-            
-        },
-        //--section4--
-        row4_1: {(target, indexPath) -> Void in
-            
-        },
-        row4_2: {(target, indexPath) -> Void in
-            
-        },
-        //--section5--
-        row5_1: {(target, indexPath) -> Void in
-            
-        },
-        row5_2: {(target, indexPath) -> Void in
-            
-        },
-        //--section6--
-        row6_1: {(target, indexPath) -> Void in
-            
-        },
-        row6_2: {(target, indexPath) -> Void in
-            
-        },
-        //--section7--
-        row7_1: {(target, indexPath) -> Void in
-            
-        },
-        row7_2: {(target, indexPath) -> Void in
-            
-        },
-        //--section8--
-        row8_1: {(target, indexPath) -> Void in
-            
-        },
-        row8_2: {(target, indexPath) -> Void in
-            
-        },
-        //--section9--
-        row9_1: {(target, indexPath) -> Void in
-            
-        },
-        row9_2: {(target, indexPath) -> Void in
-            
-        },
-        //--section10--
-        row10_1: {(target, indexPath) -> Void in
-            
-        },
-        row10_2: {(target, indexPath) -> Void in
-            
-        },
+    var rows: [[String]] = [  ]
+    
+    var actions: Dictionary<String, ((UIViewController, IndexPath) -> Void)?> = [:]
+    
+    var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = [
+        
+        [
+            "自定义Label": {(target, indexPath, rowKey) -> Void in
+                //https://cloud.tencent.com/developer/ask/150777
+            }
+        ],
+        [
+            "自动换行": {(target, indexPath, rowKey) -> Void in
+                //自动换行
+                let tar = target as! UnitLabelHomeController
+                tar.row1_1_action()
+            }
+        ],
+        [
+            "文字添加阴影": {(target, indexPath, rowKey) -> Void in
+                //文字添加阴影
+                let tar = target as! UnitLabelHomeController
+                tar.row1_2_action()
+            }
+        ],
+        [
+            "文本周围的阴影轮廓(实心)": {(target, indexPath, rowKey) -> Void in
+                /// 文本周围的阴影轮廓(实心)
+                let tar = target as! UnitLabelHomeController
+                tar.row2_1_action()
+            }
+        ],
+        [
+            "": {(target, indexPath, rowKey) -> Void in
+                
+            }
+        ],
+        [
+            "": {(target, indexPath, rowKey) -> Void in
+                
+            }
+        ],
+        [
+            "": {(target, indexPath, rowKey) -> Void in
+                
+            }
+        ],
     ]
 }
 
-protocol IUnitLabelHomeController {
-    /// row1_1:自动换行
-    func row1_1_action()
+// MARK: - 初始化
+internal final class UnitLabelHomeController: UIViewController, IController {
     
-    /// 文字添加阴影
-    func row1_2_action()
+    var navigationTitle: String? = nil
     
-    /// 文本周围的阴影轮廓(实心)
-    func row2_1_action()
-}
-
-// MARK: - UIViewController
-internal final class UnitLabelHomeController: UIViewController, IUnitLabelHomeController {
-    
-    
+    convenience init(title: String) {
+        self.init()
+        self.navigationTitle = title
+    }
     
     // MARK: - myTable
     private lazy var myTable: FtableView! = {
@@ -225,7 +90,7 @@ internal final class UnitLabelHomeController: UIViewController, IUnitLabelHomeCo
     // MARK: - override func viewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = UnitHomeCourseCellDataSource.rowUILabel
+        self.navigationItem.title = self.navigationTitle
         self.view.backgroundColor = UIColor.orange
         
         

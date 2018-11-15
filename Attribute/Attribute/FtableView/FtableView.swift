@@ -9,6 +9,8 @@
 import UIKit
 import SnapKit
 
+
+// MARK: - 数据源
 protocol IFtableView {
     
     /// 节点
@@ -17,10 +19,12 @@ protocol IFtableView {
     var rows: [[String]] { get set }
     /// 每一行对应的闭包action
     var actions: Dictionary<String, ((UIViewController, IndexPath) -> Void)?> { get set }
-     
+    
+    // 每一行对应的闭包action
+    var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] { get set }
 }
 
-/// CourseTableController
+/// 定义 TableView
 internal final class FtableView: UITableView {
     
     var data: IFtableView! = nil
@@ -80,7 +84,17 @@ extension FtableView: UITableViewDataSource {
     /// - Parameter tableView: tableView description
     /// - Returns: return value description
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.data.sections.count
+        return 1
+    }
+    
+    /// Asks the data source for the title of the header of the specified section of the table view.
+    /// 向数据源询问表视图的指定部分的标题的标题。
+    /// - Parameters:
+    ///   - tableView: tableView description
+    ///   - section: section description
+    /// - Returns: return value description
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return nil
     }
     
     
@@ -91,20 +105,12 @@ extension FtableView: UITableViewDataSource {
     ///   - section: section description
     /// - Returns: return value description
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let values = self.data.rows[section]
-        return values.count
+        
+        return self.data.source.count
     }
     
     
-    /// Asks the data source for the title of the header of the specified section of the table view.
-    /// 向数据源询问表视图的指定部分的标题的标题。
-    /// - Parameters:
-    ///   - tableView: tableView description
-    ///   - section: section description
-    /// - Returns: return value description
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return self.data.sections[section]
-    }
+    
     
     
     /// Asks the data source for the title of the footer of the specified section of the table view.
@@ -115,7 +121,7 @@ extension FtableView: UITableViewDataSource {
     /// - Returns: return value description
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         
-        return ""// return 页脚标题"
+        return nil// return 页脚标题"
     }
     
     /// Asks the data source for a cell to insert in a particular location of the table view
@@ -125,11 +131,13 @@ extension FtableView: UITableViewDataSource {
     ///   - indexPath: indexPath description
     /// - Returns: return value description
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let model = (self.data.rows[indexPath.section])[indexPath.row]
+        
+        let row = self.data.source[indexPath.row]
+        let rowKey = row.keys.first
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
         cell.accessoryType = .disclosureIndicator // disclosureIndicator:显示">"图标
-        cell.textLabel?.text = model
+        cell.textLabel?.text = rowKey
         return cell
     }
     
@@ -141,14 +149,13 @@ extension FtableView: UITableViewDataSource {
 extension FtableView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        let row = self.data.source[indexPath.row]
+        let rowKey = row.keys.first
+        let rowValue = row.values.first
         
-        //let section = self.sections[indexPath.section]
-        let row = self.data.rows[indexPath.section][indexPath.row]
-        let action = self.data.actions[row]
-        
-        if action != nil && (action!) != nil {
-            let a = action!!
-            a(self.target, indexPath)
+        if rowValue != nil && (rowValue!) != nil {
+            let a = rowValue!!
+            a(self.target, indexPath, rowKey!)
         }
         
         //取消选中的行

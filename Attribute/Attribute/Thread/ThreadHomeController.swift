@@ -13,6 +13,8 @@
  
  /// 
  internal final class ThreadHomeCourseCellDataSource: IFtableView {
+    var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = []
+    
     
     internal static let sectionDispatchQueueMain = "DispatchQueue.main"
     internal static let sectionDispatchQueue = "DispatchQueue()"
@@ -50,8 +52,13 @@
  }
  
  /// ThreadHomeController
- internal final class ThreadHomeController: UIViewController {
+ internal final class ThreadHomeController: UIViewController, IController {
+    var navigationTitle: String? = nil
     
+    convenience init(title: String) {
+        self.init()
+        self.navigationTitle = title
+    }
     private lazy var myTable: FtableView! = {
         let data = ThreadHomeCourseCellDataSource()
         let table = FtableView(target: self, data: data)
@@ -61,7 +68,7 @@
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = HomeCourseCellDataSource.rowThread1
+        self.navigationItem.title = self.navigationTitle
         self.view.backgroundColor = UIColor.orange
         self.view.addSubview(self.myTable)
         self.myTable.snp.remakeConstraints { maker in maker.edges.equalTo(self.view) }

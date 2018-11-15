@@ -14,7 +14,7 @@ import SnapKit
 
 
 /// 使用UseGestureController
-internal final class UseGestureController: UIViewController,
+internal final class UseGestureController: UIViewController, IController,
 UIScrollViewDelegate {
     
     
@@ -63,10 +63,23 @@ UIScrollViewDelegate {
     //    private var imgViewScale: CGFloat = 1.0
     //    private var imgViewLocation: CGPoint = CGPoint.zero
     
+    
+    
+    /// 页面标题
+    var navigationTitle: String? = nil
+    
+    /// 初始化
+    ///
+    /// - Parameter title: 标题
+    convenience init(title: String) {
+        self.init()
+        self.navigationTitle = title
+    }
+    
     // MARK: - 页面加载完成
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = GestureHomeCourseCellDataSource.rowGestureDelegate
+        self.navigationItem.title = self.navigationTitle
         //
         self.view.backgroundColor = UIColor.white
         //

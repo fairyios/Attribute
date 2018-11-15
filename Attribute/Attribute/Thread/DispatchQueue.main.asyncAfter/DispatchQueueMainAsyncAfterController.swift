@@ -12,6 +12,8 @@ import UIKit
 import SnapKit
 
 internal final class DispatchQueueMainAsyncAfterCourseCellDataSource: IFtableView {
+    var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = []
+    
     
     internal static let sectionAsyncAfter = "DispatchQueue.main.asyncAfter"
     
