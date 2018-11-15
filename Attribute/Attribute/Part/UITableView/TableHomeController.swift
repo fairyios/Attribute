@@ -14,22 +14,29 @@ import SnapKit
  internal final class TableHomeCourseCellDataSource: ICourseCellDataSource {
     
     internal static let sectionCell = "UITableViewCell"
+    internal static let sectionHeaderInSection: String = "Header In Section"
     
     //--sectionCell--
     internal static let rowDefineCell: String = "自定义TableViewCell"
+    internal static let rowHeaderInSection: String = "Header In Section"
     
     
-    var sections: [String] = [sectionCell]
+    var sections: [String] = [sectionCell, sectionHeaderInSection]
     
     var rows: [[String]] = [
-        [rowDefineCell]
+        [rowDefineCell],
+        [rowHeaderInSection]
     ]
     
     var actions: Dictionary<String, ((UIViewController,IndexPath) -> Void)?> = [
         rowDefineCell: {(target, indexPath) -> Void in
             let defineTableViewCell = DefineTableViewCellController()
             target.show(defineTableViewCell, sender: nil)
-        }
+        },
+        rowHeaderInSection:{(target, indexPath) -> Void in
+            let sectionHeader = TableSectionHeaderController()
+            target.show(sectionHeader, sender: nil)
+        },
     ]
     
     
