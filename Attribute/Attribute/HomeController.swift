@@ -10,12 +10,7 @@ import UIKit
 import SnapKit
 
 internal final class HomeFtableView: IFtableView {
-    
-    var sections: [String] = [ ]
-    var actions: Dictionary<String, ((UIViewController,IndexPath) -> Void)?> = [: ]
-    var rows: [[String]] = [ ]
-    
-    
+      
     var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = [
         [
             "小部件": {(target, indexPath, rowKey) -> Void in

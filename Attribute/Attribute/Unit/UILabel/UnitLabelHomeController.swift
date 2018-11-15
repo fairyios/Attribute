@@ -14,14 +14,7 @@ import SnapKit
 
 // MARK: - ICourseCellDataSource
 internal final class UnitLabelHomeCourseCellDataSource: IFtableView {
-    
-    
-    var sections: [String] = [ ]
-    
-    var rows: [[String]] = [  ]
-    
-    var actions: Dictionary<String, ((UIViewController, IndexPath) -> Void)?> = [:]
-    
+     
     var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = [
         
         [

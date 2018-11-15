@@ -12,10 +12,7 @@ import SnapKit
 
  
  internal final class TableHomeCourseCellDataSource: IFtableView {
-    
-    var sections: [String] = [ ]
-    var rows: [[String]] = [ ]
-    var actions: Dictionary<String, ((UIViewController,IndexPath) -> Void)?> = [:]
+     
     var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = [
         [
             "自定义TableViewCell": {(target, indexPath, rowKey) -> Void in

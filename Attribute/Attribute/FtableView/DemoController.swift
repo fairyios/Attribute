@@ -13,11 +13,7 @@ import SnapKit
 
 // MARK: - 数据源
 internal final class DemoFtableView: IFtableView {
-    
-    var sections: [String] = [ ]
-    var rows: [[String]] = []
-    var actions: Dictionary<String, ((UIViewController, IndexPath) -> Void)?> = [:]
-    
+     
     var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = [
         [
             "": {(target, indexPath, rowKey) -> Void in

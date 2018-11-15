@@ -10,11 +10,7 @@
  import UIKit
  import SnapKit
  internal final class NavigationHomeCourseCellDataSource: IFtableView {
-    
-    var sections: [String] = [ ]
-    var rows: [[String]] = [ ]
-    var actions: Dictionary<String, ((UIViewController, IndexPath) -> Void)?> = [:]
-    
+     
     var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = [
         [
             "系统导航栏": {(target, indexPath, rowKey) -> Void in

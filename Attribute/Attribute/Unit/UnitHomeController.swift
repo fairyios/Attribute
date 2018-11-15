@@ -10,14 +10,7 @@
 import UIKit
 import SnapKit
 internal final class UnitHomeCourseCellDataSource: IFtableView {
-    
-    
-    var sections: [String] = []
-    
-    var rows: [[String]] = [ ]
-    
-    var actions: Dictionary<String, ((UIViewController, IndexPath) -> Void)?> = [:]
-    
+     
     var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = [
         [
             "UIView": {(target, indexPath, rowKey) -> Void in

@@ -17,11 +17,6 @@ import SnapKit
 // MARK: - ICourseCellDataSource
 internal final class UseTapGestureRecognizerCourseCellDataSource: IFtableView {
     
-    
-    var sections: [String] = [ ]
-    var rows: [[String]] = [   ]
-    var actions: Dictionary<String, ((UIViewController, IndexPath) -> Void)?> = [ : ]
-    
     var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = [
         [
             "用于键盘回收": {(target, indexPath, rowKey) -> Void in

@@ -12,11 +12,7 @@ import UIKit
 import SnapKit
 
 internal final class DispatchQueueMainAsyncAfterCourseCellDataSource: IFtableView {
-    
-    var sections: [String] = [ ]
-    var rows: [[String]] = [ ]
-    var actions: Dictionary<String, ((UIViewController, IndexPath) -> Void)?> = [:]
-    
+     
     var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = [
         [
             "Thread.sleep(: 1.0)会卡UI": {(target, indexPath, rowKey) -> Void in

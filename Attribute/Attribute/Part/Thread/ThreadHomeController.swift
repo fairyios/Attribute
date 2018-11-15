@@ -14,10 +14,6 @@
  /// 
  internal final class ThreadHomeCourseCellDataSource: IFtableView {
     
-    var sections: [String] = [ ]
-    var rows: [[String]] = [  ]
-    var actions: Dictionary<String, ((UIViewController, IndexPath) -> Void)?> = [:]
-    
     var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = [
         [
             "DispatchQueue.main.asyncAfter": {(target, indexPath, rowKey) -> Void in
@@ -35,7 +31,7 @@
                 
             }
         ],
-        ]
+    ]
     
  }
  

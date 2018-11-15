@@ -12,14 +12,6 @@ import SnapKit
 
 // MARK: - 数据源
 protocol IFtableView {
-    
-    /// 节点
-    var sections: [String] { get set }
-    /// 所有行的集合
-    var rows: [[String]] { get set }
-    /// 每一行对应的闭包action
-    var actions: Dictionary<String, ((UIViewController, IndexPath) -> Void)?> { get set }
-    
     // 每一行对应的闭包action
     var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] { get set }
 }

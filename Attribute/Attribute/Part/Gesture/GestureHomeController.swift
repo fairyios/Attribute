@@ -10,11 +10,7 @@
  import UIKit
  import SnapKit
  internal final class GestureHomeCourseCellDataSource: IFtableView {
-      
-    var sections: [String] = [ ]
-    
-    var rows: [[String]] = [ ]
-    var actions: Dictionary<String, ((UIViewController, IndexPath) -> Void)?> = [ : ]
+       
     var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = [
         [
             "各种手势": {(target, indexPath, rowKey) -> Void in
