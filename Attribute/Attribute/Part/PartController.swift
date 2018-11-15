@@ -25,7 +25,8 @@ internal final class PartDataSource: IFtableViewDataSouce {
         ],
         [
             "Tab Bar": {(target, indexPath, rowKey) -> Void in
-                
+                let gesture = TabBarController(title: rowKey, source: TabBarDataSource())
+                target.show(gesture, sender: nil)
             }
         ],
         [

@@ -41,6 +41,7 @@
 		2CDA6D41219D5C240059790F /* TableSectionHeaderTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDA6D40219D5C240059790F /* TableSectionHeaderTableView.swift */; };
 		2CDA6D43219D61D40059790F /* IController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDA6D42219D61D40059790F /* IController.swift */; };
 		2CDA6D45219D9C300059790F /* IFtableViewDataSouce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDA6D44219D9C300059790F /* IFtableViewDataSouce.swift */; };
+		2CDA6D48219DAC3D0059790F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDA6D47219DAC3D0059790F /* TabBarController.swift */; };
 		359E07FC912ED5F5472CC887 /* Pods_Attribute.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EB0731D35CB096B37BB6AEB /* Pods_Attribute.framework */; };
 		58EEB61F17DF15FD1DFF1395 /* Pods_AttributeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70FF6C3A13F8F69D4331AB8C /* Pods_AttributeTests.framework */; };
 /* End PBXBuildFile section */
@@ -103,6 +104,7 @@
 		2CDA6D40219D5C240059790F /* TableSectionHeaderTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableSectionHeaderTableView.swift; sourceTree = "<group>"; };
 		2CDA6D42219D61D40059790F /* IController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IController.swift; sourceTree = "<group>"; };
 		2CDA6D44219D9C300059790F /* IFtableViewDataSouce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFtableViewDataSouce.swift; sourceTree = "<group>"; };
+		2CDA6D47219DAC3D0059790F /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		3EE7D0526675D5C8DD322A9C /* Pods_AttributeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AttributeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4990427B15AE6CA39442AFB4 /* Pods-AttributeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AttributeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AttributeTests/Pods-AttributeTests.release.xcconfig"; sourceTree = "<group>"; };
 		70FF6C3A13F8F69D4331AB8C /* Pods_AttributeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AttributeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -385,6 +387,7 @@
 		2CDA6D39219D243A0059790F /* Part */ = {
 			isa = PBXGroup;
 			children = (
+				2CDA6D46219DAC280059790F /* UITabBar */,
 				2CDA6D3A219D491F0059790F /* PartController.swift */,
 				2C004C502192E8FF00A28A40 /* Thread */,
 				2C175FAA2195B3A500F66F96 /* Gesture */,
@@ -402,6 +405,14 @@
 				2CDA6D40219D5C240059790F /* TableSectionHeaderTableView.swift */,
 			);
 			path = SectionHeader;
+			sourceTree = "<group>";
+		};
+		2CDA6D46219DAC280059790F /* UITabBar */ = {
+			isa = PBXGroup;
+			children = (
+				2CDA6D47219DAC3D0059790F /* TabBarController.swift */,
+			);
+			path = UITabBar;
 			sourceTree = "<group>";
 		};
 		41353B7EB1C31E122E82BF35 /* Frameworks */ = {
@@ -655,6 +666,7 @@
 				2C004C4821928FC800A28A40 /* SwiftController.swift in Sources */,
 				2C175F9A2195246D00F66F96 /* SwiftKeywordController.swift in Sources */,
 				2C175FB32195C2D100F66F96 /* UnitLabelController.swift in Sources */,
+				2CDA6D48219DAC3D0059790F /* TabBarController.swift in Sources */,
 				2C004C522192E92700A28A40 /* ThreadHomeController.swift in Sources */,
 				2CB83EEF2191BDF400806091 /* NavigationController.swift in Sources */,
 				2CBCA8932194732500B8BC9F /* SwiftCollectionController.swift in Sources */,
