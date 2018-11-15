@@ -10,5 +10,5 @@ import UIKit
 
 protocol IController {
     var navigationTitle: String? { get set }
-    
+    //var source: IFtableView { get set }
 }

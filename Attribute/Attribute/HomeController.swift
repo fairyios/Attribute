@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-internal final class HomeFtableView: IFtableView {
+internal final class HomeDataSouce: IFtableView {
       
     var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = [
         [
@@ -90,7 +90,7 @@ internal final class HomeFtableView: IFtableView {
 internal final class HomeController: UIViewController {
     
     private lazy var myTable: FtableView! = {
-        let data = HomeFtableView()
+        let data = HomeDataSouce()
         let table = FtableView(target: self, data: data)
         return table
     }()

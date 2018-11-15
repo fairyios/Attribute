@@ -10,11 +10,6 @@ import UIKit
 import SnapKit
 
 
-// MARK: - 数据源
-protocol IFtableView {
-    // 每一行对应的闭包action
-    var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] { get set }
-}
 
 /// 定义 TableView
 internal final class FtableView: UITableView {
