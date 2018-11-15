@@ -14,8 +14,7 @@ import SnapKit
 
 
 /// 使用UseGestureController
-internal final class UseGestureController: UIViewController, IController,
-UIScrollViewDelegate {
+internal final class UseGestureController: UIViewController, UIScrollViewDelegate {
     
     
     // UIScrollView 能不能滚动根它的contentSize的大小有关，太小则不能滚动

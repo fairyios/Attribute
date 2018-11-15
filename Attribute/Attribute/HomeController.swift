@@ -14,7 +14,7 @@ internal final class HomeDataSouce: IFtableViewDataSouce {
     var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = [
         [
             "小部件": {(target, indexPath, rowKey) -> Void in
-                let unitController = UnitHomeController(title: rowKey, source: UnitHomeDataSource())
+                let unitController = UnitController(title: rowKey, source: UnitDataSource())
                 target.show(unitController, sender: nil)
             }
         ],
@@ -31,14 +31,15 @@ internal final class HomeDataSouce: IFtableViewDataSouce {
         ],
         [
             "Swift": {(target, indexPath, rowKey) -> Void in
-                let homeTable = SwiftHomeController(title: rowKey)
-                target.show(homeTable, sender: nil)
+                let dataSource = SwiftDataSouce()
+                let view = SwiftController(title: rowKey, source: dataSource)
+                target.show(view, sender: nil)
             }
         ],
         [
             "线程": {(target, indexPath, rowKey) -> Void in
-                let homeTable = ThreadHomeController()
-                target.show(homeTable, sender: nil)
+                let view = ThreadController(title: rowKey, source: ThreadDataSource())
+                target.show(view, sender: nil)
             }
         ],
         [

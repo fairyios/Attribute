@@ -35,5 +35,5 @@ internal final class FtableViewDataSouce: IFtableViewDataSouce {
                 
             }
         ],
-        ]
+    ]
 }

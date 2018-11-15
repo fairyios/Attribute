@@ -9,7 +9,7 @@
 
 import UIKit
 import SnapKit
-internal final class UnitHomeDataSource: IFtableViewDataSouce {
+internal final class UnitDataSource: IFtableViewDataSouce {
      
     var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = [
         [
@@ -19,7 +19,7 @@ internal final class UnitHomeDataSource: IFtableViewDataSouce {
         ],
         [
             "UILabel": {(target, indexPath, rowKey) -> Void in
-                let con = UnitLabelHomeController()
+                let con = UnitLabelController()
                 target.show(con, sender: nil)
             }
         ],
@@ -99,7 +99,7 @@ internal final class UnitHomeDataSource: IFtableViewDataSouce {
  
 
 // MARK: - 定义控制器: 小部件
-internal final class UnitHomeController: FtableViewController {
+internal final class UnitController: FtableViewController {
     
     
     override func viewDidLoad() {

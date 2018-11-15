@@ -11,7 +11,7 @@ import UIKit
 import SnapKit
 
  
- internal final class TableHomeCourseCellDataSource: IFtableViewDataSouce {
+ internal final class TableDataSource: IFtableViewDataSouce {
      
     var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = [
         [
@@ -31,40 +31,18 @@ import SnapKit
                 
             }
         ],
-        ]
+    ]
  }
 
-/// TableHomeController
-internal final class TableHomeController: UIViewController, IController {
-    
-    var navigationTitle: String? = nil
-    
-    convenience init(title: String) {
-        self.init()
-        self.navigationTitle = title
-    }
-    
-    
-    private lazy var myTable: FtableView! = {
-        let data = TableHomeCourseCellDataSource()
-        let table = FtableView(target: self, data: data)
-        return table
-    }()
+/// TableController
+internal final class TableController: FtableViewController {
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = self.navigationTitle
-        self.view.backgroundColor = UIColor.orange
         
-        
-        self.view.addSubview(self.myTable)
-        self.myTable.snp.remakeConstraints { maker in maker.edges.equalTo(self.view) }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
     
 }
 

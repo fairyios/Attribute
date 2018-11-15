@@ -8,7 +8,30 @@
 
 import UIKit
 
-final class SwiftInitController: UIViewController {
+// MARK: - 数据源
+internal final class SwiftInitDataSouce: IFtableViewDataSouce {
+    
+    var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = [
+        [
+            "": {(target, indexPath, rowKey) -> Void in
+                
+            }
+        ],
+        [
+            "": {(target, indexPath, rowKey) -> Void in
+                
+            }
+        ],
+        [
+            "": {(target, indexPath, rowKey) -> Void in
+                
+            }
+        ],
+    ]
+}
+
+
+final class SwiftInitController: FtableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()

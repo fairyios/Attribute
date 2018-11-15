@@ -9,7 +9,7 @@
  
  import UIKit
  import SnapKit
- internal final class NavigationHomeCourseCellDataSource: IFtableViewDataSouce {
+ internal final class NavigationDataSource: IFtableViewDataSouce {
      
     var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = [
         [
@@ -35,37 +35,14 @@
     ]
  }
  
- /// NavigationHomeController
- internal final class NavigationHomeController: UIViewController, IController,
+ /// NavigationController
+ internal final class NavigationController: FtableViewController,
     UINavigationControllerDelegate  {
-    
-    var navigationTitle: String? = nil
-    
-    convenience init(title: String) {
-        self.init()
-        self.navigationTitle = title
-    }
-    
-    
-    private lazy var myTable: FtableView! = {
-        let data = NavigationHomeCourseCellDataSource()
-        let table = FtableView(target: self, data: data)
-        return table
-    }()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = self.navigationTitle
-        self.view.backgroundColor = UIColor.orange
         
-        debugPrint("self.navigationController ?? Any.self")
-        debugPrint(self.navigationController ?? Any.self)
-        debugPrint("self.navigationController?.navigationBar ?? Any.self")
-        debugPrint(self.navigationController?.navigationBar ?? Any.self)
-        
-        self.view.addSubview(self.myTable)
-        self.myTable.snp.remakeConstraints { maker in maker.edges.equalTo(self.view) }
     }
     
     

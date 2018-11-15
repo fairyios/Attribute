@@ -12,12 +12,13 @@
  
  
  /// 
- internal final class ThreadHomeCourseCellDataSource: IFtableViewDataSouce {
+ internal final class ThreadDataSource: IFtableViewDataSouce {
     
     var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = [
         [
             "DispatchQueue.main.asyncAfter": {(target, indexPath, rowKey) -> Void in
-                let asyncAfter = DispatchQueueMainAsyncAfterController()
+                let dataSource = DispatchQueueMainAsyncAfterCourseCellDataSource()
+                let asyncAfter = DispatchQueueMainAsyncAfterController(title: rowKey, source: dataSource)
                 target.show(asyncAfter, sender: nil)
             }
         ],
@@ -35,28 +36,11 @@
     
  }
  
- /// ThreadHomeController
- internal final class ThreadHomeController: UIViewController, IController {
-    
-    var navigationTitle: String? = nil
-    
-    convenience init(title: String) {
-        self.init()
-        self.navigationTitle = title
-    }
-    private lazy var myTable: FtableView! = {
-        let data = ThreadHomeCourseCellDataSource()
-        let table = FtableView(target: self, data: data)
-        return table
-    }()
-    
+
+ internal final class ThreadController: FtableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = self.navigationTitle
-        self.view.backgroundColor = UIColor.orange
-        self.view.addSubview(self.myTable)
-        self.myTable.snp.remakeConstraints { maker in maker.edges.equalTo(self.view) }
         
     }
     

@@ -14,13 +14,13 @@ import SnapKit
 
 
  
-// MARK: - ICourseCellDataSource
-internal final class UseTapGestureRecognizerCourseCellDataSource: IFtableViewDataSouce {
+// MARK: - TapGestureRecognizerDataSource
+internal final class TapGestureRecognizerDataSource: IFtableViewDataSouce {
     
     var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = [
         [
             "用于键盘回收": {(target, indexPath, rowKey) -> Void in
-                let con = target as! UseTapGestureRecognizerController
+                let con = target as! TapGestureRecognizerController
                 con.row1_1_action(con: target, indexPath: indexPath)
             }
         ],
@@ -42,7 +42,7 @@ internal final class UseTapGestureRecognizerCourseCellDataSource: IFtableViewDat
     ]
 }
 
-extension UseTapGestureRecognizerController {
+extension TapGestureRecognizerController {
     /// row1_1:常用轻点手势 常用于键盘回收，事件一次性响应等操作
     public func row1_1_action(con: UIViewController, indexPath: IndexPath) {
         
@@ -85,36 +85,14 @@ extension UseTapGestureRecognizerController {
     
 }
 
-internal final class UseTapGestureRecognizerController: UIViewController, IController {
-    
-    /// 页面标题
-    var navigationTitle: String? = nil
-    
-    /// 初始化
-    ///
-    /// - Parameter title: 标题
-    convenience init(title: String) {
-        self.init()
-        self.navigationTitle = title
-    }
-    
-    private lazy var myTable: FtableView! = {
-        let data = UseTapGestureRecognizerCourseCellDataSource()
-        let table = FtableView(target: self, data: data)
-        return table
-    }()
-    
-    
+internal final class TapGestureRecognizerController: FtableViewController {
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = self.navigationTitle
-        self.view.backgroundColor = UIColor.orange
         
         
-        self.view.addSubview(self.myTable)
-        self.myTable.snp.remakeConstraints { maker in maker.edges.equalTo(self.view) }
+        
     }
     
     

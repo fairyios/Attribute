@@ -13,7 +13,7 @@ import SnapKit
 
 
 // MARK: - ICourseCellDataSource
-internal final class UnitLabelHomeCourseCellDataSource: IFtableViewDataSouce {
+internal final class UnitLabelDataSource: IFtableViewDataSouce {
      
     var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = [
         
@@ -25,21 +25,21 @@ internal final class UnitLabelHomeCourseCellDataSource: IFtableViewDataSouce {
         [
             "自动换行": {(target, indexPath, rowKey) -> Void in
                 //自动换行
-                let tar = target as! UnitLabelHomeController
+                let tar = target as! UnitLabelController
                 tar.row1_1_action()
             }
         ],
         [
             "文字添加阴影": {(target, indexPath, rowKey) -> Void in
                 //文字添加阴影
-                let tar = target as! UnitLabelHomeController
+                let tar = target as! UnitLabelController
                 tar.row1_2_action()
             }
         ],
         [
             "文本周围的阴影轮廓(实心)": {(target, indexPath, rowKey) -> Void in
                 /// 文本周围的阴影轮廓(实心)
-                let tar = target as! UnitLabelHomeController
+                let tar = target as! UnitLabelController
                 tar.row2_1_action()
             }
         ],
@@ -62,7 +62,7 @@ internal final class UnitLabelHomeCourseCellDataSource: IFtableViewDataSouce {
 }
 
 // MARK: - 初始化
-internal final class UnitLabelHomeController: FtableViewController {
+internal final class UnitLabelController: FtableViewController {
     
     
 // MARK: - 页面加载完成

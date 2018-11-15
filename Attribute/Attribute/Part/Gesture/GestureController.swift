@@ -9,23 +9,24 @@
  
  import UIKit
  import SnapKit
- internal final class GestureHomeCourseCellDataSource: IFtableViewDataSouce {
+ internal final class GestureDataSource: IFtableViewDataSouce {
        
     var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = [
         [
             "各种手势": {(target, indexPath, rowKey) -> Void in
                 let proxy = UseGestureController()
                 
-                let tar = target as! GestureHomeController
+                let tar = target as! GestureController
                 tar.show(proxy, sender: nil)
             }
         ],
         [
             "轻点手势": {(target, indexPath, rowKey) -> Void in
                 //轻点手势识别UITapGestureRecognizer
-                let view = UseTapGestureRecognizerController()
+                let dataSource = TapGestureRecognizerDataSource()
+                let view = TapGestureRecognizerController(title: rowKey, source: dataSource)
                 
-                let tar = target as! GestureHomeController
+                let tar = target as! GestureController
                 tar.show(view, sender: nil)
             }
         ],
@@ -75,36 +76,13 @@
  
  
  
- // MARK: - 手势GestureHomeController
- internal final class GestureHomeController: UIViewController, IController {
-    
-    var navigationTitle: String? = nil
-    
-    convenience init(title: String) {
-        self.init()
-        self.navigationTitle = title
-    }
-    
-    
-    private lazy var myTable: FtableView! = {
-        let data = GestureHomeCourseCellDataSource()
-        let table = FtableView(target: self, data: data)
-        return table
-    }()
+ // MARK: - 手势GestureController
+ internal final class GestureController: FtableViewController {
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = self.navigationTitle
-        self.view.backgroundColor = UIColor.orange
         
-        debugPrint("self.navigationController ?? Any.self")
-        debugPrint(self.navigationController ?? Any.self)
-        debugPrint("self.navigationController?.navigationBar ?? Any.self")
-        debugPrint(self.navigationController?.navigationBar ?? Any.self)
-        
-        self.view.addSubview(self.myTable)
-        self.myTable.snp.remakeConstraints { maker in maker.edges.equalTo(self.view) }
     }
     
     

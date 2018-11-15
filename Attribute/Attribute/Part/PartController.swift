@@ -18,7 +18,8 @@ internal final class PartDataSource: IFtableViewDataSouce {
         
         [
             "Table View": {(target, indexPath, rowKey) -> Void in
-                let homeTable = TableHomeController(title: rowKey)
+                let dataSource = TableDataSource()
+                let homeTable = TableController(title: rowKey, source: dataSource)
                 target.show(homeTable, sender: nil)
             }
         ],
@@ -29,13 +30,14 @@ internal final class PartDataSource: IFtableViewDataSouce {
         ],
         [
             "导航栏": {(target, indexPath, rowKey) -> Void in
-                let homeNavigation = NavigationHomeController(title: rowKey)
-                target.show(homeNavigation, sender: nil)
+                let dataSource = NavigationDataSource()
+                let view = NavigationController(title: rowKey, source: dataSource)
+                target.show(view, sender: nil)
             }
         ],
         [
             "手势": {(target, indexPath, rowKey) -> Void in
-                let gesture = GestureHomeController(title: rowKey)
+                let gesture = GestureController(title: rowKey, source: GestureDataSource())
                 target.show(gesture, sender: nil)
             }
         ],

@@ -34,29 +34,12 @@ internal final class DispatchQueueMainAsyncAfterCourseCellDataSource: IFtableVie
         ]
 }
 
-/// ThreadHomeController
-internal final class DispatchQueueMainAsyncAfterController: UIViewController {
-    
-    var navigationTitle: String? = nil
-    
-    convenience init(title: String) {
-        self.init()
-        self.navigationTitle = title
-    }
-    
-    private lazy var myTable: FtableView! = {
-        let data = DispatchQueueMainAsyncAfterCourseCellDataSource()
-        let table = FtableView(target: self, data: data)
-        return table
-    }()
+///
+internal final class DispatchQueueMainAsyncAfterController: FtableViewController {
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = self.navigationTitle
-        self.view.backgroundColor = UIColor.orange
-        self.view.addSubview(self.myTable)
-        self.myTable.snp.remakeConstraints { maker in maker.edges.equalTo(self.view) }
         
     }
     
