@@ -13,7 +13,7 @@ import SnapKit
 
 
 // MARK: - ICourseCellDataSource
-internal final class UnitLabelHomeCourseCellDataSource: IFtableView {
+internal final class UnitLabelHomeCourseCellDataSource: IFtableViewDataSouce {
      
     var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = [
         

@@ -12,8 +12,8 @@ import SnapKit
 
 
 // MARK: - ICourseCellDataSource
-internal final class PartHomeCourseCellDataSource: IFtableView {
-     
+internal final class PartHomeCourseCellDataSource: IFtableViewDataSouce {
+    
     var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = [
         
         [

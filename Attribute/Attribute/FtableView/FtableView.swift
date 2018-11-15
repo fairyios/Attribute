@@ -14,7 +14,7 @@ import SnapKit
 /// 定义 TableView
 internal final class FtableView: UITableView {
     
-    var data: IFtableView! = nil
+    var data: IFtableViewDataSouce! = nil
     weak var target: UIViewController! = nil
     
     
@@ -23,7 +23,7 @@ internal final class FtableView: UITableView {
     /// - Parameters:
     ///   - target: target description
     ///   - data: data description
-    init(target: UIViewController, data: IFtableView) {
+    init(target: UIViewController, data: IFtableViewDataSouce) {
         super.init(frame: CGRect.zero, style: UITableView.Style.plain)
         self.data = data
         self.target = target

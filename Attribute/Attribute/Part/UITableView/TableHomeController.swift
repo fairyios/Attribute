@@ -11,7 +11,7 @@ import UIKit
 import SnapKit
 
  
- internal final class TableHomeCourseCellDataSource: IFtableView {
+ internal final class TableHomeCourseCellDataSource: IFtableViewDataSouce {
      
     var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = [
         [

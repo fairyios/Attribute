@@ -15,7 +15,7 @@ import SnapKit
 
  
 // MARK: - ICourseCellDataSource
-internal final class UseTapGestureRecognizerCourseCellDataSource: IFtableView {
+internal final class UseTapGestureRecognizerCourseCellDataSource: IFtableViewDataSouce {
     
     var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = [
         [

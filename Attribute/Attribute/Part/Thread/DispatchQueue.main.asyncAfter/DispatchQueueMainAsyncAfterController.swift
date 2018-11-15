@@ -11,7 +11,7 @@
 import UIKit
 import SnapKit
 
-internal final class DispatchQueueMainAsyncAfterCourseCellDataSource: IFtableView {
+internal final class DispatchQueueMainAsyncAfterCourseCellDataSource: IFtableViewDataSouce {
      
     var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = [
         [

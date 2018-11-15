@@ -19,7 +19,7 @@ internal final class FtableViewController: UIViewController {
     var fnavigationTitle: String? = nil
     
     /// 数据源
-    var fsource: IFtableView! = nil
+    var fsource: IFtableViewDataSouce! = nil
     
     
     /// 初始化
@@ -27,7 +27,7 @@ internal final class FtableViewController: UIViewController {
     /// - Parameters:
     ///   - title: 标题
     ///   - source: 数据源
-    convenience init(title: String, source: IFtableView) {
+    convenience init(title: String, source: IFtableViewDataSouce) {
         self.init()
         self.fnavigationTitle = title
         self.fsource = source

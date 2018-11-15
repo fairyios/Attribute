@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-internal final class HomeDataSouce: IFtableView {
+internal final class HomeDataSouce: IFtableViewDataSouce {
       
     var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = [
         [

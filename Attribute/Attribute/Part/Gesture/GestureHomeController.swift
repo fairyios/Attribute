@@ -9,7 +9,7 @@
  
  import UIKit
  import SnapKit
- internal final class GestureHomeCourseCellDataSource: IFtableView {
+ internal final class GestureHomeCourseCellDataSource: IFtableViewDataSouce {
        
     var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = [
         [

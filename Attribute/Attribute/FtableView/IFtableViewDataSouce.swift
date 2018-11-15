@@ -9,7 +9,7 @@
 import UIKit
 
 // MARK: - 数据源
-protocol IFtableView {
+protocol IFtableViewDataSouce {
     // 每一行对应的闭包action
     var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] { get set }
 }
@@ -17,7 +17,7 @@ protocol IFtableView {
 
 
 // MARK: - 数据源
-internal final class FtableViewDataSouce: IFtableView {
+internal final class FtableViewDataSouce: IFtableViewDataSouce {
     
     var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = [
         [

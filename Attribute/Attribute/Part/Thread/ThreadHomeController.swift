@@ -12,7 +12,7 @@
  
  
  /// 
- internal final class ThreadHomeCourseCellDataSource: IFtableView {
+ internal final class ThreadHomeCourseCellDataSource: IFtableViewDataSouce {
     
     var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = [
         [
