@@ -67,7 +67,7 @@ extension TableSectionHeaderCourseCellDataSource {
     
 }
 // MARK: - ICourseCellDataSource
-internal final class TableSectionHeaderCourseCellDataSource: IFtableView {
+internal final class TableSectionHeaderCourseCellDataSource: ITableSectionHeaderTableView {
     
     var sections: [String] = [
         section1, section2, section3, section4, section5,
@@ -226,9 +226,9 @@ extension TableSectionHeaderController: ITableSectionHeaderController {
 internal final class TableSectionHeaderController: UIViewController {
     
     
-    private lazy var myTable: FtableView! = {
+    private lazy var myTable: TableSectionHeaderTableView! = {
         let data = TableSectionHeaderCourseCellDataSource()
-        let table = FtableView(target: self, data: data)
+        let table = TableSectionHeaderTableView(target: self, data: data)
         return table
     }()
     
