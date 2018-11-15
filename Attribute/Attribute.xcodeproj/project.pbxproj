@@ -36,6 +36,7 @@
 		2CD715E62190A5A500309DEF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CD715E42190A5A500309DEF /* LaunchScreen.storyboard */; };
 		2CD715F12190A5A500309DEF /* AttributeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD715F02190A5A500309DEF /* AttributeTests.swift */; };
 		2CD715FC2190A5A500309DEF /* AttributeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD715FB2190A5A500309DEF /* AttributeUITests.swift */; };
+		2CDA6D3B219D491F0059790F /* PartHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDA6D3A219D491F0059790F /* PartHomeController.swift */; };
 		359E07FC912ED5F5472CC887 /* Pods_Attribute.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EB0731D35CB096B37BB6AEB /* Pods_Attribute.framework */; };
 		58EEB61F17DF15FD1DFF1395 /* Pods_AttributeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70FF6C3A13F8F69D4331AB8C /* Pods_AttributeTests.framework */; };
 /* End PBXBuildFile section */
@@ -93,6 +94,7 @@
 		2CD715F72190A5A500309DEF /* AttributeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AttributeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CD715FB2190A5A500309DEF /* AttributeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributeUITests.swift; sourceTree = "<group>"; };
 		2CD715FD2190A5A500309DEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2CDA6D3A219D491F0059790F /* PartHomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartHomeController.swift; sourceTree = "<group>"; };
 		3EE7D0526675D5C8DD322A9C /* Pods_AttributeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AttributeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4990427B15AE6CA39442AFB4 /* Pods-AttributeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AttributeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AttributeTests/Pods-AttributeTests.release.xcconfig"; sourceTree = "<group>"; };
 		70FF6C3A13F8F69D4331AB8C /* Pods_AttributeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AttributeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -338,14 +340,12 @@
 		2CD715DA2190A5A300309DEF /* Attribute */ = {
 			isa = PBXGroup;
 			children = (
-				2CBCA896219478CE00B8BC9F /* Tool */,
-				2C175FAD2195B94800F66F96 /* Dialog */,
-				2C175FAA2195B3A500F66F96 /* Gesture */,
 				2CBCA88F2194397400B8BC9F /* Unit */,
+				2CDA6D39219D243A0059790F /* Part */,
+				2CBCA896219478CE00B8BC9F /* Tool */,
+				2C175FAA2195B3A500F66F96 /* Gesture */,
 				2C004C502192E8FF00A28A40 /* Thread */,
 				2C004C4621928FA700A28A40 /* Swift */,
-				2CB83EEB2191BC5D00806091 /* Navigation */,
-				2C76C66B21918622007FA4F4 /* UITableView */,
 				2CD715DB2190A5A300309DEF /* AppDelegate.swift */,
 				2CD715DD2190A5A300309DEF /* HomeController.swift */,
 				2CD715E22190A5A500309DEF /* Assets.xcassets */,
@@ -371,6 +371,17 @@
 				2CD715FD2190A5A500309DEF /* Info.plist */,
 			);
 			path = AttributeUITests;
+			sourceTree = "<group>";
+		};
+		2CDA6D39219D243A0059790F /* Part */ = {
+			isa = PBXGroup;
+			children = (
+				2CDA6D3A219D491F0059790F /* PartHomeController.swift */,
+				2C76C66B21918622007FA4F4 /* UITableView */,
+				2CB83EEB2191BC5D00806091 /* Navigation */,
+				2C175FAD2195B94800F66F96 /* Dialog */,
+			);
+			path = Part;
 			sourceTree = "<group>";
 		};
 		41353B7EB1C31E122E82BF35 /* Frameworks */ = {
@@ -642,6 +653,7 @@
 				2C3CFC7821933B410040C707 /* NavigationSelfViewController.swift in Sources */,
 				2C175F9E2195279E00F66F96 /* DefineTableView.swift in Sources */,
 				2C175FB62197323F00F66F96 /* DefineUILabel.swift in Sources */,
+				2CDA6D3B219D491F0059790F /* PartHomeController.swift in Sources */,
 				2C175FA32195736900F66F96 /* DefineTableViewCellController.swift in Sources */,
 				2C004C4B2192929B00A28A40 /* DefineTableViewCell.swift in Sources */,
 				2C1A0609219912A600E2D11C /* UseTapGestureRecognizerController.swift in Sources */,

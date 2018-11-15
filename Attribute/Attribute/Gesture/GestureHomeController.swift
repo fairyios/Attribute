@@ -12,10 +12,10 @@
  internal final class GestureHomeCourseCellDataSource: ICourseCellDataSource {
     
     internal static let sectionGesture = "手势"
-    internal static let sectionUIGestureRecognizer = "各种手势"
+    internal static let sectionUIGestureRecognizer = "轻点手势"
     
     //--sectionGesture--
-    internal static let rowGestureDelegate: String = "GestureRecognizerDelegate"
+    internal static let rowGestureDelegate: String = "各种手势"
     
     //--sectionUIGestureRecognizer--
     
@@ -129,7 +129,7 @@
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = HomeCourseCellDataSource.rowUINavigation
+        self.navigationItem.title = PartHomeCourseCellDataSource.row4_1
         self.view.backgroundColor = UIColor.orange
         
         debugPrint("self.navigationController ?? Any.self")
