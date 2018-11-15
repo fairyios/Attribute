@@ -12,7 +12,7 @@ import SnapKit
 
 
 // MARK: - ICourseCellDataSource
-internal final class PartHomeCourseCellDataSource: IFtableViewDataSouce {
+internal final class PartDataSource: IFtableViewDataSouce {
     
     var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = [
         
@@ -72,30 +72,12 @@ internal final class PartHomeCourseCellDataSource: IFtableViewDataSouce {
     ]
 }
 
-internal final class PartHomeController: UIViewController, IController {
+internal final class PartController: FtableViewController {
     
-    var navigationTitle: String? = nil
-    
-    convenience init(title: String) {
-        self.init()
-        self.navigationTitle = title
-    }
-    
-    
-    private lazy var myTable: FtableView! = {
-        let data = PartHomeCourseCellDataSource()
-        let table = FtableView(target: self, data: data)
-        return table
-    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = self.navigationTitle
-        self.view.backgroundColor = UIColor.orange
         
-        
-        self.view.addSubview(self.myTable)
-        self.myTable.snp.remakeConstraints { maker in maker.edges.equalTo(self.view) }
     }
     
     

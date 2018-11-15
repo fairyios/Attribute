@@ -9,7 +9,7 @@
 
 import UIKit
 import SnapKit
-internal final class UnitHomeCourseCellDataSource: IFtableViewDataSouce {
+internal final class UnitHomeDataSource: IFtableViewDataSouce {
      
     var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = [
         [
@@ -96,40 +96,16 @@ internal final class UnitHomeCourseCellDataSource: IFtableViewDataSouce {
     ]
     
 }
+ 
 
-/// 小部件：UILabel,UIButton,UIImage...
-internal final class UnitHomeController: UIViewController, IController {
-    var navigationTitle: String? = nil
-    
-    convenience init(title: String) {
-        self.init()
-        self.navigationTitle = title
-    }
-    
-    
-    private lazy var myTable: FtableView! = {
-        let data = UnitHomeCourseCellDataSource()
-        let table = FtableView(target: self, data: data)
-        return table
-    }()
-    
-    
+// MARK: - 定义控制器: 小部件
+internal final class UnitHomeController: FtableViewController {
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = navigationTitle
-        self.view.backgroundColor = UIColor.orange
         
         
-        self.view.addSubview(self.myTable)
-        self.myTable.snp.remakeConstraints { maker in maker.edges.equalTo(self.view) }
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
 }
-
 

@@ -20,8 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         debugPrint(window?.rootViewController ?? Any.self)
         
         //UINavigationController
-        //let homController = HomeController()
-        let rootNavigation = UINavigationController(rootViewController: HomeController.init())
+        let homController = HomeController(title: "Attribute", source: HomeDataSouce())
+        //let homController = HomeController.init()
+        let rootNavigation = UINavigationController(rootViewController: homController)
         rootNavigation.delegate = self as UINavigationControllerDelegate
         //rootNavigation.title = "title"
         rootNavigation.navigationBar.largeTitleTextAttributes = [

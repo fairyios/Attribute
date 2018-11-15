@@ -12,7 +12,7 @@ import SnapKit
 
  
 // MARK: - 定义控制器
-internal final class FtableViewController: UIViewController {
+internal class FtableViewController: UIViewController {
     
     
     /// 页面标题
@@ -35,7 +35,7 @@ internal final class FtableViewController: UIViewController {
     
     
     /// F TableView
-    private lazy var myTable: FtableView! = {
+    public lazy var myTable: FtableView! = {
         let table = FtableView(target: self, data: self.fsource)
         return table
     }()

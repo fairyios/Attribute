@@ -14,13 +14,13 @@ internal final class HomeDataSouce: IFtableViewDataSouce {
     var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = [
         [
             "小部件": {(target, indexPath, rowKey) -> Void in
-                let unitController = UnitHomeController(title: rowKey)
+                let unitController = UnitHomeController(title: rowKey, source: UnitHomeDataSource())
                 target.show(unitController, sender: nil)
             }
         ],
         [
             "大部件": {(target, indexPath, rowKey) -> Void in
-                let part = PartHomeController(title: rowKey)
+                let part = PartController(title: rowKey, source: PartDataSource())
                 target.show(part, sender: nil)
             }
         ],
@@ -86,28 +86,13 @@ internal final class HomeDataSouce: IFtableViewDataSouce {
     
 }
 
-/// HomeController
-internal final class HomeController: UIViewController {
-    
-    private lazy var myTable: FtableView! = {
-        let data = HomeDataSouce()
-        let table = FtableView(target: self, data: data)
-        return table
-    }()
+// MARK: - 定义控制器
+internal final class HomeController: FtableViewController {
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        self.navigationItem.title = "Attribute"
         
-        self.view.addSubview(self.myTable)
-        self.myTable.snp.remakeConstraints { maker in maker.edges.equalTo(self.view) }
         
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
 }

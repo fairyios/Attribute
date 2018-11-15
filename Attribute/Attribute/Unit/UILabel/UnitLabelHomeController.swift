@@ -62,37 +62,17 @@ internal final class UnitLabelHomeCourseCellDataSource: IFtableViewDataSouce {
 }
 
 // MARK: - 初始化
-internal final class UnitLabelHomeController: UIViewController, IController {
-    
-    var navigationTitle: String? = nil
-    
-    convenience init(title: String) {
-        self.init()
-        self.navigationTitle = title
-    }
-    
-    // MARK: - myTable
-    private lazy var myTable: FtableView! = {
-        let data = UnitLabelHomeCourseCellDataSource()
-        let table = FtableView(target: self, data: data)
-        return table
-    }()
+internal final class UnitLabelHomeController: FtableViewController {
     
     
-    
-    // MARK: - override func viewDidLoad()
+// MARK: - 页面加载完成
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = self.navigationTitle
-        self.view.backgroundColor = UIColor.orange
         
-        
-        self.view.addSubview(self.myTable)
-        self.myTable.snp.remakeConstraints { maker in maker.edges.equalTo(self.view) }
     }
     
     
-    // MARK: - 自定义Label
+// MARK: - 自定义Label
     /// 文本周围的阴影轮廓(实心)
     public func row2_1_action() {
         let con = UIViewController()
@@ -119,7 +99,7 @@ internal final class UnitLabelHomeController: UIViewController, IController {
     }
     
     
-    // MARK: - 基本属性
+// MARK: - 基本属性
     /// 文字添加阴影
     public func row1_2_action() {
         let con = UIViewController()
@@ -161,7 +141,7 @@ internal final class UnitLabelHomeController: UIViewController, IController {
         self.show(con, sender: nil)
     }
     
-    /// row1_1:自动换行
+// MARK: - 自动换行
     public func row1_1_action() {
         let con = UIViewController()
         con.view.backgroundColor = UIColor.gray
