@@ -13,46 +13,35 @@
  
  /// 
  internal final class ThreadHomeCourseCellDataSource: IFtableView {
-    var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = []
     
+    var sections: [String] = [ ]
+    var rows: [[String]] = [  ]
+    var actions: Dictionary<String, ((UIViewController, IndexPath) -> Void)?> = [:]
     
-    internal static let sectionDispatchQueueMain = "DispatchQueue.main"
-    internal static let sectionDispatchQueue = "DispatchQueue()"
-    internal static let sectionDispatchGroup = "DispatchGroup()"
-    internal static let sectionThread = "Thread"
-    
-    //--DispatchQueueMain--
-    internal static let rowDispatchQueueMainAsync: String = "DispatchQueue.main.async"
-    internal static let rowDispatchQueueMainAsyncAfter: String = "DispatchQueue.main.asyncAfter"
-    
-    var sections: [String] = [
-        sectionDispatchQueueMain, sectionDispatchQueue,
-        sectionDispatchGroup, sectionThread
-    ]
-    
-    var rows: [[String]] = [
+    var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = [
         [
-            rowDispatchQueueMainAsync, rowDispatchQueueMainAsyncAfter
+            "DispatchQueue.main.asyncAfter": {(target, indexPath, rowKey) -> Void in
+                let asyncAfter = DispatchQueueMainAsyncAfterController()
+                target.show(asyncAfter, sender: nil)
+            }
         ],
-        [],
-        [],
-        []
-    ]
-    
-    var actions: Dictionary<String, ((UIViewController, IndexPath) -> Void)?> = [
-        rowDispatchQueueMainAsync: {(target, indexPath) -> Void in
-            
-        },
-        rowDispatchQueueMainAsyncAfter: {(target, indexPath) -> Void in
-            let asyncAfter = DispatchQueueMainAsyncAfterController()
-            target.show(asyncAfter, sender: nil)
-        },
-    ]
+        [
+            "": {(target, indexPath, rowKey) -> Void in
+                
+            }
+        ],
+        [
+            "": {(target, indexPath, rowKey) -> Void in
+                
+            }
+        ],
+        ]
     
  }
  
  /// ThreadHomeController
  internal final class ThreadHomeController: UIViewController, IController {
+    
     var navigationTitle: String? = nil
     
     convenience init(title: String) {

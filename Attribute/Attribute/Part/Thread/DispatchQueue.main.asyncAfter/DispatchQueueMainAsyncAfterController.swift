@@ -12,40 +12,41 @@ import UIKit
 import SnapKit
 
 internal final class DispatchQueueMainAsyncAfterCourseCellDataSource: IFtableView {
-    var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = []
     
+    var sections: [String] = [ ]
+    var rows: [[String]] = [ ]
+    var actions: Dictionary<String, ((UIViewController, IndexPath) -> Void)?> = [:]
     
-    internal static let sectionAsyncAfter = "DispatchQueue.main.asyncAfter"
-    
-    //--DispatchQueue.main.asyncAfter--
-    internal static let rowAsyncAfter1: String = "Thread.sleep(: 1.0)"
-    internal static let rowAsyncAfter2: String = "(DispatchTime.now() + 1.0)"
-    
-    var sections: [String] = [
-        sectionAsyncAfter
-    ]
-    
-    var rows: [[String]] = [
+    var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = [
         [
-            rowAsyncAfter1, rowAsyncAfter2
+            "Thread.sleep(: 1.0)会卡UI": {(target, indexPath, rowKey) -> Void in
+                let tar = target as! DispatchQueueMainAsyncAfterController
+                tar.afterSleep1()
+            }
+        ],
+        [
+            "(DispatchTime.now() + 1.0)不卡UI": {(target, indexPath, rowKey) -> Void in
+                let tar = target as! DispatchQueueMainAsyncAfterController
+                tar.afterSleep2()
+            }
+        ],
+        [
+            "": {(target, indexPath, rowKey) -> Void in
+                
+            }
+        ],
         ]
-    ]
-    
-    var actions: Dictionary<String, ((UIViewController, IndexPath) -> Void)?> = [
-        rowAsyncAfter1: {(target, indexPath) -> Void in
-            let tar = target as! DispatchQueueMainAsyncAfterController
-            tar.afterSleep1()
-        },
-        rowAsyncAfter2: {(target, indexPath) -> Void in
-            let tar = target as! DispatchQueueMainAsyncAfterController
-            tar.afterSleep2()
-        },
-        ]
-    
 }
 
 /// ThreadHomeController
 internal final class DispatchQueueMainAsyncAfterController: UIViewController {
+    
+    var navigationTitle: String? = nil
+    
+    convenience init(title: String) {
+        self.init()
+        self.navigationTitle = title
+    }
     
     private lazy var myTable: FtableView! = {
         let data = DispatchQueueMainAsyncAfterCourseCellDataSource()
@@ -56,7 +57,7 @@ internal final class DispatchQueueMainAsyncAfterController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = ThreadHomeCourseCellDataSource.rowDispatchQueueMainAsyncAfter
+        self.navigationItem.title = self.navigationTitle
         self.view.backgroundColor = UIColor.orange
         self.view.addSubview(self.myTable)
         self.myTable.snp.remakeConstraints { maker in maker.edges.equalTo(self.view) }
