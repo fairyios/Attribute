@@ -19,7 +19,7 @@ internal final class UnitDataSource: IFtableViewDataSouce {
         ],
         [
             "UILabel": {(target, indexPath, rowKey) -> Void in
-                let con = UnitLabelController()
+                let con = UnitLabelController(title: rowKey, source: UnitLabelDataSource())
                 target.show(con, sender: nil)
             }
         ],
