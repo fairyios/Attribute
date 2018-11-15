@@ -11,7 +11,7 @@
 import UIKit
 import SnapKit
 
-internal final class DispatchQueueMainAsyncAfterCourseCellDataSource: ICourseCellDataSource {
+internal final class DispatchQueueMainAsyncAfterCourseCellDataSource: IFtableView {
     
     internal static let sectionAsyncAfter = "DispatchQueue.main.asyncAfter"
     
@@ -45,9 +45,9 @@ internal final class DispatchQueueMainAsyncAfterCourseCellDataSource: ICourseCel
 /// ThreadHomeController
 internal final class DispatchQueueMainAsyncAfterController: UIViewController {
     
-    private lazy var myTable: CourseTableView! = {
+    private lazy var myTable: FtableView! = {
         let data = DispatchQueueMainAsyncAfterCourseCellDataSource()
-        let table = CourseTableView(target: self, data: data)
+        let table = FtableView(target: self, data: data)
         return table
     }()
     

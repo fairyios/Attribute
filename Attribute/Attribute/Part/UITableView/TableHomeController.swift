@@ -11,7 +11,7 @@ import UIKit
 import SnapKit
 
  
- internal final class TableHomeCourseCellDataSource: ICourseCellDataSource {
+ internal final class TableHomeCourseCellDataSource: IFtableView {
     
     internal static let sectionCell = "UITableViewCell"
     internal static let sectionHeaderInSection: String = "Header In Section"
@@ -45,9 +45,9 @@ import SnapKit
 /// TableHomeController
 internal final class TableHomeController: UIViewController {
     
-    private lazy var myTable: CourseTableView! = {
+    private lazy var myTable: FtableView! = {
         let data = TableHomeCourseCellDataSource()
-        let table = CourseTableView(target: self, data: data)
+        let table = FtableView(target: self, data: data)
         return table
     }()
     

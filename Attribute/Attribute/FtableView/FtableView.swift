@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-protocol ICourseCellDataSource {
+protocol IFtableView {
     
     /// 节点
     var sections: [String] { get set }
@@ -21,9 +21,9 @@ protocol ICourseCellDataSource {
 }
 
 /// CourseTableController
-internal final class CourseTableView: UITableView {
+internal final class FtableView: UITableView {
     
-    var data: ICourseCellDataSource! = nil
+    var data: IFtableView! = nil
     weak var target: UIViewController! = nil
     
     
@@ -32,7 +32,7 @@ internal final class CourseTableView: UITableView {
     /// - Parameters:
     ///   - target: target description
     ///   - data: data description
-    init(target: UIViewController, data: ICourseCellDataSource) {
+    init(target: UIViewController, data: IFtableView) {
         super.init(frame: CGRect.zero, style: UITableView.Style.plain)
         self.data = data
         self.target = target
@@ -72,7 +72,7 @@ internal final class CourseTableView: UITableView {
 
 
 // MARK: - UITableViewDataSourcew
-extension CourseTableView: UITableViewDataSource {
+extension FtableView: UITableViewDataSource {
     
     
     /// Asks the data source to return the number of sections in the table view.
@@ -138,7 +138,7 @@ extension CourseTableView: UITableViewDataSource {
 
 
 // MARK: - UITableViewDelegate
-extension CourseTableView: UITableViewDelegate {
+extension FtableView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         

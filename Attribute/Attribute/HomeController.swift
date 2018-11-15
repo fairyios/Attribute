@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-internal final class HomeCourseCellDataSource: ICourseCellDataSource {
+internal final class HomeCourseCellDataSource: IFtableView {
     
     internal static let sectionUI = "UI"
     internal static let sectionKit = "第三方"
@@ -125,9 +125,9 @@ internal final class HomeCourseCellDataSource: ICourseCellDataSource {
 /// HomeController
 internal final class HomeController: UIViewController {
     
-    private lazy var myTable: CourseTableView! = {
+    private lazy var myTable: FtableView! = {
         let data = HomeCourseCellDataSource()
-        let table = CourseTableView(target: self, data: data)
+        let table = FtableView(target: self, data: data)
         return table
     }()
     

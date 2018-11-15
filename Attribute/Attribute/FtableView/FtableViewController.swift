@@ -67,7 +67,7 @@ extension DemoCourseCellDataSource {
     
 }
 // MARK: - ICourseCellDataSource
-internal final class DemoCourseCellDataSource: ICourseCellDataSource {
+internal final class DemoCourseCellDataSource: IFtableView {
     
     var sections: [String] = [
         section1, section2, section3, section4, section5,
@@ -205,7 +205,7 @@ protocol ICourseTableViewDemoController {
     func row2_1_action(con: UIViewController, indexPath: IndexPath)
 }
 
-extension CourseTableViewDemoController: ICourseTableViewDemoController {
+extension FtableViewController: ICourseTableViewDemoController {
     /// row1_1:
     public func row1_1_action(con: UIViewController, indexPath: IndexPath) {
         
@@ -223,12 +223,12 @@ extension CourseTableViewDemoController: ICourseTableViewDemoController {
     
     
 }
-internal final class CourseTableViewDemoController: UIViewController {
+internal final class FtableViewController: UIViewController {
     
     
-    private lazy var myTable: CourseTableView! = {
+    private lazy var myTable: FtableView! = {
         let data = DemoCourseCellDataSource()
-        let table = CourseTableView(target: self, data: data)
+        let table = FtableView(target: self, data: data)
         return table
     }()
     

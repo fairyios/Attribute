@@ -9,7 +9,7 @@
  
  import UIKit
  import SnapKit
- internal final class GestureHomeCourseCellDataSource: ICourseCellDataSource {
+ internal final class GestureHomeCourseCellDataSource: IFtableView {
     
     internal static let sectionGesture = "手势"
     internal static let sectionUIGestureRecognizer = "轻点手势"
@@ -120,9 +120,9 @@
  // MARK: - 手势GestureHomeController
  internal final class GestureHomeController: UIViewController {
     
-    private lazy var myTable: CourseTableView! = {
+    private lazy var myTable: FtableView! = {
         let data = GestureHomeCourseCellDataSource()
-        let table = CourseTableView(target: self, data: data)
+        let table = FtableView(target: self, data: data)
         return table
     }()
     

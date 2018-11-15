@@ -69,7 +69,7 @@ extension UseTapGestureRecognizerCourseCellDataSource {
     
 }
 // MARK: - ICourseCellDataSource
-internal final class UseTapGestureRecognizerCourseCellDataSource: ICourseCellDataSource {
+internal final class UseTapGestureRecognizerCourseCellDataSource: IFtableView {
     
     var sections: [String] = [
         section1, section2, section3, section4, section5,
@@ -262,9 +262,9 @@ extension UseTapGestureRecognizerController: IUseTapGestureRecognizerController 
 internal final class UseTapGestureRecognizerController: UIViewController {
     
     
-    private lazy var myTable: CourseTableView! = {
+    private lazy var myTable: FtableView! = {
         let data = UseTapGestureRecognizerCourseCellDataSource()
-        let table = CourseTableView(target: self, data: data)
+        let table = FtableView(target: self, data: data)
         return table
     }()
     

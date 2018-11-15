@@ -9,7 +9,7 @@
  
  import UIKit
  import SnapKit
- internal final class NavigationHomeCourseCellDataSource: ICourseCellDataSource {
+ internal final class NavigationHomeCourseCellDataSource: IFtableView {
     
     internal static let firstSystem = "导航栏"
     
@@ -44,9 +44,9 @@
  /// NavigationHomeController
  internal final class NavigationHomeController: UIViewController, UINavigationControllerDelegate {
     
-    private lazy var myTable: CourseTableView! = {
+    private lazy var myTable: FtableView! = {
         let data = NavigationHomeCourseCellDataSource()
-        let table = CourseTableView(target: self, data: data)
+        let table = FtableView(target: self, data: data)
         return table
     }()
     

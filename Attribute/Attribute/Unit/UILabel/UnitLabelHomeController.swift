@@ -67,7 +67,7 @@ extension UnitLabelHomeCourseCellDataSource {
     
 }
 // MARK: - ICourseCellDataSource
-internal final class UnitLabelHomeCourseCellDataSource: ICourseCellDataSource {
+internal final class UnitLabelHomeCourseCellDataSource: IFtableView {
     
     var sections: [String] = [
         section1, section2, section3, section4, section5,
@@ -214,9 +214,9 @@ internal final class UnitLabelHomeController: UIViewController, IUnitLabelHomeCo
     
     
     // MARK: - myTable
-    private lazy var myTable: CourseTableView! = {
+    private lazy var myTable: FtableView! = {
         let data = UnitLabelHomeCourseCellDataSource()
-        let table = CourseTableView(target: self, data: data)
+        let table = FtableView(target: self, data: data)
         return table
     }()
     

@@ -12,7 +12,7 @@
  
  
  /// 
- internal final class ThreadHomeCourseCellDataSource: ICourseCellDataSource {
+ internal final class ThreadHomeCourseCellDataSource: IFtableView {
     
     internal static let sectionDispatchQueueMain = "DispatchQueue.main"
     internal static let sectionDispatchQueue = "DispatchQueue()"
@@ -52,9 +52,9 @@
  /// ThreadHomeController
  internal final class ThreadHomeController: UIViewController {
     
-    private lazy var myTable: CourseTableView! = {
+    private lazy var myTable: FtableView! = {
         let data = ThreadHomeCourseCellDataSource()
-        let table = CourseTableView(target: self, data: data)
+        let table = FtableView(target: self, data: data)
         return table
     }()
     
