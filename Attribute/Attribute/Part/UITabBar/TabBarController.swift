@@ -170,6 +170,7 @@ final class TabBarController: FtableViewController {
             child2.navigationItem.title = "子视图2"
             child2.title = "子视图222"
             child2.tabBarItem.title = "子视图22"
+            child2.tabBarItem.image = UIImage(named: "apple.jpg")
             
             let button = UIButton()
             button.backgroundColor = UIColor.brown
@@ -212,7 +213,7 @@ final class TabBarController: FtableViewController {
         tabBarController.tabBar.barStyle = UIBarStyle.black
         tabBarController.tabBar.isTranslucent = true //毛玻璃特效
         //设置backgroundColor需要isTranslucent=true
-        tabBarController.tabBar.backgroundColor = UIColor.red
+        tabBarController.tabBar.backgroundColor = UIColor.white
         //tabBarController.tabBar.backgroundImage = nil
         //tabBarController.tabBar.shadowImage = nil
         tabBarController.addChild(closureChild1())
