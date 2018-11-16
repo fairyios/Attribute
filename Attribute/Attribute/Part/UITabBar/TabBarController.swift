@@ -43,10 +43,87 @@ final class TabBarDataSource : IFtableViewDataSouce {
             }
         ],
         [
+            "设置背景颜色": {(target, indexPath, rowKey) -> Void in
+                
+                let closureChild1 = {(view: UIViewController) -> UIViewController  in
+                    let tabCon = view as! TabBarController
+                    
+                    let child1 = UIViewController()
+                    child1.view.backgroundColor = UIColor.purple
+                    child1.navigationItem.title = "子视图1"
+                    child1.title = "子视图11"
+                    child1.tabBarItem.title = "子视图111"
+                    
+                    let label1 = UILabel()
+                    label1.numberOfLines = 0
+                    label1.backgroundColor = nil
+                    label1.textAlignment = .left
+                    label1.text = """
+                    设置背景颜色:\r\n
+                    //设置当前Tab的字体颜色
+                    tabBarController.tabBar.tintColor = UIColor.magenta\r\n
+                    tabBarController.tabBar.barStyle = UIBarStyle.black\r\n
+                    //毛玻璃特效
+                    tabBarController.tabBar.isTranslucent = true\r\n
+                    //设置backgroundColor需要isTranslucent=true\r\n
+                    tabBarController.tabBar.backgroundColor = UIColor.red\r\n
+                    """
+                    child1.view.addSubview(label1)
+                    label1.snp.makeConstraints({ (make) in
+                        make.top.equalTo(30)
+                        make.left.equalTo(child1.view).offset(10)
+                        make.right.equalTo(child1.view).offset(10)
+                    })
+                    
+                    
+                    let button = UIButton()
+                    button.backgroundColor = UIColor.brown
+                    button.setTitle("退场", for: UIControl.State.normal)
+                    button.addTarget(tabCon, action: #selector(tabCon.useUITabBarController1Dismiss), for: .touchUpInside)
+                    child1.view.addSubview(button)
+                    button.snp.makeConstraints({ (make) in
+                        make.width.equalTo(300)
+                        make.height.equalTo(100)
+                        make.centerX.equalTo(child1.view)
+                        
+                        let bottom = child1.tabBarController?.tabBar.frame.height ?? -70.0
+                        debugPrint("child1.tabBarController?.tabBar.frame.height = \(bottom)")
+                        make.bottom.equalTo(child1.view).offset(bottom)
+                    })
+                    
+                    return child1
+                }
+                
+                let tabBarController = UITabBarController()
+                //设置当前Tab的字体颜色
+                tabBarController.tabBar.tintColor = UIColor.magenta
+                tabBarController.tabBar.barStyle = UIBarStyle.black
+                tabBarController.tabBar.isTranslucent = true //毛玻璃特效
+                //设置backgroundColor需要isTranslucent=true
+                tabBarController.tabBar.backgroundColor = UIColor.red
+                //tabBarController.tabBar.backgroundImage = nil
+                //tabBarController.tabBar.shadowImage = nil
+                tabBarController.addChild(closureChild1(target))
+                
+                target.present(tabBarController, animated: true, completion: nil)
+            }
+        ],
+        [
             "": {(target, indexPath, rowKey) -> Void in
                 
             }
         ],
+        [
+            "": {(target, indexPath, rowKey) -> Void in
+                
+            }
+        ],
+        [
+            "": {(target, indexPath, rowKey) -> Void in
+                
+            }
+        ],
+        
     ]
     
     
@@ -148,7 +225,7 @@ final class TabBarController: FtableViewController {
     
     
     /// 使用UITabBarController 退场
-    @objc private func useUITabBarController1Dismiss () {
+    @objc public func useUITabBarController1Dismiss () {
         self.dismiss(animated: true, completion: nil)
     }
 }
