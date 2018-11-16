@@ -13,11 +13,7 @@ import SnapKit
 
 fileprivate final class ChildViewController : UIViewController {
     override func viewDidLoad() {
-        super.viewDidLoad()
-        self.view.backgroundColor = UIColor.purple
-        self.navigationItem.title = "子视图22"
-        //self.tabBarItem.title = "子视图222"
-        self.title = "子视图2222"
+        super.viewDidLoad() 
     }
 }
 
@@ -39,7 +35,11 @@ final class TabBarDataSource : IFtableViewDataSouce {
                 child1.title = "子视图111"
                 
                 let child2 = ChildViewController()
-                child2.title = "子视图2"
+                child2.view.backgroundColor = UIColor.purple
+                child2.navigationItem.title = "子视图2"
+                child2.title = "子视图222"
+                child2.tabBarItem.title = "子视图22"
+                
                 
                 //包含导航栏的子视图
                 let child3Root = UIViewController()
@@ -60,6 +60,12 @@ final class TabBarDataSource : IFtableViewDataSouce {
                 let tabBarController = UITabBarController()
                 //设置当前Tab的字体颜色
                 tabBarController.tabBar.tintColor = UIColor.magenta
+                tabBarController.tabBar.barStyle = UIBarStyle.black
+                tabBarController.tabBar.isTranslucent = true
+                //设置backgroundColor需要isTranslucent=true
+                tabBarController.tabBar.backgroundColor = UIColor.purple
+                //tabBarController.tabBar.backgroundImage = nil
+                //tabBarController.tabBar.shadowImage = nil
                 tabBarController.addChild(child1)
                 tabBarController.addChild(child2)
                 tabBarController.addChild(child3)
