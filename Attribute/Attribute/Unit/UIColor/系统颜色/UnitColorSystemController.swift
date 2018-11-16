@@ -148,7 +148,7 @@ internal final class UnitColorSystemController: UIViewController {
         label.snp.makeConstraints { (make) in
             make.left.equalTo(self.scrollView).offset(20)
             //make.right.equalTo(self.scrollView).offset(-20) //如果Label的width太小不足于撑开到ScrollView本身的View的width，就不能滚动
-            //
+            make.height.greaterThanOrEqualTo(40)
             make.centerX.equalTo(self.scrollView)
             make.top.equalTo(self.scrollView).offset(top)
         }

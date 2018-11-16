@@ -63,7 +63,7 @@ internal final class PartDataSource: IFtableViewDataSouce {
             }
         ],
         [
-            "": {(target, indexPath, rowKey) -> Void in
+            "UIScrollView": {(target, indexPath, rowKey) -> Void in
                 
             }
         ],
