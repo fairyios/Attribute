@@ -30,7 +30,7 @@ final class TabBarDataSource : IFtableViewDataSouce {
             }
         ],
         [
-            "show:使用UITabBarController(不含导航栏)": {(target, indexPath, rowKey) -> Void in
+            "使用UITabBarController(不含导航栏)": {(target, indexPath, rowKey) -> Void in
                 
                 let child1 = UIViewController()
                 child1.view.backgroundColor = UIColor.brown
@@ -44,22 +44,22 @@ final class TabBarDataSource : IFtableViewDataSouce {
                 //包含导航栏的子视图
                 let child3Root = UIViewController()
                 child3Root.view.backgroundColor = UIColor.orange
+                child3Root.navigationItem.title = "子视图3"
                 
-                
-                let child3 = UINavigationController()
-                child3.tabBarItem.title = "子视图3"
-                child3.title = "子视图33"
-                child3.navigationBar.barTintColor = UIColor.magenta
-                child3.addChild(child3Root)
-                
-                child3Root.navigationController?.navigationBar.barStyle = .black
-                child3Root.navigationItem.title = "设置导航栏的背景色"
-                child3Root.navigationController?.navigationBar.titleTextAttributes = [
-                    NSAttributedString.Key.foregroundColor : UIColor.red.cgColor
+                let child3 = UINavigationController(rootViewController: child3Root)
+                child3.tabBarItem.title = "子视图33"
+                child3.title = "子视图333"
+                child3.navigationBar.barTintColor = UIColor.purple
+                child3.navigationBar.barStyle = .black
+                child3.navigationBar.isTranslucent = true
+                child3.navigationBar.titleTextAttributes = [
+                    NSAttributedString.Key.foregroundColor : UIColor.magenta.cgColor
                 ]
                 
+                
                 let tabBarController = UITabBarController()
-                tabBarController.tabBar.tintColor = UIColor.red
+                //设置当前Tab的字体颜色
+                tabBarController.tabBar.tintColor = UIColor.magenta
                 tabBarController.addChild(child1)
                 tabBarController.addChild(child2)
                 tabBarController.addChild(child3)
@@ -68,12 +68,7 @@ final class TabBarDataSource : IFtableViewDataSouce {
             }
         ],
         [
-            "show:使用UITabBarController(包含导航栏)": {(target, indexPath, rowKey) -> Void in
-                
-            }
-        ],
-        [
-            "present:使用UITabBarController(不含导航栏)": {(target, indexPath, rowKey) -> Void in
+            "使用UITabBarController(包含导航栏)": {(target, indexPath, rowKey) -> Void in
                 
             }
         ],
