@@ -26,14 +26,14 @@ final class TabBarDataSource : IFtableViewDataSouce {
         [
             "自定义UITabBarController": {(target, indexPath, rowKey) -> Void in
                 let view = DefineTabBarController()
-                target.show(view, sender: nil)
+                target.present(view, animated: true, completion: nil)
             }
         ],
         [
             "show:使用UITabBarController(不含导航栏)": {(target, indexPath, rowKey) -> Void in
                 
                 let child1 = UIViewController()
-                child1.view.backgroundColor = UIColor.gray
+                child1.view.backgroundColor = UIColor.brown
                 child1.navigationItem.title = "子视图1"
                 child1.tabBarItem.title = "子视图11"
                 child1.title = "子视图111"
@@ -41,13 +41,22 @@ final class TabBarDataSource : IFtableViewDataSouce {
                 let child2 = ChildViewController()
                 child2.title = "子视图2"
                 
+                //包含导航栏的子视图
                 let child3Root = UIViewController()
                 child3Root.view.backgroundColor = UIColor.orange
+                
+                
                 let child3 = UINavigationController()
                 child3.tabBarItem.title = "子视图3"
                 child3.title = "子视图33"
+                child3.navigationBar.barTintColor = UIColor.magenta
                 child3.addChild(child3Root)
                 
+                child3Root.navigationController?.navigationBar.barStyle = .black
+                child3Root.navigationItem.title = "设置导航栏的背景色"
+                child3Root.navigationController?.navigationBar.titleTextAttributes = [
+                    NSAttributedString.Key.foregroundColor : UIColor.red.cgColor
+                ]
                 
                 let tabBarController = UITabBarController()
                 tabBarController.tabBar.tintColor = UIColor.red
@@ -55,7 +64,7 @@ final class TabBarDataSource : IFtableViewDataSouce {
                 tabBarController.addChild(child2)
                 tabBarController.addChild(child3)
                 
-                target.show(tabBarController, sender: nil)
+                target.present(tabBarController, animated: true, completion: nil)
             }
         ],
         [

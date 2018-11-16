@@ -55,7 +55,8 @@ internal final class UnitDataSource: IFtableViewDataSouce {
         ],
         [
             "UIColor": {(target, indexPath, rowKey) -> Void in
-                
+                let view = UnitColorController(title: rowKey, source: UnitColorDataSource())
+                target.show(view, sender: nil)
             }
         ],
         [

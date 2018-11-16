@@ -10,4 +10,10 @@ import UIKit
 
 final class DefineTabBarController : UITabBarController {
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.backgroundColor = UIColor.purple
+        self.tabBar.backgroundColor = UIColor.brown
+        
+    }
 }

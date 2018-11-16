@@ -13,12 +13,12 @@ internal final class SwiftKeywordDataSouce: IFtableViewDataSouce {
     
     var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = [
         [
-            "": {(target, indexPath, rowKey) -> Void in
-                
+            "self": {(target, indexPath, rowKey) -> Void in
+                //https://www.jianshu.com/p/a6bcdebd83f5
             }
         ],
         [
-            "": {(target, indexPath, rowKey) -> Void in
+            "Self": {(target, indexPath, rowKey) -> Void in
                 
             }
         ],
