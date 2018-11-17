@@ -27,8 +27,27 @@ final class TabBarDataSource : IFtableViewDataSouce {
         ],
         [
             "使用UITabBarController": {(target, indexPath, rowKey) -> Void in
-                let tar = target as! TabBarController
-                tar.useUITabBarController1(tar)
+                let tabBarCon = target as! TabBarController
+                
+                let childView1 = tabBarCon.getChildView1(text: "这个View也是TabBar的一部分")
+                let childView2 = tabBarCon.getChildView2()
+                let childView3 = tabBarCon.getChildView3()
+                
+                let tabBarController = UITabBarController()
+                //设置当前Tab的字体颜色
+                tabBarController.tabBar.tintColor = UIColor.magenta
+                tabBarController.tabBar.barStyle = UIBarStyle.black
+                tabBarController.tabBar.isTranslucent = true //毛玻璃特效
+                //设置backgroundColor需要isTranslucent=true
+                tabBarController.tabBar.backgroundColor = UIColor.white
+                //tabBarController.tabBar.backgroundImage = nil
+                //tabBarController.tabBar.shadowImage = nil
+                tabBarController.addChild(childView1)
+                tabBarController.addChild(childView2)
+                tabBarController.addChild(childView3)
+                
+                
+                tabBarCon.present(tabBarController, animated: true, completion: nil)
             }
         ],
         [
@@ -44,55 +63,19 @@ final class TabBarDataSource : IFtableViewDataSouce {
         ],
         [
             "设置背景颜色": {(target, indexPath, rowKey) -> Void in
+                let tabCon = target as! TabBarController
                 
-                let closureChild1 = {(view: UIViewController) -> UIViewController  in
-                    let tabCon = view as! TabBarController
-                    
-                    let child1 = UIViewController()
-                    child1.view.backgroundColor = UIColor.purple
-                    child1.navigationItem.title = "子视图1"
-                    child1.title = "子视图11"
-                    child1.tabBarItem.title = "子视图111"
-                    
-                    let label1 = UILabel()
-                    label1.numberOfLines = 0
-                    label1.backgroundColor = nil
-                    label1.textAlignment = .left
-                    label1.text = """
-                    设置背景颜色:\r\n
-                    //设置当前Tab的字体颜色
-                    tabBarController.tabBar.tintColor = UIColor.magenta\r\n
-                    tabBarController.tabBar.barStyle = UIBarStyle.black\r\n
-                    //毛玻璃特效
-                    tabBarController.tabBar.isTranslucent = true\r\n
-                    //设置backgroundColor需要isTranslucent=true\r\n
-                    tabBarController.tabBar.backgroundColor = UIColor.red\r\n
-                    """
-                    child1.view.addSubview(label1)
-                    label1.snp.makeConstraints({ (make) in
-                        make.top.equalTo(30)
-                        make.left.equalTo(child1.view).offset(10)
-                        make.right.equalTo(child1.view).offset(10)
-                    })
-                    
-                    
-                    let button = UIButton()
-                    button.backgroundColor = UIColor.brown
-                    button.setTitle("退场", for: UIControl.State.normal)
-                    button.addTarget(tabCon, action: #selector(tabCon.useUITabBarController1Dismiss), for: .touchUpInside)
-                    child1.view.addSubview(button)
-                    button.snp.makeConstraints({ (make) in
-                        make.width.equalTo(300)
-                        make.height.equalTo(100)
-                        make.centerX.equalTo(child1.view)
-                        
-                        let bottom = child1.tabBarController?.tabBar.frame.height ?? -70.0
-                        debugPrint("child1.tabBarController?.tabBar.frame.height = \(bottom)")
-                        make.bottom.equalTo(child1.view).offset(bottom)
-                    })
-                    
-                    return child1
-                }
+                let childText1 = """
+                设置背景颜色:\r\n
+                //设置当前Tab的字体颜色
+                tabBarController.tabBar.tintColor = UIColor.magenta\r\n
+                tabBarController.tabBar.barStyle = UIBarStyle.black\r\n
+                //毛玻璃特效
+                tabBarController.tabBar.isTranslucent = true\r\n
+                //设置backgroundColor需要isTranslucent=true\r\n
+                tabBarController.tabBar.backgroundColor = UIColor.red\r\n
+                """
+                let childView1 = tabCon.getChildView1(text: childText1)
                 
                 let tabBarController = UITabBarController()
                 //设置当前Tab的字体颜色
@@ -103,9 +86,9 @@ final class TabBarDataSource : IFtableViewDataSouce {
                 tabBarController.tabBar.backgroundColor = UIColor.red
                 //tabBarController.tabBar.backgroundImage = nil
                 //tabBarController.tabBar.shadowImage = nil
-                tabBarController.addChild(closureChild1(target))
+                tabBarController.addChild(childView1)
                 
-                target.present(tabBarController, animated: true, completion: nil)
+                tabCon.present(tabBarController, animated: true, completion: nil)
             }
         ],
         [
@@ -138,90 +121,28 @@ final class TabBarController: FtableViewController {
     }
     
     
-    /// 使用UITabBarController
+    /// 添加退场按钮
     ///
-    /// - Parameter target: <#target description#>
-    public func useUITabBarController1(_ target: TabBarController) {
+    /// - Parameter container: UIViewController
+    /// - Returns: UIButton
+    public func addDismissButton(container: UIViewController) {
+        let button = UIButton()
+        button.backgroundColor = UIColor.brown
+        button.layer.borderColor = UIColor.darkGray.cgColor
+        button.layer.borderWidth = 1.0
+        button.setTitle("退场", for: UIControl.State.normal)
+        button.addTarget(self, action: #selector(self.useUITabBarController1Dismiss), for: .touchUpInside)
         
-        
-        let closureChild1 = {() -> UIViewController in
-            let label1 = UILabel()
-            label1.backgroundColor = nil
-            label1.textAlignment = .center
-            label1.text = "这个view也是Tab Bar 的一部分"
+        container.view.addSubview(button)
+        button.snp.makeConstraints({ (make) in
+            make.width.equalTo(300)
+            make.height.equalTo(100)
+            make.centerX.equalTo(container.view)
             
-            let child1 = UIViewController()
-            child1.view.backgroundColor = UIColor.brown
-            child1.navigationItem.title = "子视图1"
-            child1.tabBarItem.title = "子视图11"
-            child1.title = "子视图111"
-            child1.view.addSubview(label1)
-            label1.snp.makeConstraints({ (make) in
-                make.edges.equalTo(child1.view)
-            })
-            
-            return child1
-        }
-        
-        
-        let closureChild2 = {() -> UIViewController  in
-            let child2 = ChildViewController()
-            child2.view.backgroundColor = UIColor.purple
-            child2.navigationItem.title = "子视图2"
-            child2.title = "子视图222"
-            child2.tabBarItem.title = "子视图22"
-            child2.tabBarItem.image = UIImage(named: "apple.jpg")
-            
-            let button = UIButton()
-            button.backgroundColor = UIColor.brown
-            button.setTitle("退场", for: UIControl.State.normal)
-            button.addTarget(target, action: #selector(target.useUITabBarController1Dismiss), for: .touchUpInside)
-            child2.view.addSubview(button)
-            button.snp.makeConstraints({ (make) in
-                make.width.equalTo(300)
-                make.height.equalTo(100)
-                make.centerX.equalTo(child2.view)
-                make.centerY.equalTo(child2.view)
-            })
-            
-            return child2
-        }
-        
-        
-        let closureChild3 = {() -> UIViewController in
-            //包含导航栏的子视图
-            let child3Root = UIViewController()
-            child3Root.view.backgroundColor = UIColor.orange
-            child3Root.navigationItem.title = "子视图3"
-            
-            let child3 = UINavigationController(rootViewController: child3Root)
-            child3.tabBarItem.title = "子视图33"
-            child3.title = "子视图333"
-            child3.navigationBar.barTintColor = UIColor.purple
-            child3.navigationBar.barStyle = .black
-            child3.navigationBar.isTranslucent = true
-            child3.navigationBar.titleTextAttributes = [
-                NSAttributedString.Key.foregroundColor : UIColor.magenta.cgColor
-            ]
-            
-            return child3
-        }
-        
-        let tabBarController = UITabBarController()
-        //设置当前Tab的字体颜色
-        tabBarController.tabBar.tintColor = UIColor.magenta
-        tabBarController.tabBar.barStyle = UIBarStyle.black
-        tabBarController.tabBar.isTranslucent = true //毛玻璃特效
-        //设置backgroundColor需要isTranslucent=true
-        tabBarController.tabBar.backgroundColor = UIColor.white
-        //tabBarController.tabBar.backgroundImage = nil
-        //tabBarController.tabBar.shadowImage = nil
-        tabBarController.addChild(closureChild1())
-        tabBarController.addChild(closureChild2())
-        tabBarController.addChild(closureChild3())
-        
-        
-        target.present(tabBarController, animated: true, completion: nil)
+            let bottom = container.tabBarController?.tabBar.frame.height ?? -70.0
+            debugPrint("child1.tabBarController?.tabBar.frame.height = \(bottom)")
+            make.bottom.equalTo(container.view).offset(bottom)
+        })
     }
     
     
@@ -229,4 +150,85 @@ final class TabBarController: FtableViewController {
     @objc public func useUITabBarController1Dismiss () {
         self.dismiss(animated: true, completion: nil)
     }
+    
+    
+    /// 子视图1
+    ///
+    /// - Returns: UIViewController
+    public func getChildView1(text: String? = nil) -> UIViewController {
+        
+        let child1 = UIViewController()
+        child1.view.backgroundColor = UIColor.brown
+        child1.navigationItem.title = "子视图1"
+        child1.tabBarItem.title = "子视图11"
+        child1.title = "子视图111"
+        
+        if text != nil {
+            let label1 = UILabel()
+            label1.numberOfLines = 0
+            label1.backgroundColor = nil
+            label1.textAlignment = .left
+            label1.text = text
+            
+            child1.view.addSubview(label1)
+            label1.snp.makeConstraints({ (make) in
+                make.top.equalTo(30)
+                make.left.equalTo(child1.view).offset(10)
+                make.right.equalTo(child1.view).offset(10)
+            })
+        }
+        
+        self.addDismissButton(container: child1)
+        
+        return child1
+    }
+    
+    
+    /// 子视图2
+    ///
+    /// - Returns: UIViewController
+    public func getChildView2() -> UIViewController {
+        let child2 = ChildViewController()
+        child2.view.backgroundColor = UIColor.purple
+        child2.navigationItem.title = "子视图2"
+        child2.title = "子视图222"
+        child2.tabBarItem.title = "子视图22"
+        //child2.tabBarItem.image = UIImage(named: "zhinanzhen")
+        
+        self.addDismissButton(container: child2)
+        
+        return child2
+    }
+    
+    
+    /// 子视图3
+    ///
+    /// - Returns: UIViewController
+    public func getChildView3() -> UIViewController {
+    
+        //包含导航栏的子视图
+        let child3Root = UIViewController()
+        child3Root.view.backgroundColor = UIColor.orange
+        child3Root.navigationItem.title = "子视图3"
+        
+        let child3 = UINavigationController(rootViewController: child3Root)
+        child3.tabBarItem.title = "子视图33"
+        child3.title = "子视图333"
+        child3.navigationBar.barTintColor = UIColor.purple
+        child3.navigationBar.barStyle = .black
+        child3.navigationBar.isTranslucent = true
+        child3.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor : UIColor.magenta.cgColor
+        ]
+        
+        self.addDismissButton(container: child3)
+        
+        return child3
+    }
+    
+    
+    
+    
+    
+    
 }
