@@ -35,7 +35,7 @@ final class TabBarDataSource : IFtableViewDataSouce {
                 
                 let tabBarController = UITabBarController()
                 //设置当前Tab的字体颜色
-                tabBarController.tabBar.tintColor = UIColor.magenta
+                tabBarController.tabBar.tintColor = UIColor.magenta//图片文字一起变色
                 tabBarController.tabBar.barStyle = UIBarStyle.black
                 tabBarController.tabBar.isTranslucent = true //毛玻璃特效
                 //设置backgroundColor需要isTranslucent=true
@@ -45,7 +45,7 @@ final class TabBarDataSource : IFtableViewDataSouce {
                 tabBarController.addChild(childView1)
                 tabBarController.addChild(childView2)
                 tabBarController.addChild(childView3)
-                
+                tabBarController.selectedIndex = 1 //选中第二张视图
                 
                 tabBarCon.present(tabBarController, animated: true, completion: nil)
             }
@@ -79,7 +79,7 @@ final class TabBarDataSource : IFtableViewDataSouce {
                 
                 let tabBarController = UITabBarController()
                 //设置当前Tab的字体颜色
-                tabBarController.tabBar.tintColor = UIColor.magenta
+                tabBarController.tabBar.tintColor = UIColor.magenta//图片文字一起变色
                 tabBarController.tabBar.barStyle = UIBarStyle.black
                 tabBarController.tabBar.isTranslucent = true //毛玻璃特效
                 //设置backgroundColor需要isTranslucent=true
@@ -188,12 +188,15 @@ final class TabBarController: FtableViewController {
     ///
     /// - Returns: UIViewController
     public func getChildView2() -> UIViewController {
+        let image = #imageLiteral(resourceName: "zhinanzhen")
         let child2 = ChildViewController()
         child2.view.backgroundColor = UIColor.purple
         child2.navigationItem.title = "子视图2"
         child2.title = "子视图222"
         child2.tabBarItem.title = "子视图22"
-        //child2.tabBarItem.image = UIImage(named: "zhinanzhen")
+        child2.tabBarItem.image = image
+        child2.tabBarItem.selectedImage = image
+        //child2.tabBarItem.imageInsets = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
         
         self.addDismissButton(container: child2)
         
