@@ -45,7 +45,7 @@ final class TabBarDataSource : IFtableViewDataSouce {
                 tabBarController.addChild(childView1)
                 tabBarController.addChild(childView2)
                 tabBarController.addChild(childView3)
-                tabBarController.selectedIndex = 1 //选中第二张视图
+                tabBarController.selectedIndex = 2 //选中第三张视图
                 
                 tabBarCon.present(tabBarController, animated: true, completion: nil)
             }
@@ -188,14 +188,16 @@ final class TabBarController: FtableViewController {
     ///
     /// - Returns: UIViewController
     public func getChildView2() -> UIViewController {
-        let image = #imageLiteral(resourceName: "zhinanzhen")
+        let image = UIImage(named: "zhinanzhen")!
+        let selectedImage = UIImage(named: "luyingche")!
+        
         let child2 = ChildViewController()
         child2.view.backgroundColor = UIColor.purple
         child2.navigationItem.title = "子视图2"
         child2.title = "子视图222"
         child2.tabBarItem.title = "子视图22"
-        child2.tabBarItem.image = image
-        child2.tabBarItem.selectedImage = image
+        child2.tabBarItem.image = image.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        child2.tabBarItem.selectedImage = selectedImage.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
         //child2.tabBarItem.imageInsets = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
         
         self.addDismissButton(container: child2)
