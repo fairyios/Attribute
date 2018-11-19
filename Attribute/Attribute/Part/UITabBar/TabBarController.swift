@@ -95,15 +95,15 @@ final class TabBarDataSource : IFtableViewDataSouce {
             "设置背景图片": {(target, indexPath, rowKey) -> Void in
                 let tabCon = target as! TabBarController
                 
-                var image = UIImage(named: "huaqiangu3")
-                image = image?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+                var image = UIImage(named: "feiji")
+                image = image?.withRenderingMode(UIImage.RenderingMode.automatic)
                 
                 let tabBarController = UITabBarController()
                 //设置当前Tab的字体颜色
                 tabBarController.tabBar.tintColor = UIColor.magenta//图片文字一起变色
                 tabBarController.tabBar.barStyle = UIBarStyle.black
-                tabBarController.tabBar.isTranslucent = false //毛玻璃特效
-                tabBarController.tabBar.backgroundColor = nil
+                tabBarController.tabBar.isTranslucent = true //毛玻璃特效
+                tabBarController.tabBar.backgroundColor = UIColor.magenta
                 tabBarController.tabBar.backgroundImage = image
                 
                 tabBarController.addChild(tabCon.getChildView1())
@@ -114,8 +114,34 @@ final class TabBarDataSource : IFtableViewDataSouce {
             }
         ],
         [
-            "": {(target, indexPath, rowKey) -> Void in
+            "背景纯色图片": {(target, indexPath, rowKey) -> Void in
+                let tabCon = target as! TabBarController
                 
+                let imageClosure = {(color: UIColor)-> UIImage in
+                    let rect = CGRect(x: 0, y: 0, width: 0.5, height: 0.5)
+                    
+                    UIGraphicsBeginImageContextWithOptions(rect.size, color.cgColor.alpha == 1, 0)
+                    let context = UIGraphicsGetCurrentContext()!
+                    context.setFillColor(color.cgColor)
+                    context.fill(rect)
+                    let image = UIGraphicsGetImageFromCurrentImageContext()
+                    UIGraphicsEndImageContext()
+                    return image!
+                }
+                
+                let tabBarController = UITabBarController()
+                //设置当前Tab的字体颜色
+                tabBarController.tabBar.tintColor = UIColor.magenta//图片文字一起变色
+                tabBarController.tabBar.barStyle = UIBarStyle.black
+                tabBarController.tabBar.isTranslucent = true //毛玻璃特效
+                tabBarController.tabBar.backgroundColor = UIColor.magenta
+                tabBarController.tabBar.backgroundImage = imageClosure(UIColor.purple)
+                
+                tabBarController.addChild(tabCon.getChildView1())
+                tabBarController.addChild(tabCon.getChildView2())
+                tabBarController.addChild(tabCon.getChildView3())
+                
+                tabCon.present(tabBarController, animated: true, completion: nil)
             }
         ],
         [
