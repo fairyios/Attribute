@@ -92,8 +92,25 @@ final class TabBarDataSource : IFtableViewDataSouce {
             }
         ],
         [
-            "": {(target, indexPath, rowKey) -> Void in
+            "设置背景图片": {(target, indexPath, rowKey) -> Void in
+                let tabCon = target as! TabBarController
                 
+                var image = UIImage(named: "huaqiangu3")
+                image = image?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+                
+                let tabBarController = UITabBarController()
+                //设置当前Tab的字体颜色
+                tabBarController.tabBar.tintColor = UIColor.magenta//图片文字一起变色
+                tabBarController.tabBar.barStyle = UIBarStyle.black
+                tabBarController.tabBar.isTranslucent = false //毛玻璃特效
+                tabBarController.tabBar.backgroundColor = nil
+                tabBarController.tabBar.backgroundImage = image
+                
+                tabBarController.addChild(tabCon.getChildView1())
+                tabBarController.addChild(tabCon.getChildView2())
+                tabBarController.addChild(tabCon.getChildView3())
+                
+                tabCon.present(tabBarController, animated: true, completion: nil)
             }
         ],
         [
@@ -157,11 +174,16 @@ final class TabBarController: FtableViewController {
     /// - Returns: UIViewController
     public func getChildView1(text: String? = nil) -> UIViewController {
         
+        let image = UIImage(named: "shatan")!
+        let selectedImage = UIImage(named: "fanchuan")!
+        
         let child1 = UIViewController()
         child1.view.backgroundColor = UIColor.brown
         child1.navigationItem.title = "子视图1"
         child1.tabBarItem.title = "子视图11"
         child1.title = "子视图111"
+        child1.tabBarItem.image = image.withRenderingMode(.alwaysOriginal)
+        child1.tabBarItem.selectedImage = selectedImage.withRenderingMode(.alwaysOriginal)
         
         if text != nil {
             let label1 = UILabel()
@@ -196,8 +218,8 @@ final class TabBarController: FtableViewController {
         child2.navigationItem.title = "子视图2"
         child2.title = "子视图222"
         child2.tabBarItem.title = "子视图22"
-        child2.tabBarItem.image = image.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
-        child2.tabBarItem.selectedImage = selectedImage.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        child2.tabBarItem.image = image.withRenderingMode(.alwaysOriginal)
+        child2.tabBarItem.selectedImage = selectedImage.withRenderingMode(.alwaysOriginal)
         //child2.tabBarItem.imageInsets = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
         
         self.addDismissButton(container: child2)
@@ -211,6 +233,9 @@ final class TabBarController: FtableViewController {
     /// - Returns: UIViewController
     public func getChildView3() -> UIViewController {
     
+        let image = UIImage(named: "ditu")!
+        let selectedImage = UIImage(named: "feiji")!
+        
         //包含导航栏的子视图
         let child3Root = UIViewController()
         child3Root.view.backgroundColor = UIColor.orange
@@ -218,6 +243,8 @@ final class TabBarController: FtableViewController {
         
         let child3 = UINavigationController(rootViewController: child3Root)
         child3.tabBarItem.title = "子视图33"
+        child3.tabBarItem.image = image.withRenderingMode(.alwaysOriginal)
+        child3.tabBarItem.selectedImage = selectedImage.withRenderingMode(.alwaysOriginal)
         child3.title = "子视图333"
         child3.navigationBar.barTintColor = UIColor.purple
         child3.navigationBar.barStyle = .black
