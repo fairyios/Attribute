@@ -31,7 +31,7 @@ final class TabBarDataSource : IFtableViewDataSouce {
                 
                 let childView1 = tabBarCon.getChildView1(text: "这个View也是TabBar的一部分")
                 let childView2 = tabBarCon.getChildView2()
-                let childView3 = tabBarCon.getChildView3()
+                let childView3 = tabBarCon.getChildView3(tabBarCon)
                 
                 let tabBarController = UITabBarController()
                 //设置当前Tab的字体颜色
@@ -342,7 +342,7 @@ final class TabBarController: FtableViewController {
     /// 子视图3
     ///
     /// - Returns: UIViewController
-    public func getChildView3() -> UIViewController {
+    public func getChildView3(_ tabBarVC: TabBarController? = nil) -> UIViewController {
     
         let image = UIImage(named: "ditu")!
         let selectedImage = UIImage(named: "feiji")!
@@ -356,20 +356,22 @@ final class TabBarController: FtableViewController {
             }
             
             let button = UIButton()
+            button.backgroundColor = UIColor.red
             button.setTitle("退场", for: UIControl.State.normal)
-            //button.addTarget(self, action: nil, for: UIControl.Event.touchUpInside)
+            button.addTarget(tabBarVC, action: #selector(tabBarVC?.useUITabBarController1Dismiss), for: UIControl.Event.touchUpInside)
             customView.addSubview(button)
             button.snp.makeConstraints { (make) -> Void in
                 make.edges.equalTo(customView)
             }
             
-            self.navigationItem.hidesBackButton = true
+            
             let leftBarButtonItem = UIBarButtonItem()
-            leftBarButtonItem.customView = customView
             //如果此属性值为正，则组合图像和标题的宽度是固定的。 如果值为0.0或负数，则项目将组合图像和标题的宽度设置为适合。 如果样式使用无线电模式，则忽略此属性。 默认值为0.0。
-            leftBarButtonItem.width = -15
+            leftBarButtonItem.width = 0
+            leftBarButtonItem.customView = customView
             
             
+            print("leftBarButtonItem.customView = \(leftBarButtonItem.customView!) ")
             
             return leftBarButtonItem
         }
@@ -378,6 +380,8 @@ final class TabBarController: FtableViewController {
         let child3Root = UIViewController()
         child3Root.view.backgroundColor = UIColor.orange
         child3Root.navigationItem.title = "子视图3"
+        child3Root.navigationItem.hidesBackButton = true
+        child3Root.navigationItem.leftBarButtonItem = leftButtonClosure()
         
         let child3 = UINavigationController(rootViewController: child3Root)
         child3.tabBarItem.title = "子视图33"
@@ -390,7 +394,9 @@ final class TabBarController: FtableViewController {
         child3.navigationBar.titleTextAttributes = [
             NSAttributedString.Key.foregroundColor : UIColor.magenta.cgColor
         ]
-        child3.navigationItem.leftBarButtonItem = leftButtonClosure()
+        
+        
+        
         
         self.addDismissButton(container: child3)
         
