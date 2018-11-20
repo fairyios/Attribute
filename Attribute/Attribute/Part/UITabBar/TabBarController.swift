@@ -347,6 +347,33 @@ final class TabBarController: FtableViewController {
         let image = UIImage(named: "ditu")!
         let selectedImage = UIImage(named: "feiji")!
         
+        let leftButtonClosure = {() -> UIBarButtonItem in
+            
+            let customView = UIView()
+            customView.snp.makeConstraints { (make) -> Void in
+                make.width.equalTo(40)
+                make.height.equalTo(30)
+            }
+            
+            let button = UIButton()
+            button.setTitle("退场", for: UIControl.State.normal)
+            //button.addTarget(self, action: nil, for: UIControl.Event.touchUpInside)
+            customView.addSubview(button)
+            button.snp.makeConstraints { (make) -> Void in
+                make.edges.equalTo(customView)
+            }
+            
+            self.navigationItem.hidesBackButton = true
+            let leftBarButtonItem = UIBarButtonItem()
+            leftBarButtonItem.customView = customView
+            //如果此属性值为正，则组合图像和标题的宽度是固定的。 如果值为0.0或负数，则项目将组合图像和标题的宽度设置为适合。 如果样式使用无线电模式，则忽略此属性。 默认值为0.0。
+            leftBarButtonItem.width = -15
+            
+            
+            
+            return leftBarButtonItem
+        }
+        
         //包含导航栏的子视图
         let child3Root = UIViewController()
         child3Root.view.backgroundColor = UIColor.orange
@@ -363,6 +390,7 @@ final class TabBarController: FtableViewController {
         child3.navigationBar.titleTextAttributes = [
             NSAttributedString.Key.foregroundColor : UIColor.magenta.cgColor
         ]
+        child3.navigationItem.leftBarButtonItem = leftButtonClosure()
         
         self.addDismissButton(container: child3)
         
