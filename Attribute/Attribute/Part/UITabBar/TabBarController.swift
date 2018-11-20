@@ -26,7 +26,7 @@ final class TabBarDataSource : IFtableViewDataSouce {
             }
         ],
         [
-            "使用UITabBarController": {(target, indexPath, rowKey) -> Void in
+            "直接使用系统UITabBarController": {(target, indexPath, rowKey) -> Void in
                 let tabBarCon = target as! TabBarController
                 
                 let childView1 = tabBarCon.getChildView1(text: "这个View也是TabBar的一部分")
@@ -82,6 +82,8 @@ final class TabBarDataSource : IFtableViewDataSouce {
                 //tabBarController.tabBar.backgroundImage = nil
                 //tabBarController.tabBar.shadowImage = nil
                 tabBarController.addChild(childView1)
+                tabBarController.addChild(tabCon.getChildView2())
+                tabBarController.addChild(tabCon.getChildView3())
                 
                 tabCon.present(tabBarController, animated: true, completion: nil)
             }
@@ -149,13 +151,83 @@ final class TabBarDataSource : IFtableViewDataSouce {
             }
         ],
         [
-            "": {(target, indexPath, rowKey) -> Void in
+            "透明背景": {(target, indexPath, rowKey) -> Void in
+                let tabCon = target as! TabBarController
                 
+                let vc1Text =
+                """
+                与tabBar.barStyle无关\r\n
+                tabbar透明，必须 self.tabBar.isTranslucent=true时才有效\r\n
+                不能使用 UIImage(named: ""),用 UIImage.init()代替\r\n
+                """
+                let vc1 = tabCon.getChildView1(text: vc1Text)
+                
+                let tabBarController = UITabBarController()
+                tabBarController.tabBar.barStyle = .black
+                tabBarController.tabBar.isTranslucent = true
+                tabBarController.tabBar.backgroundColor = UIColor.clear
+                tabBarController.tabBar.barTintColor = UIColor.clear
+                tabBarController.tabBar.backgroundImage = UIImage.init()//UIImage(named: "")
+                tabBarController.tabBar.shadowImage = UIImage.init()//UIImage(named: "")
+                tabBarController.addChild(vc1)
+                tabBarController.addChild(tabCon.getChildView2())
+                tabBarController.addChild(tabCon.getChildView3())
+                
+                tabCon.present(tabBarController, animated: true, completion: nil)
             }
         ],
         [
-            "": {(target, indexPath, rowKey) -> Void in
+            "没有子视图-.default": {(target, indexPath, rowKey) -> Void in
+                let tabCon = target as! TabBarController
                 
+                let tapGesture = UITapGestureRecognizer()
+                tapGesture.numberOfTapsRequired = 1
+                tapGesture.numberOfTouchesRequired = 1
+                tapGesture.addTarget(tabCon, action: #selector(tabCon.tapGestureDismissAction))
+                
+                let tabBarController = UITabBarController()
+                tabBarController.tabBar.barStyle = .default
+                tabBarController.tabBar.backgroundColor = UIColor.purple
+                tabBarController.view.addGestureRecognizer(tapGesture)
+                
+                
+                tabCon.present(tabBarController, animated: true, completion: nil)
+            }
+        ],
+        [
+            "没有子视图-.black": {(target, indexPath, rowKey) -> Void in
+                let tabCon = target as! TabBarController
+                
+                let tapGesture = UITapGestureRecognizer()
+                tapGesture.numberOfTapsRequired = 1
+                tapGesture.numberOfTouchesRequired = 1
+                tapGesture.addTarget(tabCon, action: #selector(tabCon.tapGestureDismissAction))
+                
+                let tabBarController = UITabBarController()
+                tabBarController.tabBar.barStyle = .black
+                tabBarController.tabBar.backgroundColor = UIColor.purple
+                tabBarController.view.addGestureRecognizer(tapGesture)
+                
+                
+                tabCon.present(tabBarController, animated: true, completion: nil)
+            }
+        ],
+        [
+            "一个子视图-.black": {(target, indexPath, rowKey) -> Void in
+                let tabCon = target as! TabBarController
+                
+                let tapGesture = UITapGestureRecognizer()
+                tapGesture.numberOfTapsRequired = 1
+                tapGesture.numberOfTouchesRequired = 1
+                tapGesture.addTarget(tabCon, action: #selector(tabCon.tapGestureDismissAction))
+                
+                let tabBarController = UITabBarController()
+                tabBarController.tabBar.barStyle = .black
+                tabBarController.tabBar.backgroundColor = UIColor.purple
+                tabBarController.view.addGestureRecognizer(tapGesture)
+                
+                tabBarController.addChild(tabCon.getChildView1())
+                tabCon.present(tabBarController, animated: true, completion: nil)
             }
         ],
     ]
@@ -171,6 +243,11 @@ final class TabBarController: FtableViewController {
         
     }
     
+    
+    /// UITabBarController 轻点退场手势
+    @objc public func tapGestureDismissAction() {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     /// 添加退场按钮
     ///
