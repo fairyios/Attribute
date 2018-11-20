@@ -117,8 +117,8 @@ final class TabBarDataSource : IFtableViewDataSouce {
             "背景纯色图片": {(target, indexPath, rowKey) -> Void in
                 let tabCon = target as! TabBarController
                 
-                let imageClosure = {(color: UIColor)-> UIImage in
-                    let rect = CGRect(x: 0, y: 0, width: 0.5, height: 0.5)
+                let imageClosure = {(width: CGFloat, height: CGFloat,color: UIColor)-> UIImage in
+                    let rect = CGRect(x: 0, y: 0, width: width, height: height)
                     
                     UIGraphicsBeginImageContextWithOptions(rect.size, color.cgColor.alpha == 1, 0)
                     let context = UIGraphicsGetCurrentContext()!
@@ -135,7 +135,16 @@ final class TabBarDataSource : IFtableViewDataSouce {
                 tabBarController.tabBar.barStyle = UIBarStyle.black
                 tabBarController.tabBar.isTranslucent = true //毛玻璃特效
                 tabBarController.tabBar.backgroundColor = UIColor.magenta
-                tabBarController.tabBar.backgroundImage = imageClosure(UIColor.purple)
+                tabBarController.tabBar.backgroundImage = imageClosure(0.5, 0.5, UIColor.purple)
+                
+                var selectionIndicatorImage = UIImage(named: "apple.jpg")?.withRenderingMode(.alwaysOriginal)
+                let selectionIndicatorImageWidth = tabBarController.tabBar.frame.width / 3
+                let selectionIndicatorImageHeigth = tabBarController.tabBar.frame.height
+                debugPrint("selectionIndicatorImageWidth = \(selectionIndicatorImageWidth)")
+                debugPrint("selectionIndicatorImageHeigth = \(selectionIndicatorImageHeigth)")
+                selectionIndicatorImage = imageClosure(selectionIndicatorImageWidth, selectionIndicatorImageHeigth, UIColor.red).withRenderingMode(.alwaysOriginal)
+                    
+                tabBarController.tabBar.selectionIndicatorImage = selectionIndicatorImage
                 
                 tabBarController.addChild(tabCon.getChildView1())
                 tabBarController.addChild(tabCon.getChildView2())
