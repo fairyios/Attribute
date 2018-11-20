@@ -31,7 +31,7 @@ final class TabBarDataSource : IFtableViewDataSouce {
                 
                 let childView1 = tabBarCon.getChildView1(text: "这个View也是TabBar的一部分")
                 let childView2 = tabBarCon.getChildView2()
-                let childView3 = tabBarCon.getChildView3(tabBarCon)
+                let childView3 = tabBarCon.getChildView3()
                 
                 let tabBarController = UITabBarController()
                 //设置当前Tab的字体颜色
@@ -342,11 +342,40 @@ final class TabBarController: FtableViewController {
     /// 子视图3
     ///
     /// - Returns: UIViewController
-    public func getChildView3(_ tabBarVC: TabBarController? = nil) -> UIViewController {
+    public func getChildView3() -> UIViewController {
     
         let image = UIImage(named: "ditu")!
         let selectedImage = UIImage(named: "feiji")!
         
+        let root = self.getChildView3RootView()
+        
+        let child3 = UINavigationController(rootViewController: root)
+        child3.tabBarItem.title = "子视图33"
+        child3.tabBarItem.image = image.withRenderingMode(.alwaysOriginal)
+        child3.tabBarItem.selectedImage = selectedImage.withRenderingMode(.alwaysOriginal)
+        child3.title = "子视图333"
+        child3.navigationBar.barTintColor = UIColor.purple
+        child3.navigationBar.barStyle = .black
+        child3.navigationBar.isTranslucent = true
+        child3.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor : UIColor.magenta.cgColor
+        ]
+        
+        
+        
+        
+        self.addDismissButton(container: child3)
+        
+        return child3
+    }
+    
+    
+    
+    /// 子视图3的root视图
+    ///
+    /// - Parameter tabBarVC: tabBarVC description
+    /// - Returns: UIViewController
+    private func getChildView3RootView() -> UIViewController {
         let leftButtonClosure = {() -> UIBarButtonItem in
             
             let customView = UIView()
@@ -358,7 +387,7 @@ final class TabBarController: FtableViewController {
             let button = UIButton()
             button.backgroundColor = UIColor.red
             button.setTitle("退场", for: UIControl.State.normal)
-            button.addTarget(tabBarVC, action: #selector(tabBarVC?.useUITabBarController1Dismiss), for: UIControl.Event.touchUpInside)
+            button.addTarget(self, action: #selector(self.useUITabBarController1Dismiss), for: UIControl.Event.touchUpInside)
             customView.addSubview(button)
             button.snp.makeConstraints { (make) -> Void in
                 make.edges.equalTo(customView)
@@ -383,29 +412,25 @@ final class TabBarController: FtableViewController {
         child3Root.navigationItem.hidesBackButton = true
         child3Root.navigationItem.leftBarButtonItem = leftButtonClosure()
         
-        let child3 = UINavigationController(rootViewController: child3Root)
-        child3.tabBarItem.title = "子视图33"
-        child3.tabBarItem.image = image.withRenderingMode(.alwaysOriginal)
-        child3.tabBarItem.selectedImage = selectedImage.withRenderingMode(.alwaysOriginal)
-        child3.title = "子视图333"
-        child3.navigationBar.barTintColor = UIColor.purple
-        child3.navigationBar.barStyle = .black
-        child3.navigationBar.isTranslucent = true
-        child3.navigationBar.titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor : UIColor.magenta.cgColor
-        ]
+        let nextButtonClosure = {() -> UIButton in
+            let but = UIButton()
+            but.backgroundColor = UIColor.brown
+            but.setTitle("下一页", for: UIControl.State.normal)
+            but.tintColor = UIColor.white
+            
+            return but
+        }
+        let nextButton = nextButtonClosure()
+        child3Root.view.addSubview(nextButton)
+        nextButton.snp.makeConstraints { (make) in
+            make.width.equalTo(200)
+            make.height.equalTo(100)
+            make.centerX.equalTo(child3Root.view)
+            make.centerY.equalTo(child3Root.view)
+        }
         
-        
-        
-        
-        self.addDismissButton(container: child3)
-        
-        return child3
+        return child3Root
     }
-    
-    
-    
-    
     
     
 }
