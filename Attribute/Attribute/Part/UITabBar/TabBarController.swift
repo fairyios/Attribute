@@ -237,7 +237,7 @@ final class TabBarDataSource : IFtableViewDataSouce {
                 let tabBarController = UITabBarController()
                 tabBarController.tabBar.barStyle = .black
                 tabBarController.tabBar.backgroundColor = UIColor.purple
-                tabBarController.tabBar.tintColor = UIColor.red
+                tabBarController.tabBar.tintColor = UIColor.red //选中时的颜色(包括图片颜色)
                 
                 tabBarController.addChild(tabCon.getChildView1(text: nil, UIImage.RenderingMode.alwaysTemplate))
                 tabBarController.addChild(tabCon.getChildView2(UIImage.RenderingMode.alwaysTemplate))
@@ -286,6 +286,109 @@ final class TabBarDataSource : IFtableViewDataSouce {
                 
                 tabBarController.addChild(childView1)
                 tabBarController.addChild(childView2)
+                tabCon.present(tabBarController, animated: true, completion: nil)
+            }
+        ],
+        [
+            "backgroundColor:UIView的背景颜色": {(target, indexPath, rowKey) -> Void in
+                let tabCon = target as! TabBarController
+                
+                let childView1 = tabCon.getChildView1()
+                childView1.view.backgroundColor = nil
+                
+                let tabBarController = UITabBarController()
+                tabBarController.tabBar.barStyle = .black
+                tabBarController.tabBar.isTranslucent = true
+                // backgroundColor:UIView的背景颜色  iOS 2.0+ tvOS 9.0+   [open class UITabBar : UIView]
+                tabBarController.tabBar.backgroundColor = UIColor.red
+                //barTintColor:  UITabBar的背景颜色   iOS 7.0+ tvOS 9.0+
+                //tabBarController.tabBar.barTintColor = UIColor.red
+                tabBarController.tabBar.tintColor = UIColor.yellow //选中时的颜色(包括图片颜色)
+                tabBarController.tabBar.backgroundImage = UIImage.init()//UIImage(named: "")
+                tabBarController.tabBar.shadowImage = UIImage.init()//UIImage(named: "")
+                tabBarController.addChild(childView1)
+                tabBarController.addChild(tabCon.getChildView2(UIImage.RenderingMode.alwaysTemplate))
+                tabBarController.addChild(tabCon.getChildView3())
+                
+                tabCon.present(tabBarController, animated: true, completion: nil)
+            }
+        ],
+        [
+            "barTintColor:UITabBar的背景颜色": {(target, indexPath, rowKey) -> Void in
+                let tabCon = target as! TabBarController
+                
+                let childView1 = tabCon.getChildView1()
+                childView1.view.backgroundColor = nil
+                
+                let tabBarController = UITabBarController()
+                tabBarController.tabBar.barStyle = .black
+                tabBarController.tabBar.isTranslucent = true
+                // backgroundColor:UIView的背景颜色  iOS 2.0+ tvOS 9.0+  [open class UITabBar : UIView]
+                //tabBarController.tabBar.backgroundColor = UIColor.clear
+                //barTintColor:  UITabBar的背景颜色   iOS 7.0+ tvOS 9.0+
+                tabBarController.tabBar.barTintColor = UIColor.red
+                tabBarController.tabBar.tintColor = UIColor.yellow //选中时的颜色(包括图片颜色)
+                //tabBarController.tabBar.backgroundImage = UIImage.init()//UIImage(named: "")
+                //tabBarController.tabBar.shadowImage = UIImage.init()//UIImage(named: "")
+                tabBarController.addChild(childView1)
+                tabBarController.addChild(tabCon.getChildView2(UIImage.RenderingMode.alwaysTemplate))
+                tabBarController.addChild(tabCon.getChildView3())
+                
+                tabCon.present(tabBarController, animated: true, completion: nil)
+            }
+        ],
+        [
+            "tintColor选中时的颜色": {(target, indexPath, rowKey) -> Void in
+                let tabCon = target as! TabBarController
+                
+                let childView1 = tabCon.getChildView1()
+                childView1.view.backgroundColor = nil
+                
+                let tabBarController = UITabBarController()
+                tabBarController.tabBar.barStyle = .black
+                tabBarController.tabBar.isTranslucent = true
+                //tabBarController.tabBar.backgroundColor = UIColor.red
+                //tabBarController.tabBar.barTintColor = UIColor.red // UITabBar的背景颜色
+                tabBarController.tabBar.tintColor = UIColor.yellow //选中时的颜色(包括图片颜色)
+                //tabBarController.tabBar.backgroundImage = UIImage.init()//UIImage(named: "")
+                //tabBarController.tabBar.shadowImage = UIImage.init()//UIImage(named: "")
+                tabBarController.addChild(childView1)
+                tabBarController.addChild(tabCon.getChildView2(UIImage.RenderingMode.alwaysTemplate))
+                tabBarController.addChild(tabCon.getChildView3())
+                
+                tabCon.present(tabBarController, animated: true, completion: nil)
+            }
+        ],
+        [
+            "复制tabBar的大小": {(target, indexPath, rowKey) -> Void in
+                let tabCon = target as! TabBarController
+                
+                let childView1 = tabCon.getChildView1()
+                
+                
+                let tabBarController = UITabBarController()
+                tabBarController.tabBar.barStyle = .black
+                tabBarController.tabBar.isTranslucent = true
+                tabBarController.tabBar.backgroundColor = UIColor.white
+                tabBarController.tabBar.barTintColor = UIColor.red
+                tabBarController.tabBar.tintColor = UIColor.cyan //选中时的颜色(包括图片颜色)
+                tabBarController.addChild(childView1)
+                
+                debugPrint("tabBarController.tabBar.bounds = \(tabBarController.tabBar.bounds)")
+                debugPrint("tabBarController.tabBar.frame = \(tabBarController.tabBar.frame)")
+                
+                let view1 = UIView()
+                view1.backgroundColor = UIColor.white
+                childView1.view.addSubview(view1)
+                //view1.frame.size.width = tabBarController.tabBar.bounds.width
+                //view1.frame.size.height = tabBarController.tabBar.bounds.height
+                view1.snp.makeConstraints({ (make) in
+                    make.width.equalTo(tabBarController.tabBar.bounds.width)
+                    make.height.equalTo(tabBarController.tabBar.bounds.height)
+                    make.centerX.equalTo(childView1.view)
+                    make.centerY.equalTo(childView1.view)
+                })
+                
                 tabCon.present(tabBarController, animated: true, completion: nil)
             }
         ],
