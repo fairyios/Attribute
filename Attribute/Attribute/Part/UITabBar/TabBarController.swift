@@ -230,6 +230,66 @@ final class TabBarDataSource : IFtableViewDataSouce {
                 tabCon.present(tabBarController, animated: true, completion: nil)
             }
         ],
+        [
+            "图片和文字同时改变": {(target, indexPath, rowKey) -> Void in
+                let tabCon = target as! TabBarController
+                
+                let tabBarController = UITabBarController()
+                tabBarController.tabBar.barStyle = .black
+                tabBarController.tabBar.backgroundColor = UIColor.purple
+                tabBarController.tabBar.tintColor = UIColor.red
+                
+                tabBarController.addChild(tabCon.getChildView1(text: nil, UIImage.RenderingMode.alwaysTemplate))
+                tabBarController.addChild(tabCon.getChildView2(UIImage.RenderingMode.alwaysTemplate))
+                tabCon.present(tabBarController, animated: true, completion: nil)
+            }
+        ],
+        [
+            "只改变文字颜色": {(target, indexPath, rowKey) -> Void in
+                let tabCon = target as! TabBarController
+                
+                let attributesNormal = [NSAttributedString.Key.foregroundColor : UIColor.white]
+                let attributesSelected = [NSAttributedString.Key.foregroundColor : UIColor.red]
+                let childView1 = tabCon.getChildView1(text: nil, UIImage.RenderingMode.alwaysTemplate)
+                let childView2 = tabCon.getChildView2(UIImage.RenderingMode.alwaysTemplate)
+                childView1.tabBarItem.setTitleTextAttributes(attributesNormal, for: UIControl.State.normal)
+                childView2.tabBarItem.setTitleTextAttributes(attributesNormal, for: UIControl.State.normal)
+                childView1.tabBarItem.setTitleTextAttributes(attributesSelected, for: UIControl.State.selected)
+                childView2.tabBarItem.setTitleTextAttributes(attributesSelected, for: UIControl.State.selected)
+                
+                let tabBarController = UITabBarController()
+                tabBarController.tabBar.barStyle = .black
+                tabBarController.tabBar.backgroundColor = UIColor.purple
+                
+                tabBarController.addChild(childView1)
+                tabBarController.addChild(childView2)
+                tabCon.present(tabBarController, animated: true, completion: nil)
+            }
+        ],
+        [
+            "只改变图片颜色": {(target, indexPath, rowKey) -> Void in
+                let tabCon = target as! TabBarController
+                
+                let attributesNormal = [NSAttributedString.Key.foregroundColor : UIColor.white]
+                let attributesSelected = [NSAttributedString.Key.foregroundColor : UIColor.white]
+                let childView1 = tabCon.getChildView1(text: nil, UIImage.RenderingMode.alwaysTemplate)
+                let childView2 = tabCon.getChildView2(UIImage.RenderingMode.alwaysTemplate)
+                childView1.tabBarItem.setTitleTextAttributes(attributesNormal, for: UIControl.State.normal)
+                childView2.tabBarItem.setTitleTextAttributes(attributesNormal, for: UIControl.State.normal)
+                childView1.tabBarItem.setTitleTextAttributes(attributesSelected, for: UIControl.State.selected)
+                childView2.tabBarItem.setTitleTextAttributes(attributesSelected, for: UIControl.State.selected)
+                
+                let tabBarController = UITabBarController()
+                tabBarController.tabBar.barStyle = .black
+                tabBarController.tabBar.backgroundColor = UIColor.purple
+                tabBarController.tabBar.tintColor = UIColor.red
+                
+                tabBarController.addChild(childView1)
+                tabBarController.addChild(childView2)
+                tabCon.present(tabBarController, animated: true, completion: nil)
+            }
+        ],
+        
     ]
     
     
@@ -283,18 +343,27 @@ final class TabBarController: FtableViewController {
     /// 子视图1
     ///
     /// - Returns: UIViewController
-    public func getChildView1(text: String? = nil) -> UIViewController {
+    public func getChildView1(text: String? = nil, _ renderingMode: UIImage.RenderingMode? = nil) -> UIViewController {
         
-        let image = UIImage(named: "shatan")!
-        let selectedImage = UIImage(named: "fanchuan")!
+        var image = UIImage(named: "zhinanzhen")!
+        var selectedImage = UIImage(named: "luyingche")!
+        
+        if(renderingMode == nil) {
+            image = image.withRenderingMode(.alwaysOriginal)
+            selectedImage = selectedImage.withRenderingMode(.alwaysOriginal)
+        }
+        else {
+            image = image.withRenderingMode(renderingMode!)
+            selectedImage = selectedImage.withRenderingMode(renderingMode!)
+        }
         
         let child1 = UIViewController()
         child1.view.backgroundColor = UIColor.brown
         child1.navigationItem.title = "子视图1"
         child1.tabBarItem.title = "子视图11"
         child1.title = "子视图111"
-        child1.tabBarItem.image = image.withRenderingMode(.alwaysOriginal)
-        child1.tabBarItem.selectedImage = selectedImage.withRenderingMode(.alwaysOriginal)
+        child1.tabBarItem.image = image
+        child1.tabBarItem.selectedImage = selectedImage
         
         if text != nil {
             let label1 = UILabel()
@@ -320,17 +389,26 @@ final class TabBarController: FtableViewController {
     /// 子视图2
     ///
     /// - Returns: UIViewController
-    public func getChildView2() -> UIViewController {
-        let image = UIImage(named: "zhinanzhen")!
-        let selectedImage = UIImage(named: "luyingche")!
+    public func getChildView2(_ renderingMode: UIImage.RenderingMode? = nil) -> UIViewController {
+        var image = UIImage(named: "zhinanzhen")!
+        var selectedImage = UIImage(named: "luyingche")!
+        
+        if(renderingMode == nil) {
+           image = image.withRenderingMode(.alwaysOriginal)
+           selectedImage = selectedImage.withRenderingMode(.alwaysOriginal)
+        }
+        else {
+            image = image.withRenderingMode(renderingMode!)
+            selectedImage = selectedImage.withRenderingMode(renderingMode!)
+        }
         
         let child2 = ChildViewController()
         child2.view.backgroundColor = UIColor.purple
         child2.navigationItem.title = "子视图2"
         child2.title = "子视图222"
         child2.tabBarItem.title = "子视图22"
-        child2.tabBarItem.image = image.withRenderingMode(.alwaysOriginal)
-        child2.tabBarItem.selectedImage = selectedImage.withRenderingMode(.alwaysOriginal)
+        child2.tabBarItem.image = image
+        child2.tabBarItem.selectedImage = selectedImage
         //child2.tabBarItem.imageInsets = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
         
         self.addDismissButton(container: child2)
