@@ -51,11 +51,6 @@ final class TabBarDataSource : IFtableViewDataSouce {
             }
         ],
         [
-            "": {(target, indexPath, rowKey) -> Void in
-                
-            }
-        ],
-        [
             "使用UITabBar": {(target, indexPath, rowKey) -> Void in
                 let view = UseTabBarController()
                 target.show(view, sender: nil)
@@ -158,7 +153,11 @@ final class TabBarDataSource : IFtableViewDataSouce {
                 
             }
         ],
-        
+        [
+            "": {(target, indexPath, rowKey) -> Void in
+                
+            }
+        ],
     ]
     
     
