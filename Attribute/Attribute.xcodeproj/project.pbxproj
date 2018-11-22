@@ -11,7 +11,7 @@
 		2C004C4821928FC800A28A40 /* SwiftController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C004C4721928FC800A28A40 /* SwiftController.swift */; };
 		2C004C4B2192929B00A28A40 /* DefineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C004C4A2192929B00A28A40 /* DefineTableViewCell.swift */; };
 		2C004C4D2192C24700A28A40 /* NavigationSystemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C004C4C2192C24700A28A40 /* NavigationSystemController.swift */; };
-		2C004C4F2192C8EF00A28A40 /* NavigationSelfController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C004C4E2192C8EF00A28A40 /* NavigationSelfController.swift */; };
+		2C004C4F2192C8EF00A28A40 /* DefineNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C004C4E2192C8EF00A28A40 /* DefineNavigationController.swift */; };
 		2C004C522192E92700A28A40 /* ThreadHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C004C512192E92700A28A40 /* ThreadHomeController.swift */; };
 		2C175F9A2195246D00F66F96 /* SwiftKeywordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C175F992195246D00F66F96 /* SwiftKeywordController.swift */; };
 		2C175F9C219526CA00F66F96 /* SwiftInitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C175F9B219526CA00F66F96 /* SwiftInitController.swift */; };
@@ -24,7 +24,7 @@
 		2C175FB62197323F00F66F96 /* DefineUILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C175FB52197323F00F66F96 /* DefineUILabel.swift */; };
 		2C1A0609219912A600E2D11C /* TapGestureRecognizerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1A0608219912A600E2D11C /* TapGestureRecognizerController.swift */; };
 		2C1A060B2199AE0D00E2D11C /* UseGestureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1A060A2199AE0D00E2D11C /* UseGestureController.swift */; };
-		2C3CFC7821933B410040C707 /* NavigationSelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3CFC7721933B410040C707 /* NavigationSelfViewController.swift */; };
+		2C3CFC7821933B410040C707 /* DefineNavigationRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3CFC7721933B410040C707 /* DefineNavigationRootViewController.swift */; };
 		2CB83EED2191BC8300806091 /* TableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB83EEC2191BC8300806091 /* TableController.swift */; };
 		2CB83EEF2191BDF400806091 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB83EEE2191BDF400806091 /* NavigationController.swift */; };
 		2CBCA89121943A5000B8BC9F /* UnitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBCA89021943A5000B8BC9F /* UnitController.swift */; };
@@ -72,7 +72,7 @@
 		2C004C4721928FC800A28A40 /* SwiftController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftController.swift; sourceTree = "<group>"; };
 		2C004C4A2192929B00A28A40 /* DefineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefineTableViewCell.swift; sourceTree = "<group>"; };
 		2C004C4C2192C24700A28A40 /* NavigationSystemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationSystemController.swift; sourceTree = "<group>"; };
-		2C004C4E2192C8EF00A28A40 /* NavigationSelfController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationSelfController.swift; sourceTree = "<group>"; };
+		2C004C4E2192C8EF00A28A40 /* DefineNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefineNavigationController.swift; sourceTree = "<group>"; };
 		2C004C512192E92700A28A40 /* ThreadHomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadHomeController.swift; sourceTree = "<group>"; };
 		2C175F992195246D00F66F96 /* SwiftKeywordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftKeywordController.swift; sourceTree = "<group>"; };
 		2C175F9B219526CA00F66F96 /* SwiftInitController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftInitController.swift; sourceTree = "<group>"; };
@@ -85,7 +85,7 @@
 		2C175FB52197323F00F66F96 /* DefineUILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefineUILabel.swift; sourceTree = "<group>"; };
 		2C1A0608219912A600E2D11C /* TapGestureRecognizerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapGestureRecognizerController.swift; sourceTree = "<group>"; };
 		2C1A060A2199AE0D00E2D11C /* UseGestureController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseGestureController.swift; sourceTree = "<group>"; };
-		2C3CFC7721933B410040C707 /* NavigationSelfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationSelfViewController.swift; sourceTree = "<group>"; };
+		2C3CFC7721933B410040C707 /* DefineNavigationRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefineNavigationRootViewController.swift; sourceTree = "<group>"; };
 		2CB83EEC2191BC8300806091 /* TableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableController.swift; sourceTree = "<group>"; };
 		2CB83EEE2191BDF400806091 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		2CBCA89021943A5000B8BC9F /* UnitController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitController.swift; sourceTree = "<group>"; };
@@ -193,8 +193,8 @@
 		2C175FA42195A44700F66F96 /* 自定义UINavigationController */ = {
 			isa = PBXGroup;
 			children = (
-				2C3CFC7721933B410040C707 /* NavigationSelfViewController.swift */,
-				2C004C4E2192C8EF00A28A40 /* NavigationSelfController.swift */,
+				2C3CFC7721933B410040C707 /* DefineNavigationRootViewController.swift */,
+				2C004C4E2192C8EF00A28A40 /* DefineNavigationController.swift */,
 			);
 			path = "自定义UINavigationController";
 			sourceTree = "<group>";
@@ -757,8 +757,8 @@
 				2CD715DC2190A5A300309DEF /* AppDelegate.swift in Sources */,
 				2CB83EED2191BC8300806091 /* TableController.swift in Sources */,
 				2CDA6D41219D5C240059790F /* TableSectionHeaderTableView.swift in Sources */,
-				2C004C4F2192C8EF00A28A40 /* NavigationSelfController.swift in Sources */,
-				2C3CFC7821933B410040C707 /* NavigationSelfViewController.swift in Sources */,
+				2C004C4F2192C8EF00A28A40 /* DefineNavigationController.swift in Sources */,
+				2C3CFC7821933B410040C707 /* DefineNavigationRootViewController.swift in Sources */,
 				2C175F9E2195279E00F66F96 /* DefineTableView.swift in Sources */,
 				2C175FB62197323F00F66F96 /* DefineUILabel.swift in Sources */,
 				2CDA6D3B219D491F0059790F /* PartController.swift in Sources */,

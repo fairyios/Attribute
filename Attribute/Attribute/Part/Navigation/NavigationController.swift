@@ -22,8 +22,8 @@
         [
             "自定义导航栏": {(target, indexPath, rowKey) -> Void in
                 //let define = NavigationSelfViewController()
-                //let defineNavigation = NavigationSelfController(rootViewController: define)
-                let defineNavigation = NavigationSelfController(title: rowKey)
+                //let defineNavigation = DefineNavigationController(rootViewController: define)
+                let defineNavigation = DefineNavigationController(title: rowKey)
                 target.present(defineNavigation, animated: true, completion: nil)
             }
         ],

@@ -11,7 +11,7 @@ import UIKit
 
 
 /// 自定义导航h栏
-final class NavigationSelfController : UINavigationController, IController, UINavigationControllerDelegate {
+final class DefineNavigationController : UINavigationController, IController {
     
     var navigationTitle: String? = nil
     
@@ -54,7 +54,7 @@ final class NavigationSelfController : UINavigationController, IController, UINa
     }
     
     convenience init() {
-        let root = NavigationSelfViewController()
+        let root = DefineNavigationRootViewController()
         
         //设置导航栏:返回按钮
         //let backTitle = rootViewController.navigationItem.title
@@ -84,5 +84,22 @@ final class NavigationSelfController : UINavigationController, IController, UINa
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension DefineNavigationController :  UINavigationControllerDelegate {
+ 
+    
+    /// 重写跳转
+    ///
+    /// - Parameters:
+    ///   - viewController: <#viewController description#>
+    ///   - animated: <#animated description#>
+    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+        
+        if self.viewControllers.count>0 {
+            viewController.hidesBottomBarWhenPushed = false //跳转之后隐藏
+        }
+        super.pushViewController(viewController, animated: animated)
     }
 }
