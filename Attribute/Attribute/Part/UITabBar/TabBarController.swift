@@ -364,7 +364,8 @@ final class TabBarDataSource : IFtableViewDataSouce {
                 let tabCon = target as! TabBarController
                 
                 let childView1 = tabCon.getChildView1()
-                
+                childView1.tabBarItem.badgeValue = "7"// 下表数值显示
+                childView1.tabBarItem.badgeColor = UIColor.purple//下表数值显示背景颜色
                 
                 let tabBarController = UITabBarController()
                 tabBarController.tabBar.barStyle = .black
@@ -467,6 +468,8 @@ final class TabBarController: FtableViewController {
         child1.title = "子视图111"
         child1.tabBarItem.image = image
         child1.tabBarItem.selectedImage = selectedImage
+        child1.tabBarItem.badgeValue = "2"// 下表数值显示
+        child1.tabBarItem.badgeColor = UIColor.purple//下表数值显示背景颜色
         
         if text != nil {
             let label1 = UILabel()
@@ -513,6 +516,8 @@ final class TabBarController: FtableViewController {
         child2.tabBarItem.image = image
         child2.tabBarItem.selectedImage = selectedImage
         //child2.tabBarItem.imageInsets = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
+        child2.tabBarItem.badgeValue = "7"// 下表数值显示
+        child2.tabBarItem.badgeColor = UIColor.purple//下表数值显示背景颜色
         
         self.addDismissButton(container: child2)
         
@@ -534,6 +539,9 @@ final class TabBarController: FtableViewController {
         child3.tabBarItem.title = "子视图33"
         child3.tabBarItem.image = image.withRenderingMode(.alwaysOriginal)
         child3.tabBarItem.selectedImage = selectedImage.withRenderingMode(.alwaysOriginal)
+        child3.tabBarItem.badgeValue = "8"// 下表数值显示
+        child3.tabBarItem.badgeColor = UIColor.purple//下表数值显示背景颜色
+        
         child3.title = "子视图333"
         child3.navigationBar.barTintColor = UIColor.purple
         child3.navigationBar.barStyle = .black
@@ -541,6 +549,7 @@ final class TabBarController: FtableViewController {
         child3.navigationBar.titleTextAttributes = [
             NSAttributedString.Key.foregroundColor : UIColor.magenta.cgColor
         ]
+        
         
         
         
