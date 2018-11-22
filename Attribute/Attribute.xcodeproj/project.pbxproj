@@ -13,6 +13,7 @@
 		2C004C4D2192C24700A28A40 /* NavigationSystemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C004C4C2192C24700A28A40 /* NavigationSystemController.swift */; };
 		2C004C4F2192C8EF00A28A40 /* DefineNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C004C4E2192C8EF00A28A40 /* DefineNavigationController.swift */; };
 		2C004C522192E92700A28A40 /* ThreadHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C004C512192E92700A28A40 /* ThreadHomeController.swift */; };
+		2C15355421A7095A00FA17E7 /* CollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C15355321A7095A00FA17E7 /* CollectionController.swift */; };
 		2C175F9A2195246D00F66F96 /* SwiftKeywordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C175F992195246D00F66F96 /* SwiftKeywordController.swift */; };
 		2C175F9C219526CA00F66F96 /* SwiftInitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C175F9B219526CA00F66F96 /* SwiftInitController.swift */; };
 		2C175F9E2195279E00F66F96 /* DefineTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C175F9D2195279E00F66F96 /* DefineTableView.swift */; };
@@ -74,6 +75,7 @@
 		2C004C4C2192C24700A28A40 /* NavigationSystemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationSystemController.swift; sourceTree = "<group>"; };
 		2C004C4E2192C8EF00A28A40 /* DefineNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefineNavigationController.swift; sourceTree = "<group>"; };
 		2C004C512192E92700A28A40 /* ThreadHomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadHomeController.swift; sourceTree = "<group>"; };
+		2C15355321A7095A00FA17E7 /* CollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionController.swift; sourceTree = "<group>"; };
 		2C175F992195246D00F66F96 /* SwiftKeywordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftKeywordController.swift; sourceTree = "<group>"; };
 		2C175F9B219526CA00F66F96 /* SwiftInitController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftInitController.swift; sourceTree = "<group>"; };
 		2C175F9D2195279E00F66F96 /* DefineTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefineTableView.swift; sourceTree = "<group>"; };
@@ -180,6 +182,14 @@
 				2C004C512192E92700A28A40 /* ThreadHomeController.swift */,
 			);
 			path = Thread;
+			sourceTree = "<group>";
+		};
+		2C15355221A7092400FA17E7 /* UICollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				2C15355321A7095A00FA17E7 /* CollectionController.swift */,
+			);
+			path = UICollectionView;
 			sourceTree = "<group>";
 		};
 		2C175FA12195698D00F66F96 /* 自定义TableView */ = {
@@ -421,6 +431,7 @@
 		2CDA6D39219D243A0059790F /* Part */ = {
 			isa = PBXGroup;
 			children = (
+				2C15355221A7092400FA17E7 /* UICollectionView */,
 				2CDA6D46219DAC280059790F /* UITabBar */,
 				2CDA6D3A219D491F0059790F /* PartController.swift */,
 				2C004C502192E8FF00A28A40 /* Thread */,
@@ -749,6 +760,7 @@
 				2C004C4D2192C24700A28A40 /* NavigationSystemController.swift in Sources */,
 				2C1A060B2199AE0D00E2D11C /* UseGestureController.swift in Sources */,
 				2C175FA021954A9E00F66F96 /* DispatchQueueMainAsyncAfterController.swift in Sources */,
+				2C15355421A7095A00FA17E7 /* CollectionController.swift in Sources */,
 				2CDA6D45219D9C300059790F /* IFtableViewDataSouce.swift in Sources */,
 				2CDA6D50219DC7D30059790F /* UseTabBarController.swift in Sources */,
 				2C175FB02195BFE300F66F96 /* FtableViewController.swift in Sources */,

@@ -68,8 +68,9 @@ internal final class PartDataSource: IFtableViewDataSouce {
             }
         ],
         [
-            "": {(target, indexPath, rowKey) -> Void in
-                
+            "CollectionView": {(target, indexPath, rowKey) -> Void in
+                let gesture = CollectionController(title: rowKey, source: CollectionDataSource())
+                target.show(gesture, sender: nil)
             }
         ],
     ]
