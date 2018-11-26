@@ -33,6 +33,7 @@
 		2CBCA895219477B500B8BC9F /* FtableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBCA894219477B500B8BC9F /* FtableView.swift */; };
 		2CC149B7219E5F5C006E26DE /* UnitColorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC149B6219E5F5C006E26DE /* UnitColorController.swift */; };
 		2CC149BA219E6091006E26DE /* UnitColorSystemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC149B9219E6091006E26DE /* UnitColorSystemController.swift */; };
+		2CCF4DA321AC411400FB17E7 /* UseCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCF4DA221AC411400FB17E7 /* UseCollectionViewController.swift */; };
 		2CD715DC2190A5A300309DEF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD715DB2190A5A300309DEF /* AppDelegate.swift */; };
 		2CD715DE2190A5A300309DEF /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD715DD2190A5A300309DEF /* HomeController.swift */; };
 		2CD715E32190A5A500309DEF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CD715E22190A5A500309DEF /* Assets.xcassets */; };
@@ -95,6 +96,7 @@
 		2CBCA894219477B500B8BC9F /* FtableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FtableView.swift; sourceTree = "<group>"; };
 		2CC149B6219E5F5C006E26DE /* UnitColorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitColorController.swift; sourceTree = "<group>"; };
 		2CC149B9219E6091006E26DE /* UnitColorSystemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitColorSystemController.swift; sourceTree = "<group>"; };
+		2CCF4DA221AC411400FB17E7 /* UseCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCollectionViewController.swift; sourceTree = "<group>"; };
 		2CD715D82190A5A300309DEF /* Attribute.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Attribute.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CD715DB2190A5A300309DEF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CD715DD2190A5A300309DEF /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 		2C15355221A7092400FA17E7 /* UICollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				2CCF4DA121AC40F800FB17E7 /* 使用UICollectionView */,
 				2C15355321A7095A00FA17E7 /* CollectionController.swift */,
 			);
 			path = UICollectionView;
@@ -370,6 +373,14 @@
 			children = (
 			);
 			path = "反射";
+			sourceTree = "<group>";
+		};
+		2CCF4DA121AC40F800FB17E7 /* 使用UICollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				2CCF4DA221AC411400FB17E7 /* UseCollectionViewController.swift */,
+			);
+			path = "使用UICollectionView";
 			sourceTree = "<group>";
 		};
 		2CD715CF2190A5A300309DEF = {
@@ -770,6 +781,7 @@
 				2CB83EED2191BC8300806091 /* TableController.swift in Sources */,
 				2CDA6D41219D5C240059790F /* TableSectionHeaderTableView.swift in Sources */,
 				2C004C4F2192C8EF00A28A40 /* DefineNavigationController.swift in Sources */,
+				2CCF4DA321AC411400FB17E7 /* UseCollectionViewController.swift in Sources */,
 				2C3CFC7821933B410040C707 /* DefineNavigationRootViewController.swift in Sources */,
 				2C175F9E2195279E00F66F96 /* DefineTableView.swift in Sources */,
 				2C175FB62197323F00F66F96 /* DefineUILabel.swift in Sources */,

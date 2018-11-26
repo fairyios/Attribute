@@ -12,10 +12,19 @@ import UIKit
 final class CollectionDataSource : IFtableViewDataSouce {
     var source: [Dictionary<String, ((UIViewController, IndexPath, String) -> Void)?>] = [
         [
-            "": {(target, indexPath, rowKey) -> Void in
+            "使用UICollectionViewController": {(target, indexPath, rowKey) -> Void in
                 let this = target as! CollectionController
                 
-                let view = UICollectionViewController()
+//                let view = UICollectionViewController()
+//
+//                this.present(view, animated: true, completion: nil)
+            }
+        ],
+        [
+            "使用UICollectionView": {(target, indexPath, rowKey) -> Void in
+                let this = target as! CollectionController
+                
+                let view = UseCollectionViewController()
                 this.present(view, animated: true, completion: nil)
             }
         ],
