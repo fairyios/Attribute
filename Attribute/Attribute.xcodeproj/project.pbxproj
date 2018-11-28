@@ -29,6 +29,8 @@
 		2C94D91A21AD62DE0088E6FB /* DefineCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C94D91921AD62DE0088E6FB /* DefineCollectionViewCell.swift */; };
 		2CB83EED2191BC8300806091 /* TableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB83EEC2191BC8300806091 /* TableController.swift */; };
 		2CB83EEF2191BDF400806091 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB83EEE2191BDF400806091 /* NavigationController.swift */; };
+		2CB9D30821AEE1A400A03439 /* DefineCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB9D30721AEE1A400A03439 /* DefineCollectionHeaderView.swift */; };
+		2CB9D30A21AEE71100A03439 /* DefineCollectionFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB9D30921AEE71100A03439 /* DefineCollectionFooterView.swift */; };
 		2CBCA89121943A5000B8BC9F /* UnitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBCA89021943A5000B8BC9F /* UnitController.swift */; };
 		2CBCA8932194732500B8BC9F /* SwiftCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBCA8922194732500B8BC9F /* SwiftCollectionController.swift */; };
 		2CBCA895219477B500B8BC9F /* FtableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBCA894219477B500B8BC9F /* FtableView.swift */; };
@@ -93,6 +95,8 @@
 		2C94D91921AD62DE0088E6FB /* DefineCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefineCollectionViewCell.swift; sourceTree = "<group>"; };
 		2CB83EEC2191BC8300806091 /* TableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableController.swift; sourceTree = "<group>"; };
 		2CB83EEE2191BDF400806091 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		2CB9D30721AEE1A400A03439 /* DefineCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefineCollectionHeaderView.swift; sourceTree = "<group>"; };
+		2CB9D30921AEE71100A03439 /* DefineCollectionFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefineCollectionFooterView.swift; sourceTree = "<group>"; };
 		2CBCA89021943A5000B8BC9F /* UnitController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitController.swift; sourceTree = "<group>"; };
 		2CBCA8922194732500B8BC9F /* SwiftCollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftCollectionController.swift; sourceTree = "<group>"; };
 		2CBCA894219477B500B8BC9F /* FtableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FtableView.swift; sourceTree = "<group>"; };
@@ -327,6 +331,8 @@
 			isa = PBXGroup;
 			children = (
 				2C94D91921AD62DE0088E6FB /* DefineCollectionViewCell.swift */,
+				2CB9D30721AEE1A400A03439 /* DefineCollectionHeaderView.swift */,
+				2CB9D30921AEE71100A03439 /* DefineCollectionFooterView.swift */,
 			);
 			path = "自定义UICollectionViewCell";
 			sourceTree = "<group>";
@@ -766,6 +772,7 @@
 			files = (
 				2C004C4821928FC800A28A40 /* SwiftController.swift in Sources */,
 				2C175F9A2195246D00F66F96 /* SwiftKeywordController.swift in Sources */,
+				2CB9D30821AEE1A400A03439 /* DefineCollectionHeaderView.swift in Sources */,
 				2CC149BA219E6091006E26DE /* UnitColorSystemController.swift in Sources */,
 				2C175FB32195C2D100F66F96 /* UnitLabelController.swift in Sources */,
 				2CDA6D48219DAC3D0059790F /* TabBarController.swift in Sources */,
@@ -774,6 +781,7 @@
 				2CC149B7219E5F5C006E26DE /* UnitColorController.swift in Sources */,
 				2CB83EEF2191BDF400806091 /* NavigationController.swift in Sources */,
 				2CBCA8932194732500B8BC9F /* SwiftCollectionController.swift in Sources */,
+				2CB9D30A21AEE71100A03439 /* DefineCollectionFooterView.swift in Sources */,
 				2CD715DE2190A5A300309DEF /* HomeController.swift in Sources */,
 				2CDA6D3E219D526F0059790F /* TableSectionHeaderController.swift in Sources */,
 				2C175FAC2195B3B800F66F96 /* GestureController.swift in Sources */,
